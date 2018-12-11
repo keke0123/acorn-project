@@ -11,6 +11,7 @@
 <body>
 <div class="container" style="margin-top:50px;">
 	<h3>home</h3>
+	<li><a href="gallery/list.do">이미지 리스트 화면으로 이동</a></li>
 </div>
 </body>
 </html>
