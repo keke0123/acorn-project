@@ -4,7 +4,7 @@ CREATE TABLE acorn_user(
 	nick VARCHAR2(100) NOT NULL, -- 닉네임
 	name VARCHAR2(100) NOT NULL, -- 이름
 	status VARCHAR2(100), -- 상태글
-	phone VARCHAR2(100)NOT NULL, -- 전화번호
+	phone VARCHAR2(100) NOT NULL, -- 전화번호
 	email VARCHAR2(100) NOT NULL, -- 이메일
 	orgfilename VARCHAR2(100) NOT NULL, -- 썸네일 사진 파일명
 	filesize NUMBER NOT NULL, -- 파일사이즈
