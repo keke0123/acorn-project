@@ -4,10 +4,9 @@ public class ImageUploadDto {
 	private int num_board;  // 게시물 번호
 	private String id_writer; // 작성자 아이디
 	private String tag; // 해쉬태그
-	private String caption; // 글 내용
-	private String imagePath; //이미지 경로 (/upload/kim1.png)
-	private String filesize; // 파일 사이즈
 	private String orgfilename; // 저장된 파일명
+	private String filesize; // 파일 사이즈
+	private String caption; // 글 내용
 	private String regdate; // 등록 날짜	
 	
 	public ImageUploadDto() {
@@ -15,16 +14,15 @@ public class ImageUploadDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ImageUploadDto(int num_board, String id_writer, String tag, String caption, String imagePath,
-			String filesize, String orgfilename, String regdate) {
+	public ImageUploadDto(int num_board, String id_writer, String tag, String orgfilename, String filesize,
+			String caption, String regdate) {
 		super();
 		this.num_board = num_board;
 		this.id_writer = id_writer;
 		this.tag = tag;
-		this.caption = caption;
-		this.imagePath = imagePath;
-		this.filesize = filesize;
 		this.orgfilename = orgfilename;
+		this.filesize = filesize;
+		this.caption = caption;
 		this.regdate = regdate;
 	}
 
@@ -52,20 +50,12 @@ public class ImageUploadDto {
 		this.tag = tag;
 	}
 
-	public String getCaption() {
-		return caption;
+	public String getOrgfilename() {
+		return orgfilename;
 	}
 
-	public void setCaption(String caption) {
-		this.caption = caption;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setOrgfilename(String orgfilename) {
+		this.orgfilename = orgfilename;
 	}
 
 	public String getFilesize() {
@@ -76,12 +66,12 @@ public class ImageUploadDto {
 		this.filesize = filesize;
 	}
 
-	public String getOrgfilename() {
-		return orgfilename;
+	public String getCaption() {
+		return caption;
 	}
 
-	public void setOrgfilename(String orgfilename) {
-		this.orgfilename = orgfilename;
+	public void setCaption(String caption) {
+		this.caption = caption;
 	}
 
 	public String getRegdate() {
@@ -91,6 +81,10 @@ public class ImageUploadDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	
+	
+
+	
 	
 	
 	
