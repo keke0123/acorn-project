@@ -11,9 +11,8 @@
 </head>
 <body>
 <div class="container">
-	<a href="private/upload_form.jsp">이미지 업로드</a>
-	| <a href="private/upload_form2.jsp">이미지 업로드2</a>
-	| <a href="private/upload_form3.jsp">이미지 업로드3</a>
+	  <a href="upload_form.do">이미지 업로드</a>
+	| 
 	<h3>Gallery 이미지 목록 입니다.</h3>
 	
 		<div class="col-xs-6 col-sm-3">

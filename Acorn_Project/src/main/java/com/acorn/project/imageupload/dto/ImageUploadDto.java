@@ -1,21 +1,25 @@
 package com.acorn.project.imageupload.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ImageUploadDto {
-	private int num_board;  // 게시물 번호
+	private int num_board; // 게시물 번호
 	private String id_writer; // 작성자 아이디
 	private String tag; // 해쉬태그
 	private String orgfilename; // 저장된 파일명
-	private String filesize; // 파일 사이즈
+	private long filesize; // 파일 사이즈
 	private String caption; // 글 내용
-	private String regdate; // 등록 날짜	
-	
+	private String regdate; // 등록 날짜
+
+	private MultipartFile file;
+
 	public ImageUploadDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ImageUploadDto(int num_board, String id_writer, String tag, String orgfilename, String filesize,
-			String caption, String regdate) {
+	public ImageUploadDto(int num_board, String id_writer, String tag, String orgfilename, long filesize,
+			String caption, String regdate, MultipartFile file) {
 		super();
 		this.num_board = num_board;
 		this.id_writer = id_writer;
@@ -24,6 +28,7 @@ public class ImageUploadDto {
 		this.filesize = filesize;
 		this.caption = caption;
 		this.regdate = regdate;
+		this.file = file;
 	}
 
 	public int getNum_board() {
@@ -58,11 +63,11 @@ public class ImageUploadDto {
 		this.orgfilename = orgfilename;
 	}
 
-	public String getFilesize() {
+	public long getFilesize() {
 		return filesize;
 	}
 
-	public void setFilesize(String filesize) {
+	public void setFilesize(long filesize) {
 		this.filesize = filesize;
 	}
 
@@ -81,13 +86,15 @@ public class ImageUploadDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
-	
 
-	
-	
-	
-	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	
 	
 }
