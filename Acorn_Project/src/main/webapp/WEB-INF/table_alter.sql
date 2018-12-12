@@ -15,3 +15,10 @@ ADD(regdate DATE);
 
 ALTER TABLE acorn_bookmark
 ADD(regdate DATE);
+
+--
+ALTER TABLE acorn_board
+DROP primary key;
+
+ALTER TABLE acorn_comment
+DROP primary key;
