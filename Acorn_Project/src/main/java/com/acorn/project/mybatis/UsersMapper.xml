@@ -16,6 +16,11 @@
 		FROM acorn_user
 		WHERE id=#{id}
 	</select>
+	<select id="isNickExist" parameterType="string" resultType="string">
+		SELECT nick
+		FROM acorn_user
+		WHERE nick=#{nick}
+	</select>
 </mapper>
 
 

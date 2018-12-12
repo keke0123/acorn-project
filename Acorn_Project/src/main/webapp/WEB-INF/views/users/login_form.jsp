@@ -6,18 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>login_form</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+<script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+<style>
+	.control-label{
+		display: none;
+	}
+	
+</style>
 </head>
 <body>
 <div class="container">
-	<form action="login.do" method="post">
-	<div>
-		<input type="text" id="id" name="id" placeholder="아이디"/>
+	<div class="col-sm-6 col-sm-offset-3">
+		<form action="login.do" method="post">
+			<div class="form-group">
+				<label class="control-label" for="id">전화번호 또는 이메일</label>
+				<input class="form-control" type="text" id="id" name="id" placeholder="전화번호 또는 이메일"/>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="pwd">비밀번호</label>
+				<input class="form-control" type="password" id="pwd" name="pwd" placeholder="비밀번호" />
+			</div>
+			<button class="btn btn-primary btn-block" type="submit">로그인</button>
+		</form>
 	</div>
-	<div>
-		<input type="password" id="pwd" name="pwd" placeholder="비밀번호" />
-	</div>
-	<button type="submit">로그인</button>
-	</form>
 </div>
 </body>
 </html>

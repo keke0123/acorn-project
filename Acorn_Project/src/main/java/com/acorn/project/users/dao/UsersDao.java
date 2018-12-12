@@ -10,4 +10,6 @@ public interface UsersDao {
 	public boolean isExist(String inputId);
 	//아이디에 해당하는 비밀번호 hash 값을 리턴해주는 메소드
 	public String getPwdHash(String id);
+	//인자로 전달된 닉네임이 존재하는 여부를 리턴하는 메소드
+	public boolean isNickExist(String inputNick);
 }

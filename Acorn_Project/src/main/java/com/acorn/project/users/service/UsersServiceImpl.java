@@ -64,4 +64,17 @@ public class UsersServiceImpl implements UsersService{
 		}
 		return map;
 	}
+
+	@Override
+	public Map<String, Object> canUseNick(String inputNick) {
+		//입력한 닉네임이 존재하는지 여부를 받아온다
+		boolean isExist=dao.isNickExist(inputNick);
+		Map<String, Object>map=new HashMap<>();
+		if(isExist) {
+			map.put("canUseNick", false);
+		}else {
+			map.put("canUseNick", true);
+		}
+		return map;
+	}
 }

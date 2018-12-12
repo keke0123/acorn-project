@@ -35,4 +35,15 @@ public class UsersDaoImpl implements UsersDao{
 		return session.selectOne("users.getPwd",id);
 	}
 
+	//인자로 전달된 닉네임이 존재하는지 여부
+	@Override
+	public boolean isNickExist(String inputNick) {
+		String selectedNick=session.selectOne("users.isNickExist", inputNick);
+		if(selectedNick==null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+
 }

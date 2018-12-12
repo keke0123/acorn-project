@@ -15,4 +15,6 @@ public interface UsersService {
 	public void validUser(HttpSession session, ModelAndView mView, UsersDto dto);
 	//아이디 사용가능 여부를 Map에 담아서 리턴하는 로직
 	public Map<String, Object> canUseId(String inputId);
+	//닉네임 사용가능 여부를 Map에 담아서 리턴하는 로직
+	public Map<String, Object> canUseNick(String inputNick);
 }

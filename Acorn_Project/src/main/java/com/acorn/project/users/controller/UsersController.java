@@ -59,4 +59,12 @@ public class UsersController {
 		//canUse 가 true or false
 		return map;
 	}
+	
+	@RequestMapping("/users/checkNick")
+	@ResponseBody
+	public Map<String, Object> checkNick(@RequestParam String inputNick){
+		Map<String, Object> map=service.canUseNick(inputNick);
+		//canUseNick 도  true or false
+		return map;
+	}
 }
