@@ -11,6 +11,7 @@
 <body>
 <div class="container" style="margin-top:50px;">
 	<h3>home</h3>
+	<a href="search/list.do">인기인리스트보기</a>
 </div>
 </body>
 </html>

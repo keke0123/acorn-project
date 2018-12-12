@@ -3,7 +3,15 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<typeAliases>
+		<typeAlias type="com.acorn.project.search.dto.SearchDto" alias="searchDto"/>
 	
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="com/acorn/project/mybatis/SearchMapper.xml"/>
+	
+	</mappers>	
 </configuration>
 
 
