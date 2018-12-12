@@ -1,5 +1,12 @@
 package com.acorn.project.main.service;
 
-public class MainServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.acorn.project.main.dao.MainDao;
+
+@Service
+public class MainServiceImpl {
+	@Autowired
+	private MainDao dao;
 }

@@ -3,7 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
+	<mappers>
+		<mapper resource="com/acorn/project/mybatis/MainMapper.xml"/>
+		<mapper resource="com/acorn/project/mybatis/TestMapper.xml"/>
+	</mappers>
 </configuration>
 
 
