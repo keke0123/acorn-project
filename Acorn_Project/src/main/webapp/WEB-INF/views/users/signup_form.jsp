@@ -18,6 +18,18 @@
 		
 		//id 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.idCheck=function(){
+			var id=$scope.id;
+			var isEmail=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			var isPhone=/^01[016789][0-9]{3,4}[0-9]{4}$/;
+			
+			console.log(isPhone.test(id));
+			console.log(isEmail.test(id));
+			
+			if(!isPhone.test(id) && !isEmail.test(id)){
+				console.log("둘다 틀림");
+				return false;
+			}
+			
 			//입력한 아이디를 ajax 요청을 통해 서버에 보내기
 			$http({
 				url:"checkid.do",
@@ -26,12 +38,15 @@
 			})
 			.success(function(responseData){
 				//responseData는 json으로 true or false
+				
 				$scope.canUseId=responseData.canUse;
+				
 			});
 		};
 		
 		//nick 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.nickCheck=function(){
+		
 			$http({
 				url:"checkNick.do",
 				method:"get",

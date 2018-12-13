@@ -11,6 +11,7 @@
 <p><strong>${id }</strong> 님 가입을 축하 합니다.</p>
 <a href="login_form.do">로그인 하러 가기</a>
 <a href="${pageContext.request.contextPath}/home.do">인덱스로 가기</a>
+<!-- 추후에 메인페이지 이동으로 없어질 페이지 -->
 </body>
 </html>
 
