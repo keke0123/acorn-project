@@ -18,9 +18,9 @@
 		.controller("myCtrl",function($scope,$http){
 			
 			
-			$scope.searchList[];
+			$scope.searchList=[];
 			$scope.getData=function(){
-				console.log($scope.asd);
+				console.log($scope.searchValue);
 				/* $http({
 					url:""
 					
@@ -51,7 +51,7 @@
    		</div>
   		<div class="form-group mx-sm-3 mb-2">
     		<label for="staticEmail2" class="sr-only">Email</label>
-    		<input type="text" ng-model="asd" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
+    		<input type="text" ng-model="searchValue" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
   		</div>
   		<button ng-click="getData()" class="btn btn-primary mb-2">Confirm identity</button>
 	</form>

@@ -4,6 +4,14 @@
 	<select id="getList" parameterType="searchDto" resultType="searchDto">
 		 SELECT orgfilename, id, nick FROM  acorn_user
 	</select>
+	
+	<select id="getListHuman" parameterType="String" resultType="searchDto">
+		 SELECT orgfilename, id, nick FROM  acorn_user
+	</select>
+	
+	<select id="getListTag" parameterType="String" resultType="searchDto">
+		 SELECT orgfilename, id, nick FROM  acorn_user
+	</select>
 </mapper>
 
 

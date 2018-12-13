@@ -10,7 +10,8 @@ import java.util.List;
 import com.acorn.project.search.dto.SearchDto;
 
 public interface SearchDao {
-	public List<SearchDto> getList(SearchDto dto);
+	public List<SearchDto> getList(String value);
+	
 	
 	
 }
