@@ -1,0 +1,34 @@
+package com.acorn.project.main.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.acorn.project.main.service.MainService;
+
+@Controller
+public class MainController {
+	
+	@Autowired
+	private MainService service;
+	
+	@RequestMapping("/main/main")
+	public ModelAndView authMain(ModelAndView mView, HttpServletRequest request,
+			HttpSession session) {
+		// test 용도로 임의로 session 에 id 값을 넣는다.
+		session.setAttribute("id", "user1");
+		//
+		String id=(String)session.getAttribute("id");
+		
+		service.getBoardList(mView, id, request);
+		
+		mView.addObject("id",id);
+		mView.setViewName("main/main");
+		
+		return mView;
+	}
+}
