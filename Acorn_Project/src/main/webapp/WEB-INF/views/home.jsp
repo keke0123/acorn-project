@@ -12,6 +12,7 @@
 <div class="container" style="margin-top:50px;">
 	<h3>home</h3>
 	<p><a href="main/test.do">테스트 페이지</a></p>
+	<p><a href="main/main.do">main 페이지</a></p>
 </div>
 </body>
 </html>
