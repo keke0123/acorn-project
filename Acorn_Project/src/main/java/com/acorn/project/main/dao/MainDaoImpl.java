@@ -17,6 +17,16 @@ public class MainDaoImpl implements MainDao {
 	public List<MainDto> getFollowList(String id) {	
 		return session.selectList("main.getFollowList",id);
 	}
+
+	@Override
+	public List<MainDto> getBoardList(String id) {
+		return session.selectList("main.getBoardList", id);
+	}
+
+	@Override
+	public List<String> getTagList(int num_board) {
+		return session.selectList("main.getTag", num_board);
+	}
 	
 	
 

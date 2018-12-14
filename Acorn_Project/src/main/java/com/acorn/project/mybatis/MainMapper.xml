@@ -6,4 +6,19 @@
 		FROM acorn_follow
 		WHERE id_follower=#{id}
 	</select>
+	<select id="getBoardList" parameterType="string" resultType="mainDto">
+		SELECT b.orgfilename, b.content, b.regdate, b.num_board, b.id_writer
+		FROM(
+				SELECT id_follow
+				FROM acorn_follow
+				WHERE id_follower=#{id}
+			) a, acorn_board b
+		WHERE a.id_follow=b.id_writer
+		ORDER BY b.regdate
+	</select>
+	<select id="getTag" parameterType="mainDto" resultType="string">
+		SELECT tag
+		FROM acorn_tag
+		WHERE num_board = #{num_board}
+	</select>
 </mapper>

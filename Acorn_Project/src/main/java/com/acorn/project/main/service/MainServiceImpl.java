@@ -22,4 +22,14 @@ public class MainServiceImpl implements MainService{
 		request.setAttribute("followList", followList);
 		//mView.addObject("followList", followList);
 	}
+
+	@Override
+	public List<MainDto> getMainBoard(String id) {
+		List<MainDto> boardList=dao.getBoardList(id);
+		for(int i=0; i<boardList.size(); i++) {
+			List<String> tagList=dao.getTagList(boardList.get(i).getNum_board());
+			boardList.get(i).setTag(tagList);
+		}
+		return boardList;
+	}
 }
