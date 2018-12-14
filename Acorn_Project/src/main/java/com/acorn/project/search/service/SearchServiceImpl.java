@@ -19,11 +19,20 @@ public class SearchServiceImpl implements SearchService{
 	@Override
 	public void getList(String value) {
 			
-		SearchDto dto =new SearchDto();
+		/*SearchDto dto =new SearchDto();
 		List<SearchDto> list=searchDao.getList(dto);
 		
-		request.setAttribute("list", list);
+		request.setAttribute("list", list);*/
 	
+	}
+
+	@Override
+	public List<SearchDto> searchList(HttpServletRequest request) {
+		String value=request.getParameter("keyword");
+		
+		List<SearchDto> list = searchDao.getList(value);
+		
+		return list;
 	}
 
 

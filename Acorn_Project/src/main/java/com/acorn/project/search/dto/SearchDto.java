@@ -9,15 +9,22 @@ public class SearchDto {
 	private String id;                 //인기인 id 
 	private String nick;               //인기인 닉네임
 	private String orgFileName;        //인기인 사진출력시 필요.
+	private String name;
+	private String id_follow;
+	private int countFollow;
 	
 	public SearchDto() {}
 
-	public SearchDto(int num, String id, String nick, String orgFileName) {
+	public SearchDto(int num, String id, String nick, String orgFileName, String name, String id_follow,
+			int countFollow) {
 		super();
 		this.num = num;
 		this.id = id;
 		this.nick = nick;
 		this.orgFileName = orgFileName;
+		this.name = name;
+		this.id_follow = id_follow;
+		this.countFollow = countFollow;
 	}
 
 	public int getNum() {
@@ -51,6 +58,32 @@ public class SearchDto {
 	public void setOrgFileName(String orgFileName) {
 		this.orgFileName = orgFileName;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId_follow() {
+		return id_follow;
+	}
+
+	public void setId_follow(String id_follow) {
+		this.id_follow = id_follow;
+	}
+
+	public int getCountFollow() {
+		return countFollow;
+	}
+
+	public void setCountFollow(int countFollow) {
+		this.countFollow = countFollow;
+	}
+
+	
 	
 	
 	

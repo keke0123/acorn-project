@@ -18,15 +18,17 @@
 		.controller("myCtrl",function($scope,$http){
 			
 			
-			$scope.searchList[];
+			$scope.searchList=[];
 			$scope.getData=function(){
 				console.log($scope.asd);
-				/* $http({
-					url:""
-					
+				 $http({
+					url:"Search_like.do",
+					method:"get",
+					params:{"keyword":"유저"}
 				}).success(function(data){
-					
-				}); */
+					console.log(data);
+					$scope.searchList=data;
+				});
 			};
 			
 		});
@@ -83,7 +85,9 @@
 		</table>
 	
 	</div>
-	
+	<ul>
+		<li ng-repeat="tmp in searchList">{{tmp.name}}</li>
+	</ul>
 	
 </body>
 </html>
