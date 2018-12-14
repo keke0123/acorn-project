@@ -61,5 +61,16 @@
 		<beans:property name="order" value="0"/>
 	</beans:bean>
 	
-	
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅-->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="573709546462-eug6m358l05j5pf2e7hlddjc26jfir3n.apps.googleusercontent.com" />
+		<beans:constructor-arg value="7S0ek7f0f8pJ3mGPHimiEFl3" />
+	</beans:bean>
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+		<beans:property name="redirectUri" value="http://localhost:8888/project/oauth2callback.do" />
+	</beans:bean>
 </beans:beans>

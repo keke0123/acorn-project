@@ -17,6 +17,13 @@
 </head>
 <body>
 <div class="container">
+
+<!-- 구글 로그인 화면으로 이동 시키는 URL -->
+<!-- 구글 로그인 화면에서 ID, PW를 올바르게 입력하면 oauth2callback 메소드 실행 요청-->
+<div id="google_id_login" style="text-align:center">
+<a href="${google_url}">
+gg</a></div>
+	
 	<div class="col-sm-6 col-sm-offset-3">
 		<form action="login.do" method="post">
 			<div class="form-group">

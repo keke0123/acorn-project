@@ -5,9 +5,13 @@
 <html ng-app="myApp">
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="428552167540-go5t955lqhknluvjlr7s59421o0g4a8f.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <title>SIGN UP</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 function pwdCheck(){
 	var isPwd=document.querySelector("#pwd").getAttribute('type');
@@ -20,6 +24,10 @@ function pwdCheck(){
 	}
 	return false;
 } 
+
+function submitForm() {
+    document.getElementById("signupForm").submit();
+}
 
 	angular.module("myApp",[])
 	.controller("myCtrl", function($scope, $http){
@@ -89,6 +97,25 @@ function pwdCheck(){
 <body ng-controller="myCtrl">
 <div class="container">
 	<div class="col-sm-6 col-sm-offset-3">
+	
+		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+	
 		<form action="signup.do" method="post" name="sf" id="signupForm" novalidate>
 			<div class="form-group has-feedback"
 				ng-class="{'has-success':canUseId && canUseReg , 'has-error': (!canUseId || !canUseReg) && sf.id.$dirty}">
@@ -99,7 +126,7 @@ function pwdCheck(){
 				<span ng-show="(sf.id.$invalid || !canUseId) && sf.id.$dirty" class="glyphicon glyphicon-remove-circle form-control-feedback"></span>
 				<p ng-show="sf.id.$error.required && sf.id.dirty" class="help-block">아이디를 입력해주세요</p>
 				<p ng-show="!canUseId && sf.id.$dirty" class="help-block">이미 등록된 아이디 입니다.</p>
-				<p ng-show="!canUseTemp && sf.id.$dirty" class="help-block">전화번호나 이메일을 입력해주세요</p>
+				<p ng-show="!canUseReg && sf.id.$dirty" class="help-block">전화번호나 이메일을 입력해주세요</p>
 			</div>
 			<div class="form-group has-feedback"
 				ng-class="{'has-success':sf.name.$valid}">
@@ -129,7 +156,11 @@ function pwdCheck(){
 				<p ng-show="sf.pwd.$invalid && sf.pwd.$dirty" class="help-block">특수문자 포함 6자 이상 15자 내로 입력하세요.</p>
 			</div> 
 	
-			<button ng-disabled="sf.$invalid || !canUseId || !canUseNick" class="btn btn-primary btn-block" type="submit">submit</button>
+			<button 
+			data-sitekey="6LcFcYEUAAAAAMBMeeUh0Rr6Q__wsPienQNERn0Y"
+			data-callback="submitForm"
+			ng-disabled="sf.$invalid || !canUseId || !canUseNick" 
+			class="g-recaptcha btn btn-primary btn-block" type="submit">submit</button>
 		</form>
 	</div>
 </div>

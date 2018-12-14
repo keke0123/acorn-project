@@ -24,6 +24,7 @@
 	<h3>home</h3>
 	<a href="users/signup_form.do">회원가입</a>
 	<a href="users/login_form.do">로그인</a>
+	<a href="users/test.do">테스트</a>
 </div>
 </body>
 </html>
