@@ -9,11 +9,15 @@ public class MainDto {
 	private String regdate;
 	private String id_writer;
 	private List<String> tag;
+	private String id_like;
+	private String id_bookmark;
+	private String id;
+	private int count_like;
 	
 	public MainDto() {}
 
 	public MainDto(int num_board, List<String> orgfilename, String content, String regdate, String id_writer,
-			List<String> tag) {
+			List<String> tag, String id_like, String id_bookmark, String id, int count_like) {
 		super();
 		this.num_board = num_board;
 		this.orgfilename = orgfilename;
@@ -21,6 +25,10 @@ public class MainDto {
 		this.regdate = regdate;
 		this.id_writer = id_writer;
 		this.tag = tag;
+		this.id_like = id_like;
+		this.id_bookmark = id_bookmark;
+		this.id = id;
+		this.count_like = count_like;
 	}
 
 	public int getNum_board() {
@@ -70,8 +78,38 @@ public class MainDto {
 	public void setTag(List<String> tag) {
 		this.tag = tag;
 	}
-	
-	
-	
+
+	public String getId_like() {
+		return id_like;
+	}
+
+	public void setId_like(String id_like) {
+		this.id_like = id_like;
+	}
+
+	public String getId_bookmark() {
+		return id_bookmark;
+	}
+
+	public void setId_bookmark(String id_bookmark) {
+		this.id_bookmark = id_bookmark;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getCount_like() {
+		return count_like;
+	}
+
+	public void setCount_like(int count_like) {
+		this.count_like = count_like;
+	}
+
 	
 }

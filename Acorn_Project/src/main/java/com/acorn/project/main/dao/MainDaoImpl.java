@@ -24,15 +24,23 @@ public class MainDaoImpl implements MainDao {
 	}
 
 	@Override
-	public List<String> getTagList(int num_board) {
-		return session.selectList("main.getTag", num_board);
+	public List<String> getTagList(MainDto dto) {
+		return session.selectList("main.getTag", dto);
 	}
 
 	@Override
-	public List<String> getPictureList(int num_board) {
-		return session.selectList("main.getPicture", num_board);
+	public List<String> getPictureList(MainDto dto) {
+		return session.selectList("main.getPicture", dto);
 	}
-	
-	
+
+	@Override
+	public String getLike(MainDto dto) {
+		return session.selectOne("main.getLike", dto);
+	}
+
+	@Override
+	public String getBookMark(MainDto dto) {
+		return session.selectOne("main.getBookMark", dto);
+	}
 
 }

@@ -7,13 +7,22 @@
 		WHERE id_follower=#{id}
 	</select>
 	<select id="getBoardList" parameterType="string" resultType="mainDto">
-		SELECT b.content, b.regdate, b.num_board, b.id_writer
-		FROM(
-				SELECT id_follow
-				FROM acorn_follow
-				WHERE id_follower=#{id}
-			) a, acorn_board b
-		WHERE a.id_follow=b.id_writer
+		SELECT b.content, b.regdate, b.num_board, b.id_writer, l.count_like
+		FROM (
+		    SELECT b.content, b.regdate, b.num_board, b.id_writer
+		    FROM(
+		            SELECT id_follow
+		            FROM acorn_follow
+		            WHERE id_follower=#{id}
+		        ) a, acorn_board b
+		    WHERE a.id_follow=b.id_writer
+		    ) b,
+		    (
+		        SELECT num_board, COUNT(num_board) AS count_like
+		        FROM acorn_like
+		        GROUP BY num_board 
+		    ) l
+		WHERE b.num_board = l.num_board(+)
 		ORDER BY b.regdate
 	</select>
 	<select id="getTag" parameterType="mainDto" resultType="string">
@@ -25,5 +34,15 @@
 		SELECT orgfilename
 		FROM acorn_picture
 		WHERE num_board = #{num_board}
+	</select>
+	<select id="getLike" parameterType="mainDto" resultType="String">
+		SELECT id_like
+		FROM acorn_like
+		WHERE num_board = #{num_board} AND id_like = #{id}
+	</select>
+	<select id="getBookMark" parameterType="mainDto" resultType="String">
+		SELECT id_bookmark
+		FROM acorn_bookmark
+		WHERE num_board = #{num_board} AND id_bookmark = #{id}
 	</select>
 </mapper>

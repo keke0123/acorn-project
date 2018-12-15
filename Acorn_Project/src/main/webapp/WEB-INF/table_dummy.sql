@@ -23,14 +23,17 @@ INSERT INTO acorn_board values(2, 'user2', 'Lorem ipsum dolor sit amet, consecte
 INSERT INTO acorn_board values(3, 'user2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 INSERT INTO acorn_board values(4, 'user3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 INSERT INTO acorn_board values(5, 'user3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+INSERT INTO acorn_board values(6, 'user5', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 
 -- acorn_picture
 INSERT INTO acorn_picture values(1, '/resources/images/1.jpg', 100);
 INSERT INTO acorn_picture values(1, '/resources/images/6.jpg', 100);
 INSERT INTO acorn_picture values(2, '/resources/images/2.jpg', 100);
+INSERT INTO acorn_picture values(2, '/resources/images/7.jpg', 100);
 INSERT INTO acorn_picture values(3, '/resources/images/3.jpg', 100);
 INSERT INTO acorn_picture values(4, '/resources/images/4.jpg', 100);
 INSERT INTO acorn_picture values(5, '/resources/images/5.jpg', 100);
+INSERT INTO acorn_picture values(6, '/resources/images/7.jpg', 100);
 
 -- acorn_comment
 -- acorn_comment(num_board, id_writer, content, id_target, ref_group, comment_group, deleted, regdate)
@@ -68,7 +71,7 @@ INSERT INTO acorn_tag values(3,'유럽');
 
 -- acorn_like
 -- acorn_like(num_board, id_like)
-INSERT INTO acorn_like values(1, 'user1');
+INSERT INTO acorn_like values(2, 'user1');
 INSERT INTO acorn_like values(1, 'user2');
 INSERT INTO acorn_like values(1, 'user5');
 INSERT INTO acorn_like values(101, 'user2');

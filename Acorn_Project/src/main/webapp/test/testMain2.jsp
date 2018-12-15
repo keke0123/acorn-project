@@ -18,22 +18,17 @@
 			scroll_event();
 		};
 		function scroll_event(){
-			var scrollY = window.scrollY;
-			var windowHeight = window.innerHeight;
-			var documentHeight = document.body.scrollHeight;
-			//console.log(window.scrollY); // 스크롤된 높이
-			//console.log(window.innerHeight); // 창 높이
-			//console.log(document.body.scrollHeight); // 전체높이
-			if(scrollY+windowHeight >= documentHeight){
-				console.log("바닥입니다");
-				$http({
-					url:"../main/mainBoard.do",
-					method:"get"
-				}).success(function(data){
-					//서버에서 응답된 데이터를 모델에 연결
-					console.log(data);
-				});
-			}
+			console.log(window.scrollY); // 스크롤된 높이
+			console.log(window.innerHeight); // 창 높이
+			console.log(document.body.scrollHeight); // 전체높이
+			//console.log(document.body.scrollTop) // 다른 요소로 scroll 된 높이 체크할때
+			//console.log(window.pageYOffset);
+			// clientHeight(창높이) / scrollHeight(전체높이) / scrollTop(스크롤 내려온 높이)
+			// 스크롤 바닥으로 보내기
+			//window.scrollTo(0,document.body.scrollHeight);
+			//
+			//scrollingElement = (document.scrollingElement || document.body);
+			//scrollingElement.scrollop = scrollingElement.scrollHeight;
 		}
 		//친구 이름 정보를 담을 배열 
 		$scope.friends=[];
