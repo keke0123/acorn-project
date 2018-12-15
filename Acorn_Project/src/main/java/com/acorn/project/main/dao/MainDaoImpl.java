@@ -27,6 +27,11 @@ public class MainDaoImpl implements MainDao {
 	public List<String> getTagList(int num_board) {
 		return session.selectList("main.getTag", num_board);
 	}
+
+	@Override
+	public List<String> getPictureList(int num_board) {
+		return session.selectList("main.getPicture", num_board);
+	}
 	
 	
 

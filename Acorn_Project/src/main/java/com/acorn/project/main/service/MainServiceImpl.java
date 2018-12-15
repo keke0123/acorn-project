@@ -27,8 +27,11 @@ public class MainServiceImpl implements MainService{
 	public List<MainDto> getMainBoard(String id) {
 		List<MainDto> boardList=dao.getBoardList(id);
 		for(int i=0; i<boardList.size(); i++) {
-			List<String> tagList=dao.getTagList(boardList.get(i).getNum_board());
+			int boardNum = boardList.get(i).getNum_board();
+			List<String> tagList=dao.getTagList(boardNum);
+			List<String> pictureList=dao.getPictureList(boardNum);
 			boardList.get(i).setTag(tagList);
+			boardList.get(i).setOrgfilename(pictureList);
 		}
 		return boardList;
 	}

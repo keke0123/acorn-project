@@ -7,7 +7,7 @@
 		WHERE id_follower=#{id}
 	</select>
 	<select id="getBoardList" parameterType="string" resultType="mainDto">
-		SELECT b.orgfilename, b.content, b.regdate, b.num_board, b.id_writer
+		SELECT b.content, b.regdate, b.num_board, b.id_writer
 		FROM(
 				SELECT id_follow
 				FROM acorn_follow
@@ -19,6 +19,11 @@
 	<select id="getTag" parameterType="mainDto" resultType="string">
 		SELECT tag
 		FROM acorn_tag
+		WHERE num_board = #{num_board}
+	</select>
+	<select id="getPicture" parameterType="mainDto" resultType="string">
+		SELECT orgfilename
+		FROM acorn_picture
 		WHERE num_board = #{num_board}
 	</select>
 </mapper>
