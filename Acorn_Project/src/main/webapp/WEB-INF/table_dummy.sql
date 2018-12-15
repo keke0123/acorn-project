@@ -7,14 +7,30 @@ INSERT INTO acorn_user values('user3', '12345', '유저3', '유저삼', '나는 
 INSERT INTO acorn_user values('user4', '12345', '유저4', '유저사', '나는 유저4이다', '010-8753-1267', 'user4@gmail.com', '/resources/images/thumb_image4.png', 100, SYSDATE);
 INSERT INTO acorn_user values('user5', '12345', '유저5', '유저오', '나는 유저5이다', '010-2113-1121', 'user5@gmail.com', '/resources/images/thumb_image5.png', 100, SYSDATE);
 
--- acorn_board table
+-- acorn_board table(수정전)
 -- acorn_board(num_board, id_writer, orgfilename, filesize, content, regdate)
-INSERT INTO acorn_board values(1, 'user1', '/resources/images/1.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
-INSERT INTO acorn_board values(2, 'user2', '/resources/images/2.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
-INSERT INTO acorn_board values(3, 'user2', '/resources/images/3.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
-INSERT INTO acorn_board values(4, 'user3', '/resources/images/4.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
-INSERT INTO acorn_board values(5, 'user3', '/resources/images/5.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+--INSERT INTO acorn_board values(1, 'user1', '/resources/images/1.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+--INSERT INTO acorn_board values(2, 'user2', '/resources/images/2.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+--INSERT INTO acorn_board values(3, 'user2', '/resources/images/3.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+--INSERT INTO acorn_board values(4, 'user3', '/resources/images/4.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+--INSERT INTO acorn_board values(5, 'user3', '/resources/images/5.jpg', 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 -- num_board 는 test 를 위해 임의로 숫자를 넣었지만 원래는 num_board_seq.NEXTVAL 넣어야 한다.
+-- 위의 데이타가 들어가 있다면 
+-- DELETE FROM acorn_board;
+-- acorn_board table(수정판)
+INSERT INTO acorn_board values(1, 'user1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+INSERT INTO acorn_board values(2, 'user2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+INSERT INTO acorn_board values(3, 'user2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+INSERT INTO acorn_board values(4, 'user3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+INSERT INTO acorn_board values(5, 'user3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+
+-- acorn_picture
+INSERT INTO acorn_picture values(1, '/resources/images/1.jpg', 100);
+INSERT INTO acorn_picture values(1, '/resources/images/6.jpg', 100);
+INSERT INTO acorn_picture values(2, '/resources/images/2.jpg', 100);
+INSERT INTO acorn_picture values(3, '/resources/images/3.jpg', 100);
+INSERT INTO acorn_picture values(4, '/resources/images/4.jpg', 100);
+INSERT INTO acorn_picture values(5, '/resources/images/5.jpg', 100);
 
 -- acorn_comment
 -- acorn_comment(num_board, id_writer, content, id_target, ref_group, comment_group, deleted, regdate)
