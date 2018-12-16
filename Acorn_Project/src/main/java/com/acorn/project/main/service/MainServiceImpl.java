@@ -1,5 +1,7 @@
 package com.acorn.project.main.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.main.dao.MainDao;
+import com.acorn.project.main.dto.CommentDto;
 import com.acorn.project.main.dto.MainDto;
 
 @Service
@@ -36,6 +39,12 @@ public class MainServiceImpl implements MainService{
 			String thumbNail=dao.getThumbNail(dto);
 			String id_like=dao.getLike(dto);
 			String id_bookmark=dao.getBookMark(dto);
+			// dto 참조값을 dto 에 넣어보기
+			List<CommentDto> commentList = dao.getComment(dto);
+			List<String> id_comment_writer = new ArrayList<>();
+			List<String> id_comment_target = new ArrayList<>();
+			List<String> comments = new ArrayList<>();
+			dto.setCommentList(commentList);
 			dto.setThumbNail(thumbNail);
 			dto.setTag(tagList);
 			dto.setOrgfilename(pictureList);

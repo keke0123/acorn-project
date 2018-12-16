@@ -1,11 +1,13 @@
 package com.acorn.project.main.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.acorn.project.main.dto.CommentDto;
 import com.acorn.project.main.dto.MainDto;
 
 @Repository
@@ -46,6 +48,11 @@ public class MainDaoImpl implements MainDao {
 	@Override
 	public String getThumbNail(MainDto dto) {
 		return session.selectOne("main.getThumbNail", dto);
+	}
+
+	@Override
+	public List<CommentDto> getComment(MainDto dto) {
+		return session.selectList("main.getComment", dto);
 	}
 
 }

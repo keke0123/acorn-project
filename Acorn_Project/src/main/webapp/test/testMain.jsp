@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <title>/test/testMain.jsp</title>
 <style>
 	.contentsP{
@@ -60,6 +60,7 @@
 				});
 			}
 		}
+		
 	});
 </script>
 
@@ -116,24 +117,44 @@
 				</div><!-- panel-body -->
 				<div class="panel-footer" style="background-color: white;">
 					<a href="javascript:">
-						<span class="likeSpan fa fa-heart-o" style="color:black; font-size: 20px;"></span>
+						<span class="fa fa-heart-o" ng-show="tmp.id_like==null" style="color:black; font-size: 20px;"></span>
+						<span class="fa fa-heart" ng-show="tmp.id_like!=null" style="color:black; font-size: 20px;"></span>
 					</a>&nbsp;&nbsp;
 					<a href="javascript:">
-						<span class="textSpan fa fa-comment-o" style="color: black; font-size: 20px; transform: scaleX(-1);"></span>
+						<span class="textSpan fa fa-comment-o" ng-show="!tmp.commentArea" ng-click="tmp.commentArea=!tmp.commentArea" style="color: black; font-size: 20px; transform: scaleX(-1);"></span>
+						<span class="textSpan fa fa-comment" ng-show="tmp.commentArea" ng-click="tmp.commentArea=!tmp.commentArea" style="color: black; font-size: 20px; transform: scaleX(-1);"></span>
 					</a>
 					<a href="javascript:">
 						<span class="saveSpan fa fa-bookmark-o" style="color: black; font-size: 20px; float:right;" data-content="저장됨" data-toggle="popover" data-placement="top"></span>
 					</a>
 					<p style="font-weight: bold;">좋아요 <span class="count">{{tmp.count_like}}</span>개</p>
-					<p class="contentsP"><strong>{{tmp.id_writer}}</strong>&nbsp;&nbsp;{{tmp.content}}<br/>
+					<p class="" ng-class="{'contentsP':showContent}" ng-init="showContent=true">
+						<strong>{{tmp.id_writer}}</strong>&nbsp;&nbsp;{{tmp.content}}<br/>
+						<label class="showLabel" class="btn" ng-click="showContent=!showContent" style="color:gray;"><small>문구 더 보기</small></label><br />
+						<span class="moreSpan" ng-repeat="tmp_tag in tmp.tag">@{{tmp_tag}}&nbsp;</span>
 					</p>
-					<p><label class="showLabel" class="btn" style="color:gray;"><small>문구 더 보기</small></label></p>
 					<a href="javascript:">댓글 더보기</a>
-					<a href="#commentModal" data-toggle="modal" data-target="#commentModal">댓글 모두보기</a>	
-					<ul class="listUl">
-		            	<li><strong>joo123</strong>&nbsp; <span style="color:#002266;">@yeoNa</span>&nbsp; 나 3만원쓰고 이고 받았다.</li>
+					<a href="#commentModal" data-toggle="modal" data-target="#commentModal">댓글 모두보기</a>
+					<!-- 댓글 modal 창 -->
+					<div class="modal fade" id="commentModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header text-center">
+									<a href="javascript:" >댓글</a>
+								</div>
+								<div class="modal-body text-center">
+									<a href="javascript:">댓글임당</a>
+								</div>
+								<div class="modal-footer" id="mfooter">
+									<a href="javascript:" data-dismiss="modal">취소</a><br/>
+								</div>
+							</div>
+						</div>
+					</div>	
+					<ul class="listUl" ng-repeat="tmp_comment in tmp.commentList">
+		            	<li><strong>{{tmp_comment.id_comment_writer}}</strong>&nbsp; <span style="color:#002266;">@{{tmp_comment.id_comment_target}}</span>&nbsp;{{tmp_comment.comments}}</li>
 		            </ul>	
-		            <div class="input-group">
+		            <div class="input-group" ng-show="tmp.commentArea">
 			          <input type="text" class="form-control textInput">
 			          <span class="input-group-btn">
 			            <button class="showBtn btn btn-default" type="button" style="color:#050099">게시</button>
@@ -144,22 +165,6 @@
 		</div>
 	</div>
 	<button ng-click="getData()">정보 가져오기</button>
-	<!-- 댓글 modal 창 -->
-	<div class="modal fade" id="commentModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header text-center">
-					<a href="javascript:" >댓글</a>
-				</div>
-				<div class="modal-body text-center">
-					<a href="javascript:">댓글임당</a>
-				</div>
-				<div class="modal-footer" id="mfooter">
-					<a href="javascript:" data-dismiss="modal">취소</a><br/>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </html>
 

@@ -50,4 +50,9 @@
 		FROM acorn_user
 		WHERE id=#{id_writer}
 	</select>
+	<select id="getComment" parameterType="mainDto" resultType="commentDto">
+		SELECT id_writer AS id_comment_writer, content AS comments, id_target AS id_comment_target
+		FROM acorn_comment
+		WHERE num_board=#{num_board}
+	</select>
 </mapper>

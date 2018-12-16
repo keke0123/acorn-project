@@ -1,5 +1,6 @@
 package com.acorn.project.main.dto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MainDto {
@@ -14,11 +15,16 @@ public class MainDto {
 	private String id;
 	private int count_like;
 	private String thumbNail;
+	//
+	private List<CommentDto> commentList;
+	// angular로 commentArea 만들기 위해 만들어놓은 필드
+	private boolean commentArea;
 	
 	public MainDto() {}
 
 	public MainDto(int num_board, List<String> orgfilename, String content, String regdate, String id_writer,
-			List<String> tag, String id_like, String id_bookmark, String id, int count_like, String thumbNail) {
+			List<String> tag, String id_like, String id_bookmark, String id, int count_like, String thumbNail,
+			List<CommentDto> commentList, boolean commentArea) {
 		super();
 		this.num_board = num_board;
 		this.orgfilename = orgfilename;
@@ -31,6 +37,8 @@ public class MainDto {
 		this.id = id;
 		this.count_like = count_like;
 		this.thumbNail = thumbNail;
+		this.commentList = commentList;
+		this.commentArea = commentArea;
 	}
 
 	public int getNum_board() {
@@ -121,5 +129,21 @@ public class MainDto {
 		this.thumbNail = thumbNail;
 	}
 
-	
+	public List<CommentDto> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<CommentDto> commentList) {
+		this.commentList = commentList;
+	}
+
+	public boolean isCommentArea() {
+		return commentArea;
+	}
+
+	public void setCommentArea(boolean commentArea) {
+		this.commentArea = commentArea;
+	}
+
+
 }
