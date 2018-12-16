@@ -15,4 +15,13 @@ public interface MainDao {
 	public String getBookMark(MainDto dto);
 	public String getThumbNail(MainDto dto);
 	public List<CommentDto> getComment(MainDto dto);
+	//
+	public void insertLike(MainDto dto);
+	public void deleteLike(MainDto dto);
+	//
+	public void insertBookMark(MainDto dto);
+	public void deleteBookMark(MainDto dto);
+	//
+	public void insertComment(CommentDto dto);
+	public int getSequence();
 }

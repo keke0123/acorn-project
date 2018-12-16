@@ -53,4 +53,32 @@ public class MainServiceImpl implements MainService{
 		}
 		return boardList;
 	}
+
+	@Override
+	public void getInsertLike(MainDto dto) {
+		dao.insertLike(dto);
+	}
+
+	@Override
+	public void getDeleteLike(MainDto dto) {
+		dao.deleteLike(dto);
+	}
+
+	@Override
+	public void getInsertBookMark(MainDto dto) {
+		dao.insertBookMark(dto);
+	}
+
+	@Override
+	public void getDeleteBookMark(MainDto dto) {
+		dao.deleteBookMark(dto);
+	}
+
+	@Override
+	public void getInsertComment(CommentDto dto) {
+		int num=dao.getSequence();
+		dto.setRef_group(num);
+		dto.setComment_group(num);
+		dao.insertComment(dto);
+	}
 }

@@ -55,4 +55,28 @@
 		FROM acorn_comment
 		WHERE num_board=#{num_board}
 	</select>
+	<insert id="insertLike" parameterType="mainDto">
+		INSERT INTO acorn_like(num_board, id_like)
+		VALUES(#{num_board}, #{id})
+	</insert>
+	<delete id="deleteLike" parameterType="mainDto">
+		DELETE FROM acorn_like
+		WHERE id_like=#{id} AND num_board=#{num_board}
+	</delete>
+	<insert id="insertBookMark" parameterType="mainDto">
+		INSERT INTO acorn_bookmark(num_board, id_bookmark, regdate)
+		VALUES(#{num_board}, #{id}, SYSDATE)
+	</insert>
+	<delete id="deleteBookMark" parameterType="mainDto">
+		DELETE FROM acorn_bookmark
+		WHERE id_bookmark=#{id} AND num_board=#{num_board}
+	</delete>
+	<insert id="insertComment" parameterType="commentDto">
+		INSERT INTO acorn_comment(num_board, id_writer, content, id_target, ref_group, comment_group, deleted, regdate)
+		VALUES(#{num_board}, #{id_comment_writer}, #{comments}, #{id_comment_target}, #{ref_group}, #{comment_group}, 'n', SYSDATE)
+	</insert>
+	<select id="getSequence" resultType="int">
+		SELECT num_board_seq.NEXTVAL
+		FROM DUAL
+	</select>
 </mapper>

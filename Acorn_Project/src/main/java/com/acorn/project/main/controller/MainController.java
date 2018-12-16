@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.project.main.dto.CommentDto;
 import com.acorn.project.main.dto.MainDto;
 import com.acorn.project.main.service.MainService;
 
@@ -41,5 +43,35 @@ public class MainController {
 		session.setAttribute("id", "user1");
 		String id = (String)session.getAttribute("id");
 		return service.getMainBoard(id);
+	}
+	@RequestMapping("/main/insertLike")
+	@ResponseBody
+	public boolean authInsertLike(@ModelAttribute MainDto dto){
+		service.getInsertLike(dto);
+		return true;
+	}
+	@RequestMapping("/main/deleteLike")
+	@ResponseBody
+	public boolean authDeleteLike(@ModelAttribute MainDto dto){
+		service.getDeleteLike(dto);
+		return true;
+	}
+	@RequestMapping("/main/insertBookMark")
+	@ResponseBody
+	public boolean authInsertBookMark(@ModelAttribute MainDto dto){
+		service.getInsertBookMark(dto);
+		return true;
+	}
+	@RequestMapping("/main/deleteBookMark")
+	@ResponseBody
+	public boolean authDeleteBookMark(@ModelAttribute MainDto dto){
+		service.getDeleteBookMark(dto);
+		return true;
+	}
+	@RequestMapping("/main/insertComment")
+	@ResponseBody
+	public boolean authInsertComment(@ModelAttribute CommentDto dto) {
+		service.getInsertComment(dto);
+		return true;
 	}
 }

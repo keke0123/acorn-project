@@ -6,14 +6,23 @@ public class CommentDto {
 	private String id_comment_writer;
 	private String id_comment_target;
 	private String comments;
+	private int num_board;
+	private int ref_group;
+	private int comment_group;
+	private String deleted;
 	
 	public CommentDto() {}
 
-	public CommentDto(String id_comment_writer, String id_comment_target, String comments) {
+	public CommentDto(String id_comment_writer, String id_comment_target, String comments, int num_board, int ref_group,
+			int comment_group, String deleted) {
 		super();
 		this.id_comment_writer = id_comment_writer;
 		this.id_comment_target = id_comment_target;
 		this.comments = comments;
+		this.num_board = num_board;
+		this.ref_group = ref_group;
+		this.comment_group = comment_group;
+		this.deleted = deleted;
 	}
 
 	public String getId_comment_writer() {
@@ -40,5 +49,36 @@ public class CommentDto {
 		this.comments = comments;
 	}
 
-	
+	public int getNum_board() {
+		return num_board;
+	}
+
+	public void setNum_board(int num_board) {
+		this.num_board = num_board;
+	}
+
+	public int getRef_group() {
+		return ref_group;
+	}
+
+	public void setRef_group(int ref_group) {
+		this.ref_group = ref_group;
+	}
+
+	public int getComment_group() {
+		return comment_group;
+	}
+
+	public void setComment_group(int comment_group) {
+		this.comment_group = comment_group;
+	}
+
+	public String getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(String deleted) {
+		this.deleted = deleted;
+	}
+
 }

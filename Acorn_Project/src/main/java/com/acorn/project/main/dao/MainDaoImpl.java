@@ -55,4 +55,33 @@ public class MainDaoImpl implements MainDao {
 		return session.selectList("main.getComment", dto);
 	}
 
+	@Override
+	public void insertLike(MainDto dto) {
+		session.insert("main.insertLike", dto);
+	}
+
+	@Override
+	public void deleteLike(MainDto dto) {
+		session.delete("main.deleteLike", dto);
+	}
+
+	@Override
+	public void insertBookMark(MainDto dto) {
+		session.insert("main.insertBookMark", dto);
+	}
+
+	@Override
+	public void deleteBookMark(MainDto dto) {
+		session.delete("main.deleteBookMark", dto);
+	}
+
+	@Override
+	public void insertComment(CommentDto dto) {
+		session.insert("main.insertComment",dto);
+	}
+	@Override
+	public int getSequence() {
+		return session.selectOne("main.getSequence");
+	}
+
 }

@@ -38,6 +38,90 @@
 		};
 		// 초기에 한번 데이타 가져오기
 		$scope.getData();
+		// 좋아요 입력 or 삭제
+		$scope.insert_like=function(num_board, id, a){
+			// index 를 통해서 list의 값을 받는거 테스트
+			console.log(a);
+			$http({
+				url:"../main/insertLike.do",
+				method:"get",
+				params:{
+					'num_board':num_board,
+					'id':id
+				}
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+				//$scope.boardList=data;
+			});
+		};
+		$scope.delete_like=function(num_board, id){
+			$http({
+				url:"../main/deleteLike.do",
+				method:"get",
+				params:{
+					'num_board':num_board,
+					'id':id
+				}
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+				//$scope.boardList=data;
+			});
+		};
+		// 북마크 입력 or 삭제
+		$scope.insert_bookmark=function(num_board, id, a){
+			// index 를 통해서 list의 값을 받는거 테스트
+			console.log(a);
+			$http({
+				url:"../main/insertBookMark.do",
+				method:"get",
+				params:{
+					'num_board':num_board,
+					'id':id
+				}
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+				//$scope.boardList=data;
+			});
+		};
+		$scope.delete_bookmark=function(num_board, id){
+			$http({
+				url:"../main/deleteBookMark.do",
+				method:"get",
+				params:{
+					'num_board':num_board,
+					'id':id
+				}
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+				//$scope.boardList=data;
+			});
+		};
+		$scope.insert_comment=function(insert_comment, id, id_writer, num_board, index){
+			//console.log(comment, id, id_writer);
+			$http({
+				url:"../main/insertComment.do",
+				method:"get",
+				params:{
+					'comments':insert_comment,
+					'id_comment_writer':id,
+					'id_comment_target':id_writer,
+					'num_board':num_board
+				}
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+				//$scope.boardList=data;
+				$scope.boardList[index].commentList.unshift({		
+					'id_comment_writer':id,
+					'id_comment_target':id_writer,
+					'comments':insert_comment
+				});
+			});
+		};
 		/* 스크롤 이벤트 */
 		window.onscroll=function(){
 			scroll_event();
@@ -117,15 +201,16 @@
 				</div><!-- panel-body -->
 				<div class="panel-footer" style="background-color: white;">
 					<a href="javascript:">
-						<span class="fa fa-heart-o" ng-show="tmp.id_like==null" style="color:black; font-size: 20px;"></span>
-						<span class="fa fa-heart" ng-show="tmp.id_like!=null" style="color:black; font-size: 20px;"></span>
+						<span class="fa fa-heart-o" ng-show="tmp.id_like==null" ng-click="insert_like(tmp.num_board, tmp.id, boardList[boardIndex]); tmp.id_like=tmp.id; tmp.count_like=tmp.count_like+1;" style="color:black; font-size: 20px;"></span>
+						<span class="fa fa-heart" ng-show="tmp.id_like!=null" ng-click="delete_like(tmp.num_board, tmp.id); tmp.id_like=null; tmp.count_like=tmp.count_like-1" style="color:black; font-size: 20px;"></span>
 					</a>&nbsp;&nbsp;
 					<a href="javascript:">
 						<span class="textSpan fa fa-comment-o" ng-show="!tmp.commentArea" ng-click="tmp.commentArea=!tmp.commentArea" style="color: black; font-size: 20px; transform: scaleX(-1);"></span>
 						<span class="textSpan fa fa-comment" ng-show="tmp.commentArea" ng-click="tmp.commentArea=!tmp.commentArea" style="color: black; font-size: 20px; transform: scaleX(-1);"></span>
 					</a>
 					<a href="javascript:">
-						<span class="saveSpan fa fa-bookmark-o" style="color: black; font-size: 20px; float:right;" data-content="저장됨" data-toggle="popover" data-placement="top"></span>
+						<span class="saveSpan fa fa-bookmark-o" ng-show="tmp.id_bookmark==null" ng-click="insert_bookmark(tmp.num_board, tmp.id); tmp.id_bookmark=tmp.id" style="color: black; font-size: 20px; float:right;" data-content="저장됨" data-toggle="popover" data-placement="top"></span>
+						<span class="saveSpan fa fa-bookmark" ng-show="tmp.id_bookmark!=null" ng-click="delete_bookmark(tmp.num_board, tmp.id); tmp.id_bookmark=null" style="color: black; font-size: 20px; float:right;" data-content="저장됨" data-toggle="popover" data-placement="top"></span>
 					</a>
 					<p style="font-weight: bold;">좋아요 <span class="count">{{tmp.count_like}}</span>개</p>
 					<p class="" ng-class="{'contentsP':showContent}" ng-init="showContent=true">
@@ -154,10 +239,10 @@
 					<ul class="listUl" ng-repeat="tmp_comment in tmp.commentList">
 		            	<li><strong>{{tmp_comment.id_comment_writer}}</strong>&nbsp; <span style="color:#002266;">@{{tmp_comment.id_comment_target}}</span>&nbsp;{{tmp_comment.comments}}</li>
 		            </ul>	
-		            <div class="input-group" ng-show="tmp.commentArea">
-			          <input type="text" class="form-control textInput">
+		            <div class="input-group" ng-show="tmp.commentArea" ng-init="comment">
+			          <input type="text" class="form-control textInput" ng-model="comment">
 			          <span class="input-group-btn">
-			            <button class="showBtn btn btn-default" type="button" style="color:#050099">게시</button>
+			            <button class="showBtn btn btn-default" ng-click="insert_comment(comment, tmp.id, tmp.id_writer, tmp.num_board, boardIndex)" type="button" style="color:#050099">게시</button>
 			          </span>
 	        		</div>
 				</div><!-- panel-footer -->
