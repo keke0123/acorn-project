@@ -16,6 +16,9 @@ public class MainDto {
 	private int count_like;
 	private String thumbNail;
 	//
+	private int startRowNum;
+	private int endRowNum;
+	//
 	private List<CommentDto> commentList;
 	// angular로 commentArea 만들기 위해 만들어놓은 필드
 	private boolean commentArea;
@@ -24,7 +27,7 @@ public class MainDto {
 
 	public MainDto(int num_board, List<String> orgfilename, String content, String regdate, String id_writer,
 			List<String> tag, String id_like, String id_bookmark, String id, int count_like, String thumbNail,
-			List<CommentDto> commentList, boolean commentArea) {
+			int startRowNum, int endRowNum, List<CommentDto> commentList, boolean commentArea) {
 		super();
 		this.num_board = num_board;
 		this.orgfilename = orgfilename;
@@ -37,6 +40,8 @@ public class MainDto {
 		this.id = id;
 		this.count_like = count_like;
 		this.thumbNail = thumbNail;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 		this.commentList = commentList;
 		this.commentArea = commentArea;
 	}
@@ -127,6 +132,22 @@ public class MainDto {
 
 	public void setThumbNail(String thumbNail) {
 		this.thumbNail = thumbNail;
+	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
 	}
 
 	public List<CommentDto> getCommentList() {

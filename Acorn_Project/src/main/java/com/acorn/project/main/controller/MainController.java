@@ -74,4 +74,9 @@ public class MainController {
 		service.getInsertComment(dto);
 		return true;
 	}
+	@RequestMapping("/main/getAddComment")
+	@ResponseBody
+	public List<CommentDto> authgetAddComment(@ModelAttribute MainDto dto) {
+		return service.getAddComment(dto);
+	}
 }

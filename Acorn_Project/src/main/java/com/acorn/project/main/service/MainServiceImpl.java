@@ -40,10 +40,10 @@ public class MainServiceImpl implements MainService{
 			String id_like=dao.getLike(dto);
 			String id_bookmark=dao.getBookMark(dto);
 			// dto 참조값을 dto 에 넣어보기
+			// 댓글 갯수 처음에 3개 까지만 보여주기
+			dto.setStartRowNum(1);
+			dto.setEndRowNum(3);
 			List<CommentDto> commentList = dao.getComment(dto);
-			List<String> id_comment_writer = new ArrayList<>();
-			List<String> id_comment_target = new ArrayList<>();
-			List<String> comments = new ArrayList<>();
 			dto.setCommentList(commentList);
 			dto.setThumbNail(thumbNail);
 			dto.setTag(tagList);
@@ -80,5 +80,10 @@ public class MainServiceImpl implements MainService{
 		dto.setRef_group(num);
 		dto.setComment_group(num);
 		dao.insertComment(dto);
+	}
+
+	@Override
+	public List<CommentDto> getAddComment(MainDto dto) {
+		return dao.AddComment(dto);
 	}
 }

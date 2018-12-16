@@ -122,36 +122,6 @@
 				});
 			});
 		};
-		$scope.getComment=function(index, startRowNum, num_board){
-			console.log(index, startRowNum);
-			startRowNum = startRowNum+1;
-			var endRowNum = startRowNum+2;
-			$http({
-				url:"../main/getAddComment.do",
-				method:"get",
-				params:{
-					'num_board':num_board,
-					'startRowNum':startRowNum,
-					'endRowNum':endRowNum
-				}
-			}).success(function(data){
-				//서버에서 응답된 데이터를 모델에 연결
-				console.log(data);
-				for(var i=0; i<data.length; i++){
-					$scope.boardList[index].commentList.push({		
-						'id_comment_writer':data[i].id_comment_writer,
-						'id_comment_target':data[i].id_comment_target,
-						'comments':data[i].comments
-					});
-				}
-				//$scope.boardList=data;
-				/* $scope.boardList[index].commentList.unshift({		
-					'id_comment_writer':id,
-					'id_comment_target':id_writer,
-					'comments':insert_comment
-				}); */
-			});
-		};
 		/* 스크롤 이벤트 */
 		window.onscroll=function(){
 			scroll_event();
@@ -248,7 +218,7 @@
 						<label class="showLabel" class="btn" ng-click="showContent=!showContent" style="color:gray;"><small>문구 더 보기</small></label><br />
 						<span class="moreSpan" ng-repeat="tmp_tag in tmp.tag">@{{tmp_tag}}&nbsp;</span>
 					</p>
-					<a href="javascript:" ng-click="getComment(boardIndex, tmp.commentList.length, tmp.num_board)">댓글 더보기</a>
+					<a href="javascript:">댓글 더보기</a>
 					<a href="#commentModal" data-toggle="modal" data-target="#commentModal">댓글 모두보기</a>
 					<!-- 댓글 modal 창 -->
 					<div class="modal fade" id="commentModal">

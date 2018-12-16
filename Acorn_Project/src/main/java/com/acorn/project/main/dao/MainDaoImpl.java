@@ -84,4 +84,9 @@ public class MainDaoImpl implements MainDao {
 		return session.selectOne("main.getSequence");
 	}
 
+	@Override
+	public List<CommentDto> AddComment(MainDto dto) {
+		return session.selectList("main.getComment", dto);
+	}
+
 }

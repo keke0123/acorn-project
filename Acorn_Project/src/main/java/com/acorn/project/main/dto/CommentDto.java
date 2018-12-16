@@ -10,11 +10,14 @@ public class CommentDto {
 	private int ref_group;
 	private int comment_group;
 	private String deleted;
+	//
+	private int startRowNum;
+	private int endRowNum;
 	
 	public CommentDto() {}
 
 	public CommentDto(String id_comment_writer, String id_comment_target, String comments, int num_board, int ref_group,
-			int comment_group, String deleted) {
+			int comment_group, String deleted, int startRowNum, int endRowNum) {
 		super();
 		this.id_comment_writer = id_comment_writer;
 		this.id_comment_target = id_comment_target;
@@ -23,6 +26,8 @@ public class CommentDto {
 		this.ref_group = ref_group;
 		this.comment_group = comment_group;
 		this.deleted = deleted;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 
 	public String getId_comment_writer() {
@@ -80,5 +85,22 @@ public class CommentDto {
 	public void setDeleted(String deleted) {
 		this.deleted = deleted;
 	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
 
 }

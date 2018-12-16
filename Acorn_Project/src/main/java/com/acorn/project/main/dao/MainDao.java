@@ -24,4 +24,6 @@ public interface MainDao {
 	//
 	public void insertComment(CommentDto dto);
 	public int getSequence();
+	//
+	public List<CommentDto> AddComment(MainDto dto);
 }

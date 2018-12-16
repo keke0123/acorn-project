@@ -17,4 +17,5 @@ public interface MainService {
 	public void getInsertBookMark(MainDto dto);
 	public void getDeleteBookMark(MainDto dto);
 	public void getInsertComment(CommentDto dto);
+	public List<CommentDto> getAddComment(MainDto dto);
 }
