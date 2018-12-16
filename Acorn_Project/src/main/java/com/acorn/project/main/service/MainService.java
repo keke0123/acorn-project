@@ -11,7 +11,7 @@ import com.acorn.project.main.dto.MainDto;
 
 public interface MainService {
 	public void getBoardList(ModelAndView mView, String id, HttpServletRequest request);
-	public List<MainDto> getMainBoard(String id);
+	public List<MainDto> getMainBoard(MainDto dto);
 	public void getInsertLike(MainDto dto);
 	public void getDeleteLike(MainDto dto);
 	public void getInsertBookMark(MainDto dto);

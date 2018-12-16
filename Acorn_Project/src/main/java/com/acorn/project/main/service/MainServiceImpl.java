@@ -27,13 +27,17 @@ public class MainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List<MainDto> getMainBoard(String id) {
-		List<MainDto> boardList=dao.getBoardList(id);
+	public List<MainDto> getMainBoard(MainDto initDto) {
+		if(initDto.getStartRowNum()==0) {
+			initDto.setStartRowNum(1);
+			initDto.setEndRowNum(2);
+		}
+		List<MainDto> boardList=dao.getBoardList(initDto);
 		for(int i=0; i<boardList.size(); i++) {
 			// List 의 MainDto 에 게시판번호를 받아 DB에서 검색해서
 			// 부족한 정보 집어 넣기 
 			MainDto dto = boardList.get(i);
-			dto.setId(id);
+			dto.setId(initDto.getId());
 			List<String> tagList=dao.getTagList(dto);
 			List<String> pictureList=dao.getPictureList(dto);
 			String thumbNail=dao.getThumbNail(dto);

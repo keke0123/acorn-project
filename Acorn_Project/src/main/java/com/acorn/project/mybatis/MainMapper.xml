@@ -6,24 +6,31 @@
 		FROM acorn_follow
 		WHERE id_follower=#{id}
 	</select>
-	<select id="getBoardList" parameterType="string" resultType="mainDto">
-		SELECT b.content, b.regdate, b.num_board, b.id_writer, l.count_like
+	<select id="getBoardList" parameterType="mainDto" resultType="mainDto">
+		SELECT *
 		FROM (
-		    SELECT b.content, b.regdate, b.num_board, b.id_writer
-		    FROM(
-		            SELECT id_follow
-		            FROM acorn_follow
-		            WHERE id_follower=#{id}
-		        ) a, acorn_board b
-		    WHERE a.id_follow=b.id_writer
-		    ) b,
-		    (
-		        SELECT num_board, COUNT(num_board) AS count_like
-		        FROM acorn_like
-		        GROUP BY num_board 
-		    ) l
-		WHERE b.num_board = l.num_board(+)
-		ORDER BY b.regdate
+		        SELECT result1.*, ROWNUM AS rnum
+		        FROM (
+		            SELECT b.content, b.regdate, b.num_board, b.id_writer, l.count_like
+		            FROM (
+		                SELECT b.content, b.regdate, b.num_board, b.id_writer
+		                FROM(
+		                        SELECT id_follow
+		                        FROM acorn_follow
+		                        WHERE id_follower=#{id}
+		                    ) a, acorn_board b
+		                WHERE a.id_follow=b.id_writer
+		                ) b,
+		                (
+		                    SELECT num_board, COUNT(num_board) AS count_like
+		                    FROM acorn_like
+		                    GROUP BY num_board 
+		                ) l
+		            WHERE b.num_board = l.num_board(+)
+		            ORDER BY b.regdate DESC
+		            ) result1
+		    )
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="getTag" parameterType="mainDto" resultType="string">
 		SELECT tag

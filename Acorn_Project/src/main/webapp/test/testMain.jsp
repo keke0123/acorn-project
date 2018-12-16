@@ -144,12 +144,6 @@
 						'comments':data[i].comments
 					});
 				}
-				//$scope.boardList=data;
-				/* $scope.boardList[index].commentList.unshift({		
-					'id_comment_writer':id,
-					'id_comment_target':id_writer,
-					'comments':insert_comment
-				}); */
 			});
 		};
 		/* 스크롤 이벤트 */
@@ -165,12 +159,22 @@
 			//console.log(document.body.scrollHeight); // 전체높이
 			if(scrollY+windowHeight >= documentHeight){
 				console.log("바닥입니다");
+				var startRowNum = $scope.boardList.length+1;
+				var endRowNum = startRowNum+1;
+				console.log(startRowNum);
 				$http({
 					url:"../main/mainBoard.do",
-					method:"get"
+					method:"get",
+					params:{
+						'startRowNum':startRowNum,
+						'endRowNum':endRowNum
+					}
 				}).success(function(data){
 					//서버에서 응답된 데이터를 모델에 연결
 					console.log(data);
+					for(var i=0; i<data.length; i++){
+						$scope.boardList.push(data[i]);
+					}
 				});
 			}
 		}

@@ -8,7 +8,7 @@ import com.acorn.project.main.dto.MainDto;
 
 public interface MainDao {
 	public List<MainDto> getFollowList(String id);
-	public List<MainDto> getBoardList(String id);
+	public List<MainDto> getBoardList(MainDto dto);
 	public List<String> getTagList(MainDto dto);
 	public List<String> getPictureList(MainDto dto);
 	public String getLike(MainDto dto);

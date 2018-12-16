@@ -39,10 +39,12 @@ public class MainController {
 	}
 	@RequestMapping("/main/mainBoard")
 	@ResponseBody
-	public List<MainDto> authGetMainBoard(HttpSession session){
+	public List<MainDto> authGetMainBoard(HttpSession session, @ModelAttribute MainDto dto){
 		session.setAttribute("id", "user1");
 		String id = (String)session.getAttribute("id");
-		return service.getMainBoard(id);
+		//MainDto dto = new MainDto();
+		dto.setId(id);
+		return service.getMainBoard(dto);
 	}
 	@RequestMapping("/main/insertLike")
 	@ResponseBody
