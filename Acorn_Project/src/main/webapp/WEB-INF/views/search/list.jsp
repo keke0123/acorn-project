@@ -19,12 +19,13 @@
 			
 			
 			$scope.searchList=[];
+			$scope.searchValue;
 			$scope.getData=function(){
 				console.log($scope.asd);
 				 $http({
 					url:"Search_like.do",
 					method:"get",
-					params:{"keyword":"유저"}
+					params:{"keyword":$scope.searchValue}
 				}).success(function(data){
 					console.log(data);
 					$scope.searchList=data;
@@ -53,41 +54,22 @@
    		</div>
   		<div class="form-group mx-sm-3 mb-2">
     		<label for="staticEmail2" class="sr-only">Email</label>
-    		<input type="text" ng-model="asd" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
+    		<input type="text" ng-model="searchValue" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
   		</div>
   		<button ng-click="getData()" class="btn btn-primary mb-2">Confirm identity</button>
 	</form>
 	
 	<h3>인기인목록입니다.</h3>
-		<table class="table table-bordered">
-			<thead>
-				<th>그림</th>
-				<th>번호</th>
-				<th>아이디</th>
-				<th>닉네임</th>
-			</thead>
-			 <tbody>
-			 	<ul>
-			 		<li ng-repeat="tmp in searchList"></li>
-			 	</ul>
+		
+		
 			 
 			 
 			 	
-			 <%-- 	<c:forEach items="${list }" var="tmp">
-			 		<tr>
-			 			<td>${tmp.orgFileName}</td>
-			 			<td>${tmp.num}</td>
-			 			<td>${tmp.id}</td>
-			 			<td>${tmp.nick}</td>
-			 		</tr>
-			 	</c:forEach> --%>
-			 </tbody>
-		</table>
+			 	<ul>
+			 		<li ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.orgFileName}}</li>
+				</ul>
 	
 	</div>
-	<ul>
-		<li ng-repeat="tmp in searchList">{{tmp.name}}</li>
-	</ul>
-	
+
 </body>
 </html>
