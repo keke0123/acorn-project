@@ -45,4 +45,9 @@
 		FROM acorn_bookmark
 		WHERE num_board = #{num_board} AND id_bookmark = #{id}
 	</select>
+	<select id="getThumbNail" parameterType="mainDto" resultType="String">
+		SELECT orgfilename AS thumbnail
+		FROM acorn_user
+		WHERE id=#{id_writer}
+	</select>
 </mapper>

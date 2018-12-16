@@ -33,8 +33,10 @@ public class MainServiceImpl implements MainService{
 			dto.setId(id);
 			List<String> tagList=dao.getTagList(dto);
 			List<String> pictureList=dao.getPictureList(dto);
+			String thumbNail=dao.getThumbNail(dto);
 			String id_like=dao.getLike(dto);
 			String id_bookmark=dao.getBookMark(dto);
+			dto.setThumbNail(thumbNail);
 			dto.setTag(tagList);
 			dto.setOrgfilename(pictureList);
 			dto.setId_like(id_like);

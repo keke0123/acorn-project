@@ -13,11 +13,12 @@ public class MainDto {
 	private String id_bookmark;
 	private String id;
 	private int count_like;
+	private String thumbNail;
 	
 	public MainDto() {}
 
 	public MainDto(int num_board, List<String> orgfilename, String content, String regdate, String id_writer,
-			List<String> tag, String id_like, String id_bookmark, String id, int count_like) {
+			List<String> tag, String id_like, String id_bookmark, String id, int count_like, String thumbNail) {
 		super();
 		this.num_board = num_board;
 		this.orgfilename = orgfilename;
@@ -29,6 +30,7 @@ public class MainDto {
 		this.id_bookmark = id_bookmark;
 		this.id = id;
 		this.count_like = count_like;
+		this.thumbNail = thumbNail;
 	}
 
 	public int getNum_board() {
@@ -109,6 +111,14 @@ public class MainDto {
 
 	public void setCount_like(int count_like) {
 		this.count_like = count_like;
+	}
+
+	public String getThumbNail() {
+		return thumbNail;
+	}
+
+	public void setThumbNail(String thumbNail) {
+		this.thumbNail = thumbNail;
 	}
 
 	

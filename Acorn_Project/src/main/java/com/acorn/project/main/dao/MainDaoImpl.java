@@ -43,4 +43,9 @@ public class MainDaoImpl implements MainDao {
 		return session.selectOne("main.getBookMark", dto);
 	}
 
+	@Override
+	public String getThumbNail(MainDto dto) {
+		return session.selectOne("main.getThumbNail", dto);
+	}
+
 }

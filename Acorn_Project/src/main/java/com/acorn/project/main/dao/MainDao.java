@@ -11,4 +11,5 @@ public interface MainDao {
 	public List<String> getPictureList(MainDto dto);
 	public String getLike(MainDto dto);
 	public String getBookMark(MainDto dto);
+	public String getThumbNail(MainDto dto);
 }
