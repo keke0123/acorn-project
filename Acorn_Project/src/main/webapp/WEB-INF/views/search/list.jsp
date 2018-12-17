@@ -87,6 +87,7 @@
 	</div>
 	<ul>
 		<li ng-repeat="tmp in searchList">{{tmp.name}}</li>
+		<li ng-repeat="tmp in searchList">{{tmp.id}}</li>
 	</ul>
 	
 </body>

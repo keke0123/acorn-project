@@ -37,7 +37,7 @@ public class Search {
 	@RequestMapping("/search/Search_like")
 	@ResponseBody
 	public List<SearchDto> getListLike(HttpServletRequest request) {
-		System.out.print("1");
+		
 		return service.searchList(request);
 		 
 	}
