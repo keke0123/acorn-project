@@ -17,18 +17,23 @@ public class ImageUploadDaoImpl implements ImageUploadDao{
 	@Override
 	public List<ImageUploadDto> getList(ImageUploadDto dto) {
 		
-		return session.selectList("file.getList", dto);
+		return session.selectList("imageupload.getList", dto);
 	}
 
 	@Override
 	public ImageUploadDto getData(int num) {
 		// TODO Auto-generated method stub
-		return session.selectOne("file.getData", num);
+		return session.selectOne("imageupload.getData", num);
 	}
 
 	@Override
 	public void insert(ImageUploadDto dto) {
-		session.insert("file.insert", dto);	
+		session.insert("imageupload.insert", dto);	
+	}
+	
+	@Override
+	public void insertImage(ImageUploadDto dto) {
+		session.insert("imageupload.insert2", dto);	
 	}
 
 }

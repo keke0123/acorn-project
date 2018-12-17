@@ -56,13 +56,16 @@ public class ImageUploadServiceImpl implements ImageUploadService {
 		// FileDto 객체에 추가 정보를 담는다.
 		String id = (String) request.getSession().getAttribute("id");
 		dto.setId_writer(id); // 작성자
+
+		dto.setOrgfileName(orgFileName);
 		
-		/*dto.setOrgfilename(orgFileName);
-		dto.setOrgfilename(saveFileName);
-		dto.setFilesize(fileSize);*/
+		dto.setFileSize(fileSize);
 		// FileDao 객체를 이용해서 DB 에 저장하기
 		dao.insert(dto);
+		dao.insertImage(dto);
+		
 
 	}
-
+	
+	
 }

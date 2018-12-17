@@ -26,16 +26,17 @@ public class ImageUploadController {
 	}
 	
 	@RequestMapping("/gallery/upload_form")
-	public ModelAndView authUploadForm(HttpServletRequest request) {
+	public ModelAndView UploadForm(HttpServletRequest request) {
 		
 		return new ModelAndView("gallery/upload_form");
 	}
 	
-	@RequestMapping("/galalery/upload")
-	public ModelAndView authUpload(@ModelAttribute ImageUploadDto dto, 
+	@RequestMapping("/gallery/upload")
+	public ModelAndView Upload(@ModelAttribute ImageUploadDto dto, 
 			HttpServletRequest request) {
 		//FileDto 에는 업로드된 파일의 제목(title)과 파일정보(file)이 들어있다.
 		service.saveFile(dto, request);
+		
 		//파일 목록보기로 리다일렉트 시킨다. 
 		return new ModelAndView("redirect:/gallery/list.do");
 	}

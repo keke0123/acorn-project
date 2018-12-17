@@ -9,4 +9,5 @@ public interface ImageUploadDao {
 	public List<ImageUploadDto> getList(ImageUploadDto dto);
 	public ImageUploadDto getData(int num);
 	public void insert(ImageUploadDto dto);
+	public void insertImage(ImageUploadDto dto);
 }
