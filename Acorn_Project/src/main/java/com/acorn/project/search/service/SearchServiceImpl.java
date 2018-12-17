@@ -28,10 +28,20 @@ public class SearchServiceImpl implements SearchService{
 
 	@Override
 	public List<SearchDto> searchList(HttpServletRequest request) {
+		
+		
+		String value2=request.getParameter("keyword2");
+		
 		String value=request.getParameter("keyword");
-		
-		List<SearchDto> list = searchDao.getList(value);
-		
+		System.out.print(value2);
+		List<SearchDto> list = null;
+		if(value2.equals("pop")) {
+			list = searchDao.getList(value);
+		}else if(value2.equals("tag")) {
+			list = searchDao.getListTag(value);
+		}else {
+			list = searchDao.getListHuman(value);
+		}
 		return list;
 	}
 

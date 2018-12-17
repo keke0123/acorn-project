@@ -19,13 +19,19 @@
 			
 			
 			$scope.searchList=[];
+			$scope.searchValue;
+			$scope.selectValue;
+			console.log($scope.selectValue);
+			console.log($scope.searchValue);
 			$scope.getData=function(){
-				console.log($scope.asd);
+				
 				 $http({
 					url:"Search_like.do",
 					method:"get",
-					params:{"keyword":"유저"}
+					params:{"keyword":$scope.searchValue,"keyword2":$scope.selectValue}
+		
 				}).success(function(data){
+					console.log($scope.selectValue);
 					console.log(data);
 					$scope.searchList=data;
 				});
@@ -45,50 +51,30 @@
 	<form class="form-inline" id="formSearch">
 	   	<div class="form-group mx-sm-3 mb-2">
     		<label for="inputState">검색조건</label>
-    		<select id="inputState" class="form-control">
-      			<option selected>인기</option>
-       		 		<option>사람</option>
-       		 		<option>태그</option>
+    		<select id="inputState" class="form-control" ng-model="selectValue">
+      			<option value="pop"selected>인기</option>
+       		 		<option value="human">사람</option>
+       		 		<option value="tag">태그</option>
      		</select>
    		</div>
   		<div class="form-group mx-sm-3 mb-2">
     		<label for="staticEmail2" class="sr-only">Email</label>
-    		<input type="text" ng-model="asd" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
+    		<input type="text" ng-model="searchValue" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
   		</div>
   		<button ng-click="getData()" class="btn btn-primary mb-2">Confirm identity</button>
 	</form>
 	
 	<h3>인기인목록입니다.</h3>
-		<table class="table table-bordered">
-			<thead>
-				<th>그림</th>
-				<th>번호</th>
-				<th>아이디</th>
-				<th>닉네임</th>
-			</thead>
-			 <tbody>
-			 	<ul>
-			 		<li ng-repeat="tmp in searchList"></li>
-			 	</ul>
+		
+		
 			 
 			 
 			 	
-			 <%-- 	<c:forEach items="${list }" var="tmp">
-			 		<tr>
-			 			<td>${tmp.orgFileName}</td>
-			 			<td>${tmp.num}</td>
-			 			<td>${tmp.id}</td>
-			 			<td>${tmp.nick}</td>
-			 		</tr>
-			 	</c:forEach> --%>
-			 </tbody>
-		</table>
+			 	<ul>
+			 		<li ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.orgFileName}}</li>
+				</ul>
 	
 	</div>
-	<ul>
-		<li ng-repeat="tmp in searchList">{{tmp.name}}</li>
-		<li ng-repeat="tmp in searchList">{{tmp.id}}</li>
-	</ul>
-	
+
 </body>
 </html>

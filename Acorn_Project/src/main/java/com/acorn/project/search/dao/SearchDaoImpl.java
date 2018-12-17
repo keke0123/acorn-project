@@ -19,6 +19,16 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectList("search.getList", value);
 	}
 
+	@Override
+	public List<SearchDto> getListTag(String value) {
+		return session.selectList("search.getListTag", value);
+	}
+
+	@Override
+	public List<SearchDto> getListHuman(String value) {
+		return session.selectList("search.getListHuman", value);
+	}
+
 	
 
 }
