@@ -3,9 +3,8 @@
 <mapper namespace="imageupload">	
 	<insert id="insert" parameterType="imageUploadDto">
 		INSERT INTO acorn_board
-		(num_board, id_writer, tag, orgfilename, fileSize, caption, regdate)
-		VALUES(acorn_board_seq.NEXTVAL, #{id_writer}, #{tag},
-		#{orgfilename}, #{fileSize}, #{caption}, SYSDATE)
+		(num_board, id_writer, content, regdate)
+		VALUES(acorn_board_seq.NEXTVAL, #{id_writer}, #{content}, SYSDATE)
 	</insert>
 </mapper>
 

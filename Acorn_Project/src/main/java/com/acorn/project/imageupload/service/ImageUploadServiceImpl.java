@@ -32,6 +32,7 @@ public class ImageUploadServiceImpl implements ImageUploadService {
 		// MultipartFile 객체의 참조값 얻어오기
 		// FileDto 에 담긴 MultipartFile 객체의 참조값을 얻어온다.
 		MultipartFile mFile = dto.getFile();
+		
 		// 원본 파일명
 		String orgFileName = mFile.getOriginalFilename();
 		// 파일 사이즈
@@ -55,9 +56,10 @@ public class ImageUploadServiceImpl implements ImageUploadService {
 		// FileDto 객체에 추가 정보를 담는다.
 		String id = (String) request.getSession().getAttribute("id");
 		dto.setId_writer(id); // 작성자
-		dto.setOrgfilename(orgFileName);
+		
+		/*dto.setOrgfilename(orgFileName);
 		dto.setOrgfilename(saveFileName);
-		dto.setFilesize(fileSize);
+		dto.setFilesize(fileSize);*/
 		// FileDao 객체를 이용해서 DB 에 저장하기
 		dao.insert(dto);
 

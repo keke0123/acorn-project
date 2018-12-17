@@ -11,7 +11,7 @@
 <h3>파일 업로드 폼 입니다.</h3>
 <form action="upload.do" method="post" enctype="multipart/form-data">
 	<label for="content">내용</label>
-	<input type="text" name="title" id="title"/><br/>
+	<input type="text" name="content" id="content"/><br/>
 	<label for="myFile">첨부파일</label>
 	<input type="file" name="file" id="myFile" /><br/>
 	<button type="submit">업로드</button>
