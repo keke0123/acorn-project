@@ -1,6 +1,7 @@
 package com.acorn.project.users.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import org.springframework.social.google.api.impl.GoogleTemplate;
 import org.springframework.social.google.api.plus.Person;
 import org.springframework.social.google.api.plus.PlusOperations;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.google.connect.GoogleServiceProvider;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -53,7 +55,6 @@ public class UsersController {
 		System.out.println("구글:" + url);
 	
 		model.addAttribute("google_url", url);
-		System.out.println("실행순서 들어옴");
 		// 생성한 인증 URL을 View로 전달 
 		return "users/signup_form";
 	}
@@ -67,45 +68,8 @@ public class UsersController {
 		//로그인 처리 할 부분.. 일단 가입부터 되게 하고...
 		
 		return "redirect:/";
-	}
-	
-	@RequestMapping(value="/oauth2callback", method= { RequestMethod.GET, RequestMethod.POST })
-    public String googleRollin(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-                                Model model, @RequestParam String code) throws ServletException, IOException {
-        
-     
-        OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-        AccessGrant accessGrant = oauthOperations.exchangeForAccess(code , googleOAuth2Parameters.getRedirectUri(), null);
-        
-        String accessToken = accessGrant.getAccessToken();
-        Long expireTime = accessGrant.getExpireTime();
-        
-        if (expireTime != null && expireTime < System.currentTimeMillis()) {
-            accessToken = accessGrant.getRefreshToken();
-            System.out.printf("accessToken is expired. refresh token = {}", accessToken);
-        }
-        
-        Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
-        Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-        
-        PlusOperations plusOperations = google.plusOperations();
-        Person profile = plusOperations.getGoogleProfile();
-        
-        System.out.println("실행순서가 들어왔어욥");
-        
-        return "redirect:/";
-        
-       
-	 }
-	 
-	 //회원가입폼 요청
-		@RequestMapping("/users/signup_form")
-		public String signupForm() {
-			return "users/signup_form";
-		}
-	
-	 */
-	
+	} */
+
 	
 	@RequestMapping("/oauth2callback")
 	public String doSessionAssignActionPage(HttpServletRequest request) {
@@ -129,12 +93,18 @@ public class UsersController {
 		
 		PlusOperations plusOperations = google.plusOperations();
 		Person profile = plusOperations.getGoogleProfile();
+		
 		System.out.println("User Uid : " + profile.getId());
 		System.out.println("User Name : " + profile.getDisplayName());
-		System.out.println("User Email : " + profile.getAccountEmail());
+		System.out.println("User Email:" +profile.getAccountEmail());
 		System.out.println("User Profile : " + profile.getImageUrl());
 		
-		return "redirect:/";
+		HttpSession session = request.getSession();
+		session.setAttribute("gEmail", profile.getAccountEmail());
+		session.setAttribute("gName", profile.getGivenName()+profile.getFamilyName());
+		session.setAttribute("gNick", profile.getDisplayName());
+		
+		return "redirect:/users/signup_form.do";
     }
 	
 	

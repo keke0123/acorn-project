@@ -26,23 +26,6 @@ function pwdCheck(){
 	return false;
 } 
 
-/* 구글 로그인 실패한 흔적 */
-function onSignIn(googleUser) {
-  // Useful data for your client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-  
-};
-
 /* 리캡차 때문에 만든거 */
 function submitForm() {
     document.getElementById("signupForm").submit();
@@ -55,6 +38,9 @@ function submitForm() {
 		$scope.canUseId=false;
 		$scope.canUseNick=false;
 		$scope.canUseReg=false;
+		$scope.gId="${gEmail}";
+		$scope.gName="${gName}";
+		$scope.gNick="${gNick}";
 		
 		$scope.loginBtn=function(){
 			location.href='login_form.do';
@@ -62,7 +48,7 @@ function submitForm() {
 		
 		//id 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.idCheck=function(){
-			var id=$scope.id;
+			var id=$scope.gId;
 			var isEmail=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 			var isPhone=/^01[016789][0-9]{3,4}[0-9]{4}$/;
 			
@@ -76,7 +62,7 @@ function submitForm() {
 			$http({
 				url:"checkid.do",
 				method:"get",
-				params:{inputId:$scope.id}
+				params:{inputId:$scope.gId}
 			})
 			.success(function(responseData){
 				//responseData는 json으로 true or false
@@ -91,7 +77,7 @@ function submitForm() {
 			$http({
 				url:"checkNick.do",
 				method:"get",
-				params:{inputNick:$scope.nick}
+				params:{inputNick:$scope.gNick}
 			})
 			.success(function(responseData){
 				//true or false 반환
@@ -140,6 +126,7 @@ function submitForm() {
 <!-- main -->
 <div class="container">
 	<div class="row">
+	
 		<!-- image (left) -->
 		<div id="content-left" class="col-lg-5 col-sm-offset-1 hidden-sm hidden-xs">
 			<div class="mainImg">
@@ -148,6 +135,11 @@ function submitForm() {
 		</div>
 		<!-- sign up form (right) -->
 		<div id="content-right" class="col-lg-4">
+		<a href="${google_url }">
+			<button id="btnJoinGoogle" class="btn btn-primary btn-round" style="width:100%">
+				<i class="fa fa-google" aria-hidden="true"></i>Google Login		
+			</button>
+		</a>
 			<form action="signup.do" method="post" name="sf" id="signupForm" novalidate>
 				<div class="panel panel-default text-center">
 					<div class="panel-heading">
@@ -156,32 +148,28 @@ function submitForm() {
 						</span>
 					</div>
 					<div class="panel-body">
-						<a href="${google_url }">
-							<button id="btnJoinGoogle" class="btn btn-primary btn-round" style="width:100%">
-								<i class="fa fa-google" aria-hidden="true"></i>Google Login		
-							</button>
-						</a>
+						
 						<div class="form-group has-feedback"
 							ng-class="{'has-success':canUseId && canUseReg , 'has-error': (!canUseId || !canUseReg) && sf.id.$dirty}">
 							<label class="control-label" for="id">휴대폰 번호 또는 이메일 주소</label>
-							<input class="form-control" ng-model="id" ng-blur="idCheck()" ng-required="true"
-							type="text" id="id" name="id" placeholder="휴대폰 번호 또는 이메일 주소"/>
+							<input class="form-control" ng-blur="idCheck()" ng-required="true"
+							type="text" id="id" name="id" placeholder="휴대폰 번호 또는 이메일 주소" ng-model="gId"/>
 							<span ng-show="sf.id.$valid && canUseId" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
 							<span ng-show="(sf.id.$invalid || !canUseId) && sf.id.$dirty" class="glyphicon glyphicon-remove-circle form-control-feedback"></span>
-							<p ng-show="sf.id.$error.required && sf.id.dirty" class="help-block">아이디를 입력해주세요</p>
+							<p ng-show="sf.id.$error.required && sf.id.$dirty" class="help-block">아이디를 입력해주세요</p>
 							<p ng-show="!canUseId && sf.id.$dirty" class="help-block">이미 등록된 아이디 입니다.</p>
 							<p ng-show="!canUseReg && sf.id.$dirty" class="help-block">전화번호나 이메일을 입력해주세요</p>
 						</div>
 						<div class="form-group has-feedback"
 							ng-class="{'has-success':sf.name.$valid}">
 							<label class="control-label" for="name">성명</label>
-							<input ng-required="true" ng-pattern="/./" class="form-control" type="text" id="name" name="name" ng-model="name" placeholder="성명"/>
+							<input ng-required="true" ng-pattern="/./" class="form-control" type="text" id="name" name="name" ng-model="gName" placeholder="성명"/>
 							<span ng-show="sf.name.$valid" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
 						</div>
 						<div class="form-group has-feedback"
 							ng-class="{'has-success':canUseNick, 'has-error': !canUseNick && sf.nick.$dirty}">
 							<label class="control-label" for="nick">사용자 이름</label>
-							<input class="form-control" ng-model="nick" ng-blur="nickCheck()" ng-required="true" 
+							<input class="form-control" ng-model="gNick" ng-blur="nickCheck()" ng-required="true" 
 							type="text" id="nick" name="nick" placeholder="사용자 이름"/>
 							<span ng-show="sf.nick.$valid && canUseNick" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
 							<span ng-show="(sf.nick.$invalid || !canUseNick) && sf.nick.$dirty" class="glyphicon glyphicon-remove-circle form-control-feedback"></span>
@@ -193,7 +181,7 @@ function submitForm() {
 							ng-class="{'has-success':sf.pwd.$valid, 'has-error': sf.pwd.$invalid && sf.pwd.$dirty}">
 							<label class="control-label" for="pwd">비밀번호</label>
 							
-							<input ng-model="pwd" ng-required="true" ng-pattern="/^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,15}&/" class="form-control" type="password" id="pwd" name="pwd" placeholder="비밀번호"/>
+							<input ng-model="pwd" ng-required="true" ng-pattern="/./" class="form-control" type="password" id="pwd" name="pwd" placeholder="비밀번호"/>
 							<button ng-show="sf.pwd.$dirty" class="btn btn-link" type="button" onclick="pwdCheck()">비밀번호 표시</button>
 							<span ng-show="sf.pwd.$valid" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
 							<span ng-show="sf.pwd.$invalid && sf.pwd.$dirty" class="glyphicon glyphicon-remove-circle form-control-feedback"></span>
