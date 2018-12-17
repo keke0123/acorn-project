@@ -16,18 +16,20 @@
     WHERE b.id_follow = a.id
 	</select>
 	<select id="getListTag" parameterType="string" resultType="searchDto">
-		SELECT a.nick, a.name, a.id, b.count_follow
-	FROM (
-    	SELECT id_follow, count(id_follow) AS count_follow
-    	FROM acorn_follow
-    	GROUP BY id_follow
-        ) b, (
-					SELECT nick, name, id
-					FROM acorn_user
-					WHERE nick LIKE '%'||#{keyword}||'%' 
-						OR name LIKE '%'||#{keyword}||'%'
-					) a
-    WHERE b.id_follow = a.id
+		SELECT id_writer, count(id_writer) AS count_tag
+		FROM
+		(
+			SELECT b.id_writer
+		    FROM
+			(
+				SELECT num_board, tag
+				FROM acorn_tag
+				WHERE tag LIKE '%'||#{keyword}||'%'
+			) t, acorn_board b
+			WHERE b.num_board = t.num_board
+		)
+		GROUP BY id_writer
+		ORDER BY count_tag DESC
 	</select>
 	<select id="getListHuman" parameterType="string" resultType="searchDto">
 		SELECT a.nick, a.name, a.id, b.count_follow
