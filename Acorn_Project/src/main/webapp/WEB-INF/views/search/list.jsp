@@ -21,10 +21,11 @@
 			$scope.searchList=[];
 			$scope.searchValue;
 			$scope.selectValue;
+			
 			console.log($scope.selectValue);
 			console.log($scope.searchValue);
 			$scope.getData=function(){
-				
+			
 				 $http({
 					url:"Search_like.do",
 					method:"get",
@@ -35,6 +36,10 @@
 					console.log(data);
 					$scope.searchList=data;
 				});
+			};
+			$scope.getChange=function(){
+				$scope.searchList=[];
+				$scope.getData();
 			};
 			
 		});
@@ -48,10 +53,10 @@
 </div>
 
 <div class="container">
-	<form class="form-inline" id="formSearch">
+	<form class="form-inline" id="myForm" name="myForm">
 	   	<div class="form-group mx-sm-3 mb-2">
     		<label for="inputState">검색조건</label>
-    		<select id="inputState" class="form-control" ng-model="selectValue">
+    		<select id="inputState" class="form-control" ng-model="selectValue" ng-change="getChange()">
       			<option value="pop"selected>인기</option>
        		 		<option value="human">사람</option>
        		 		<option value="tag">태그</option>
@@ -59,19 +64,17 @@
    		</div>
   		<div class="form-group mx-sm-3 mb-2">
     		<label for="staticEmail2" class="sr-only">Email</label>
-    		<input type="text" ng-model="searchValue" class="form-control-plaintext" id="staticEmail2" placeholder="검색조건을 입력해주세요">
+    		<input type="text" ng-keyup="getData()" ng-model="searchValue" class="form-control-plaintext" 
+    			id="staticEmail2" ng-required="true" placeholder="검색조건을 입력해주세요">
   		</div>
+  		<p ng-show="myForm.searchValue.$invalid && myForm.searchValue.$dirty" 
+  			class="help-block">반드시 입력하세요</p>
   		<button ng-click="getData()" class="btn btn-primary mb-2">Confirm identity</button>
 	</form>
 	
-	<h3>인기인목록입니다.</h3>
-		
-		
-			 
-			 
-			 	
+	<h3>검색조건입니다.</h3>
 			 	<ul>
-			 		<li ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.orgFileName}}</li>
+			 		<li ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.count}}</li>
 				</ul>
 	
 	</div>
