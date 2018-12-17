@@ -3,9 +3,18 @@ package com.acorn.project.users.controller;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
@@ -26,30 +35,30 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 	
-	/* GoogleLogin */
+	 //GoogleLogin 
 	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
-	
+	private OAuth2Operations oauthOperations;
 	
 	// 로그인 첫 화면 요청 메소드
-	@RequestMapping(value = "/users/login_form", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
+	@RequestMapping(value = "/users/signup_form", method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(Model model, HttpServletResponse response) {
 
-		/* 구글code 발행 */
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		//구글code 발행 
+		oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-
+	
 		System.out.println("구글:" + url);
-
+	
 		model.addAttribute("google_url", url);
-
-		/* 생성한 인증 URL을 View로 전달 */
-		return "users/login_form";
+		System.out.println("실행순서 들어옴");
+		// 생성한 인증 URL을 View로 전달 
+		return "users/signup_form";
 	}
 
-	// 구글 Callback호출 메소드
+	/*// 구글 Callback호출 메소드
 	@RequestMapping(value = "/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleCallback(Model model, @RequestParam String code) throws IOException {
 		System.out.println("여기는 googleCallback");
@@ -60,11 +69,74 @@ public class UsersController {
 		return "redirect:/";
 	}
 	
-	//회원가입폼 요청
-	@RequestMapping("/users/signup_form")
-	public String signupForm() {
-		return "users/signup_form";
-	}
+	@RequestMapping(value="/oauth2callback", method= { RequestMethod.GET, RequestMethod.POST })
+    public String googleRollin(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+                                Model model, @RequestParam String code) throws ServletException, IOException {
+        
+     
+        OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+        AccessGrant accessGrant = oauthOperations.exchangeForAccess(code , googleOAuth2Parameters.getRedirectUri(), null);
+        
+        String accessToken = accessGrant.getAccessToken();
+        Long expireTime = accessGrant.getExpireTime();
+        
+        if (expireTime != null && expireTime < System.currentTimeMillis()) {
+            accessToken = accessGrant.getRefreshToken();
+            System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+        }
+        
+        Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+        Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+        
+        PlusOperations plusOperations = google.plusOperations();
+        Person profile = plusOperations.getGoogleProfile();
+        
+        System.out.println("실행순서가 들어왔어욥");
+        
+        return "redirect:/";
+        
+       
+	 }
+	 
+	 //회원가입폼 요청
+		@RequestMapping("/users/signup_form")
+		public String signupForm() {
+			return "users/signup_form";
+		}
+	
+	 */
+	
+	
+	@RequestMapping("/oauth2callback")
+	public String doSessionAssignActionPage(HttpServletRequest request) {
+		String code = request.getParameter("code");
+		
+		oauthOperations = googleConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, 
+				googleOAuth2Parameters.getRedirectUri(), null);
+		
+		String accessToken = accessGrant.getAccessToken();
+		Long expireTime = accessGrant.getExpireTime();
+		
+		if(expireTime != null && expireTime < System.currentTimeMillis()) {
+			accessToken = accessGrant.getRefreshToken();
+			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+		}
+		
+		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+		System.out.println(connection);
+		
+		PlusOperations plusOperations = google.plusOperations();
+		Person profile = plusOperations.getGoogleProfile();
+		System.out.println("User Uid : " + profile.getId());
+		System.out.println("User Name : " + profile.getDisplayName());
+		System.out.println("User Email : " + profile.getAccountEmail());
+		System.out.println("User Profile : " + profile.getImageUrl());
+		
+		return "redirect:/";
+    }
+	
 	
 	//회원가입 처리
 	@RequestMapping("/users/signup")
