@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<beans:property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
+	<beans:property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
 	</beans:bean>
 	
 	<!-- SqlSessionFactory 객체 -->
@@ -45,7 +45,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.acorn.project" />
-	<context:component-scan base-package="com.acorn.project.main.*"/>
+	<!-- users 컴포넌트 스캔 -->
+	<context:component-scan base-package="com.acorn.project.users.*" />
 	
 	<!-- 어노테이션 기반으로 aop 적용하기 위한 설정 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
@@ -60,17 +61,16 @@
 		<beans:property name="order" value="0"/>
 	</beans:bean>
 	
-	<!-- google 소셜 로그인 연결 설정 -->
-	<beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
-		<beans:constructor-arg value="1026387747767-c1n9jqp8i3b318ut4a5tgoc6hbbg8rgs.apps.googleusercontent.com"/>
-		<beans:constructor-arg value="OwC--9l9SyQN6txGc7tjeQA3"/>
+	<!-- google Class Bean설정 추가 클라이언트ID와 보안비밀 세팅  -->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="1026387747767-c1n9jqp8i3b318ut4a5tgoc6hbbg8rgs.apps.googleusercontent.com" />
+		<beans:constructor-arg value="OwC--9l9SyQN6txGc7tjeQA3" />
 	</beans:bean>
+	<!--  승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
 	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login"/>
-		<beans:property name="redirectUri" value="http://localhost:8888/project/googleSignInCallback.do"/>
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email" />
+		<beans:property name="redirectUri" value="http://localhost:8888/project/googleSignInCallback.do" />
 	</beans:bean>
-	
-	
-	
-	
+
 </beans:beans>
