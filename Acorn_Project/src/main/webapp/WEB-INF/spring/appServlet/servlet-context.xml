@@ -60,6 +60,16 @@
 		<beans:property name="order" value="0"/>
 	</beans:bean>
 	
+	<!-- google 소셜 로그인 연결 설정 -->
+	<beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="1026387747767-c1n9jqp8i3b318ut4a5tgoc6hbbg8rgs.apps.googleusercontent.com"/>
+		<beans:constructor-arg value="OwC--9l9SyQN6txGc7tjeQA3"/>
+	</beans:bean>
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login"/>
+		<beans:property name="redirectUri" value="http://localhost:8888/project/googleSignInCallback.do"/>
+	</beans:bean>
+	
 	
 	
 	

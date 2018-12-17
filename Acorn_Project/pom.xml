@@ -168,6 +168,17 @@
 		    <artifactId>spring-security-web</artifactId>
 		    <version>4.0.0.RELEASE</version>
 		</dependency>        
+		<!-- google login 관련 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-google</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

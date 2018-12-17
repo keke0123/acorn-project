@@ -13,6 +13,8 @@
 	<h3>home</h3>
 	<p><a href="main/test.do">테스트 페이지</a></p>
 	<p><a href="main/main.do">main 페이지</a></p>
+	<p><a href="test_googleLogin.do">google 로그인 페이지</a></p>
+	<p><a href="test_googleLogin.do?code=1026387747767-c1n9jqp8i3b318ut4a5tgoc6hbbg8rgs.apps.googleusercontent.com">google 로그인 페이지</a></p>
 </div>
 </body>
 </html>
