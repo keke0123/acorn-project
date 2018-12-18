@@ -69,13 +69,13 @@
   		</div>
   		<p ng-show="myForm.searchValue.$invalid && myForm.searchValue.$dirty" 
   			class="help-block">반드시 입력하세요</p>
-  		<button ng-click="getData()" class="btn btn-primary mb-2">Confirm identity</button>
+  		<button ng-click="getData()" class="btn btn-primary mb-2" ng-disabled="myForm.$invalid">검색</button>
 	</form>
 	
 	<h3>검색조건입니다.</h3>
-			 	<ul>
-			 		<li ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.count}}</li>
-				</ul>
+			 <ul>
+			 	<li ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.count}}</li>
+			</ul>
 	
 	</div>
 

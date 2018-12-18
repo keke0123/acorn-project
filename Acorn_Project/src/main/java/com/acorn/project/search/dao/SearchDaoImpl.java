@@ -12,6 +12,8 @@ import com.acorn.project.search.dto.SearchDto;
 public class SearchDaoImpl implements SearchDao{
 	@Autowired
 	private SqlSession session;
+	
+	
 
 	@Override
 	public List<SearchDto> getList(String value) {
@@ -27,6 +29,12 @@ public class SearchDaoImpl implements SearchDao{
 	@Override
 	public List<SearchDto> getListHuman(String value) {
 		return session.selectList("search.getListHuman", value);
+	}
+
+	@Override
+	public List<SearchDto> getListDefault() {
+
+		return session.selectList("search.getListDefault");
 	}
 
 	

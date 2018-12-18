@@ -17,13 +17,17 @@ public class SearchServiceImpl implements SearchService{
 	private SearchDao searchDao;
 	
 	@Override
-	public void getList(String value) {
+	public void getList(HttpServletRequest request) {
 			
 		/*SearchDto dto =new SearchDto();
 		List<SearchDto> list=searchDao.getList(dto);
 		
 		request.setAttribute("list", list);*/
-	
+		
+		List<SearchDto> list=searchDao.getListDefault();
+		
+		
+		
 	}
 
 	@Override

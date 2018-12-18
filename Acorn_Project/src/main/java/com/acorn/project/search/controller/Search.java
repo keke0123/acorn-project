@@ -30,7 +30,8 @@ public class Search {
 	
 	/*인기 검색*/
 	@RequestMapping("/search/list")
-	public ModelAndView getList(HttpServletRequest request) {
+	public ModelAndView getList(HttpServletRequest request ) {
+		
 		return new ModelAndView("search/list");  
 	}
 	

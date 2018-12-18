@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.acorn.project.search.dto.SearchDto;
 
 public interface SearchService {
-	public void getList(String value);
+	public void getList(HttpServletRequest request);
 	public List<SearchDto> searchList(HttpServletRequest request);
 	
 }
