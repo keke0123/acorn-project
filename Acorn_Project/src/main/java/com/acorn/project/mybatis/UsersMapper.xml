@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="users">
 	<insert id="insert">
-		INSERT INTO acorn_user
-		
+		INSERT INTO acorn_user		
 		<if test="google_id!=null">
 			(id, pwd, nick, name, regdate ,google_id)
 			VALUES(#{id}, #{pwd}, #{nick}, #{name}, SYSDATE, #{google_id})
@@ -20,6 +19,11 @@
 	</select>
 	<select id="isExist" parameterType="string" resultType="string">
 		SELECT id
+		FROM acorn_user
+		WHERE id=#{id}
+	</select>
+	<select id="googleId" parameterType="string" resultType="string">
+		SELECT google_id
 		FROM acorn_user
 		WHERE id=#{id}
 	</select>

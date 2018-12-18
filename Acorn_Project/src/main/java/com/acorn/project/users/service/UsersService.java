@@ -17,4 +17,6 @@ public interface UsersService {
 	public Map<String, Object> canUseId(String inputId);
 	//닉네임 사용가능 여부를 Map에 담아서 리턴하는 로직
 	public Map<String, Object> canUseNick(String inputNick);
+	//구글 로그인 처리
+	public void validGoogle(HttpSession session,ModelAndView mView);
 }

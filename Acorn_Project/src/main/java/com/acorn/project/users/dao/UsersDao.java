@@ -12,4 +12,6 @@ public interface UsersDao {
 	public String getPwdHash(String id);
 	//인자로 전달된 닉네임이 존재하는 여부를 리턴하는 메소드
 	public boolean isNickExist(String inputNick);
+	//구글 로그인 처리
+	public String googleLogin(String googleId);
 }

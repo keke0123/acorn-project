@@ -69,7 +69,8 @@ public class UsersController {
 	}
 
 	@RequestMapping("/oauth2callback2")
-	public String doSessionAssignActionPage2(HttpServletRequest request) {
+	public ModelAndView doSessionAssignActionPage2(HttpServletRequest request, ModelAndView mView) {
+		System.out.println("실행순서 들어오긴 하나요");
 		String code = request.getParameter("code");
 		
 		oauthOperations = googleConnectionFactory.getOAuthOperations();
@@ -121,8 +122,10 @@ public class UsersController {
  
             e.printStackTrace();
         }
-		 	
-			return "redirect:/users/login_form.do";
+		 
+		 service.validGoogle(session, mView);
+		 mView.setViewName("users/login");
+			return mView;
 	
     }
 	
@@ -195,7 +198,7 @@ public class UsersController {
 		return mView;
 	}
 	
-	@RequestMapping("/users/login_form")
+	@RequestMapping("/users/login_form")	
 	public String loginForm(Model model, HttpServletResponse response, HttpSession session) {
 		
 		//구글code 발행 

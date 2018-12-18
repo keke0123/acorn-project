@@ -44,11 +44,26 @@ public class UsersServiceImpl implements UsersService{
 		if(isValid) {
 			//로그인 처리를 해준다
 			session.setAttribute("id", dto.getId());
-			//로그인 성공 여부를 ModelAndView 객체에 담는다
+			//로그인 성공 여부를  객체에 담는다
 			mView.addObject("isSuccess",true);
 		}else {
 			mView.addObject("isSucess",false);
 		}
+	}
+	
+	@Override
+	public void validGoogle(HttpSession session, ModelAndView mView) {
+		String gLoginId=(String)session.getAttribute("gEmail");
+		String gUid=(String)session.getAttribute("gUid");
+		String google_Id =dao.googleLogin(gLoginId);
+		
+		if(gUid.equals(google_Id)) {
+			session.setAttribute("id", gLoginId);
+			mView.addObject("isSuccess", true);
+		}else {
+			mView.addObject("isSuccess",false);
+		}
+		
 	}
 
 	@Override
@@ -76,4 +91,6 @@ public class UsersServiceImpl implements UsersService{
 		}
 		return map;
 	}
+
+	
 }
