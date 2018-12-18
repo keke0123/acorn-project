@@ -25,9 +25,6 @@ public class SearchServiceImpl implements SearchService{
 		request.setAttribute("list", list);*/
 		
 		List<SearchDto> list=searchDao.getListDefault();
-		
-		
-		
 	}
 
 	@Override

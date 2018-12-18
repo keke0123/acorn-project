@@ -45,7 +45,16 @@
 			
 		});
 	</script>
-	
+	<style>
+		table.row-clickable tbody tr td {
+		    padding: 0;
+		}
+		
+		table.row-clickable tbody tr td a {
+		    display: block;
+		    padding: 8px;
+		}
+	</style>
 </head>
 <body ng-controller="myCtrl">
 
@@ -73,11 +82,24 @@
   		<button ng-click="getData()" class="btn btn-primary mb-2" ng-disabled="myForm.$invalid">검색</button>
 	</form>
 	
-	<h3>검색조건입니다.</h3>
-			 <ul>
-			 	<li ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">{{tmp.name}} {{tmp.id}} {{tmp.count}}</li>
-			</ul>
 	
+	<!-- <table class="table table-hover row-clickable">
+    <tbody>
+        <tr>
+            <td><a href="#">Column 1</a></td>
+            <td><a href="#">Column 2</a></td>
+            <td><a href="#">Column 3</a></td>
+        </tr>
+    </tbody>
+	</table> -->
+	
+	<h3>검색조건입니다.</h3>
+	<table class="table table-hover row-clickable">
+		<tbody>
+				<td ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList"> {{tmp.name}} <a href="{{tmp.id}}">{{tmp.id}}</a>{{tmp.count}}</td>
+		
+		</tbody>
+	</table>
 	</div>
 
 </body>
