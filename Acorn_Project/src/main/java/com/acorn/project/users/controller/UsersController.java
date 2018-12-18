@@ -150,6 +150,11 @@ public class UsersController {
 		return map;
 	}
 	
+	@RequestMapping("/users/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 	
 }

@@ -71,6 +71,11 @@ function submitForm() {
 			});
 		};
 		
+		if($scope.gId!=""){
+			$scope.idCheck();
+		}
+		console.log($scope.gId);
+		
 		//nick 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.nickCheck=function(){
 		
@@ -174,7 +179,7 @@ function submitForm() {
 							<span ng-show="sf.nick.$valid && canUseNick" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
 							<span ng-show="(sf.nick.$invalid || !canUseNick) && sf.nick.$dirty" class="glyphicon glyphicon-remove-circle form-control-feedback"></span>
 							
-							<p ng-show="sf.nick.$error.required && sf.nick.dirty" class="help-block">사용자 이름을 입력해주세요</p>
+							<p ng-show="sf.nick.$error.required && sf.nick.$dirty" class="help-block">사용자 이름을 입력해주세요</p>
 							<p ng-show="!canUseNick && sf.nick.$dirty" class="help-block">사용 할 수 없는 사용자 이름 입니다.</p>
 						</div>
 						<div class="form-group has-feedback"
@@ -206,6 +211,7 @@ function submitForm() {
 			<div class="panel panel-default" style="text-align:center;">
 				<div class="panel-body">
 					<p>계정이 있으신가요? <button class="btn btn-link" type="button" ng-click="loginBtn()">로그인</button></p>
+					<a href="logout.do">로그아웃</a>
 				</div>
 			</div>
 		</div>
