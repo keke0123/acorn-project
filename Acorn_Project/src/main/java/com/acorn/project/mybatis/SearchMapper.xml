@@ -10,11 +10,9 @@
         ) b, (
 			SELECT nick, name, id
 			FROM acorn_user
-			<where>
-				<if test="keyword != null">
-					WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
-				</if>
-			</where>
+			<if test="value != null">
+				WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
+			</if>
 		) a
     WHERE b.id_follow = a.id
 	</select>
@@ -29,7 +27,7 @@
 				(
 					SELECT num_board, tag
 					FROM acorn_tag
-					<if test="keyword != null">
+					<if test="value != null">
 						WHERE tag LIKE '%'||#{keyword}||'%'
 					</if> 
 				) t, acorn_board b
@@ -49,7 +47,7 @@
         ) b, (
 			SELECT nick, name, id
 			FROM acorn_user
-			<if test="keyword != null">
+			<if test="value != null">
 				WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
 			</if>
 		) a

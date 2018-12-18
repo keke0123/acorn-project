@@ -17,7 +17,7 @@ public class SearchDaoImpl implements SearchDao{
 
 	@Override
 	public List<SearchDto> getList(String value) {
-		System.out.print(value);
+		//System.out.print(value);
 		return session.selectList("search.getList", value);
 	}
 
