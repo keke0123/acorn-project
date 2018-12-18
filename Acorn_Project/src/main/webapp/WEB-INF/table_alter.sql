@@ -34,3 +34,6 @@ CREATE TABLE acorn_picture(
 	filesize NUMBER NOT NULL -- 파일사이즈
 );
 
+-------------------------------
+-- google uid 값을 저장할 컬럼 추가
+ALTER TABLE acorn_user add(google_id VARCHAR2(100));
