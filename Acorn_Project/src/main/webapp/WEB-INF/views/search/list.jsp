@@ -16,17 +16,19 @@
 <script>
 		angular.module("myApp",[])
 		.controller("myCtrl",function($scope,$http){
-			
-			
 			$scope.searchList=[];
 			$scope.searchValue;
-			$scope.selectValue;
+			$scope.selectValue="pop";
 			
 			console.log($scope.selectValue);
 			console.log($scope.searchValue);
 			$scope.getData=function(){
-			
-				 $http({
+				console.log($scope.searchValue);
+				if($scope.searchValue == "" || $scope.searchValue==undefined){
+					return false;
+				}
+				
+				$http({
 					url:"Search_like.do",
 					method:"get",
 					params:{"keyword":$scope.searchValue,"keyword2":$scope.selectValue}
@@ -48,7 +50,7 @@
 </head>
 <body ng-controller="myCtrl">
 
-<div class="container">
+<div class="container" style="margin-top:50px;">
 	<p>검색</p>
 </div>
 
@@ -57,9 +59,9 @@
 	   	<div class="form-group mx-sm-3 mb-2">
     		<label for="inputState">검색조건</label>
     		<select id="inputState" class="form-control" ng-model="selectValue" ng-change="getChange()">
-      			<option value="pop"selected>인기</option>
-       		 		<option value="human">사람</option>
-       		 		<option value="tag">태그</option>
+      			<option value="pop">인기</option>
+  		 		<option value="human">사람</option>
+   		 		<option value="tag">태그</option>
      		</select>
    		</div>
   		<div class="form-group mx-sm-3 mb-2">
