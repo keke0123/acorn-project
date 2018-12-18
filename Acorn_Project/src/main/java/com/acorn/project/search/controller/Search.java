@@ -20,8 +20,6 @@ import com.acorn.project.search.service.SearchService;
  * USE : 게시물 광범위 검색을 위한 Controller 생성
  */
 
-
-
 @Controller
 public class Search {
 	
@@ -41,6 +39,12 @@ public class Search {
 		
 		return service.searchList(request);
 		 
+	}
+	
+	@RequestMapping("/search/userpage")
+	public ModelAndView userPage(ModelAndView mView, HttpServletRequest request) {
+		mView.setViewName("search/userpage");
+		return mView;
 	}
 	
 
