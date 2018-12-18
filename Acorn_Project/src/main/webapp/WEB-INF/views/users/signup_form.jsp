@@ -71,11 +71,6 @@ function submitForm() {
 			});
 		};
 		
-		if($scope.gId!=""){
-			$scope.idCheck();
-		}
-		console.log($scope.gId);
-		
 		//nick 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.nickCheck=function(){
 		
@@ -89,6 +84,13 @@ function submitForm() {
 				$scope.canUseNick=responseData.canUseNick;
 			});
 		};
+		
+		if($scope.gId!=""){
+			$scope.idCheck();
+			$scope.nickCheck();
+			document.querySelector("#pwd").focus();
+		}
+		//console.log($scope.gId);
 	});
 </script>
 <style>
