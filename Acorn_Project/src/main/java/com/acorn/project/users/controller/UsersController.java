@@ -1,8 +1,13 @@
 package com.acorn.project.users.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.Condition;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,39 +42,89 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 	
-	 //GoogleLogin 
+	//GoogleLogin 
 	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters2;
 	private OAuth2Operations oauthOperations;
 	
 	// 로그인 첫 화면 요청 메소드
-	@RequestMapping(value = "/users/signup_form", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpServletResponse response) {
+	@RequestMapping("/users/signup_form")
+	public String login(Model model, HttpServletResponse response, HttpSession session) {
 
 		//구글code 발행 
 		oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 	
 		System.out.println("구글:" + url);
-	
+		
 		model.addAttribute("google_url", url);
+		
+		session.setAttribute("condition", "signup");
 		// 생성한 인증 URL을 View로 전달 
 		return "users/signup_form";
 	}
 
-	/*// 구글 Callback호출 메소드
-	@RequestMapping(value = "/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String googleCallback(Model model, @RequestParam String code) throws IOException {
-		System.out.println("여기는 googleCallback");
-		System.out.println(code);
-		System.out.println(model);
-		//로그인 처리 할 부분.. 일단 가입부터 되게 하고...
+	@RequestMapping("/oauth2callback2")
+	public String doSessionAssignActionPage2(HttpServletRequest request) {
+		String code = request.getParameter("code");
 		
-		return "redirect:/";
-	} */
-
+		oauthOperations = googleConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, 
+				googleOAuth2Parameters.getRedirectUri(), null);
+		
+		String accessToken = accessGrant.getAccessToken();
+		Long expireTime = accessGrant.getExpireTime();
+		
+		if(expireTime != null && expireTime < System.currentTimeMillis()) {
+			accessToken = accessGrant.getRefreshToken();     
+			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+		}
+		
+		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+		System.out.println(connection);
+		
+		PlusOperations plusOperations = google.plusOperations();
+		Person profile = plusOperations.getGoogleProfile();
+		
+		System.out.println("User Uid : " + profile.getId());
+		System.out.println("User Name : " + profile.getDisplayName());
+		System.out.println("User Email:" +profile.getAccountEmail());
+		System.out.println("User Profile : " + profile.getImageUrl());
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("gEmail", profile.getAccountEmail());
+		session.setAttribute("gName", profile.getGivenName()+profile.getFamilyName());
+		session.setAttribute("gNick", profile.getDisplayName());
+		session.setAttribute("gUid", profile.getId());
+		 try {
+            System.out.println("Closing Token....");
+            String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
+            URL url = new URL(revokeUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setDoOutput(true);
+ 
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+          
+        } catch (Exception e) {
+ 
+            e.printStackTrace();
+        }
+		 	
+			return "redirect:/users/login_form.do";
+	
+    }
 	
 	@RequestMapping("/oauth2callback")
 	public String doSessionAssignActionPage(HttpServletRequest request) {
@@ -103,14 +158,37 @@ public class UsersController {
 		session.setAttribute("gEmail", profile.getAccountEmail());
 		session.setAttribute("gName", profile.getGivenName()+profile.getFamilyName());
 		session.setAttribute("gNick", profile.getDisplayName());
+		session.setAttribute("gUid", profile.getId());
+		 try {
+            System.out.println("Closing Token....");
+            String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
+            URL url = new URL(revokeUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setDoOutput(true);
+ 
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+          
+        } catch (Exception e) {
+ 
+            e.printStackTrace();
+        }
+	
+			return "redirect:/users/signup_form.do";
 		
-		return "redirect:/users/signup_form.do";
     }
 	
 	
 	//회원가입 처리
 	@RequestMapping("/users/signup")
-	public ModelAndView signup(ModelAndView mView, @ModelAttribute UsersDto dto) {
+	public ModelAndView signup(ModelAndView mView, @ModelAttribute UsersDto dto, HttpSession session) {
+		dto.setGoogle_id((String)session.getAttribute("gUid"));
 		service.addUser(mView, dto);
 		//나중에 메인페이지로 연결되도록 수정
 		mView.setViewName("users/greeting");
@@ -118,7 +196,16 @@ public class UsersController {
 	}
 	
 	@RequestMapping("/users/login_form")
-	public String loginForm() {
+	public String loginForm(Model model, HttpServletResponse response, HttpSession session) {
+		
+		//구글code 발행 
+		oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters2);
+	
+		System.out.println("구글:" + url);
+		
+		model.addAttribute("google_url", url);
+		
 		return "users/login_form";
 	}
 	

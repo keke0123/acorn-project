@@ -3,8 +3,15 @@
 <mapper namespace="users">
 	<insert id="insert">
 		INSERT INTO acorn_user
-		(id, pwd, nick, name, regdate)
-		VALUES(#{id}, #{pwd}, #{nick}, #{name}, SYSDATE)
+		
+		<if test="google_id!=null">
+			(id, pwd, nick, name, regdate ,google_id)
+			VALUES(#{id}, #{pwd}, #{nick}, #{name}, SYSDATE, #{google_id})
+		</if>
+		<if test="google_id==null">
+			(id, pwd, nick, name, regdate)
+			VALUES(#{id}, #{pwd}, #{nick}, #{name}, SYSDATE)
+		</if>
 	</insert>
 	<select id="getPwd" parameterType="string" resultType="string">
 		SELECT pwd

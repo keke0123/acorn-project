@@ -26,6 +26,7 @@ public class UsersServiceImpl implements UsersService{
 		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 		String hash=encoder.encode(planText);
 		dto.setPwd(hash);
+		System.out.println(dto.getGoogle_id());
 		dao.insert(dto);
 		mView.addObject("id", dto.getId());
 	}
@@ -48,8 +49,6 @@ public class UsersServiceImpl implements UsersService{
 		}else {
 			mView.addObject("isSucess",false);
 		}
-		
-		
 	}
 
 	@Override

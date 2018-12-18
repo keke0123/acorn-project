@@ -27,8 +27,9 @@ function pwdCheck(){
 } 
 
 /* 리캡차 때문에 만든거 */
-function submitForm() {
+function onSubmit() {
     document.getElementById("signupForm").submit();
+    grecaptcha.execute();
 }
 
 	angular.module("myApp",[])
@@ -41,7 +42,6 @@ function submitForm() {
 		$scope.gId="${gEmail}";
 		$scope.gName="${gName}";
 		$scope.gNick="${gNick}";
-		
 		$scope.loginBtn=function(){
 			location.href='login_form.do';
 		}
@@ -71,11 +71,6 @@ function submitForm() {
 			});
 		};
 		
-		if($scope.gId!=""){
-			$scope.idCheck();
-		}
-		console.log($scope.gId);
-		
 		//nick 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.nickCheck=function(){
 		
@@ -89,6 +84,16 @@ function submitForm() {
 				$scope.canUseNick=responseData.canUseNick;
 			});
 		};
+		$scope.load=function(){
+			if($scope.gId!=""){
+				$scope.idCheck();
+				$scope.nickCheck();
+				$scope.sf.id.$dirty=true;
+				$scope.sf.nick.$dirty=true;
+				document.querySelector("#pwd").focus();
+			}
+		};
+		
 	});
 </script>
 <style>
@@ -186,19 +191,22 @@ function submitForm() {
 							ng-class="{'has-success':sf.pwd.$valid, 'has-error': sf.pwd.$invalid && sf.pwd.$dirty}">
 							<label class="control-label" for="pwd">비밀번호</label>
 							
-							<input ng-model="pwd" ng-required="true" ng-pattern="/./" class="form-control" type="password" id="pwd" name="pwd" placeholder="비밀번호"/>
+							<input ng-model="pwd" ng-required="true" ng-pattern="/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$/" class="form-control" type="password" id="pwd" name="pwd" placeholder="비밀번호"/>
 							<button ng-show="sf.pwd.$dirty" class="btn btn-link" type="button" onclick="pwdCheck()">비밀번호 표시</button>
 							<span ng-show="sf.pwd.$valid" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
 							<span ng-show="sf.pwd.$invalid && sf.pwd.$dirty" class="glyphicon glyphicon-remove-circle form-control-feedback"></span>
-							<p ng-show="sf.pwd.$invalid && sf.pwd.$dirty" class="help-block">특수문자 포함 6자 이상 15자 내로 입력하세요.</p>
+							<p ng-show="sf.pwd.$invalid && sf.pwd.$dirty" class="help-block">영문, 숫자, 특수문자 포함 6자 이상 20자 내로 입력하세요.</p>
 						</div> 
 				
 						<button 
-						data-sitekey="6LcFcYEUAAAAAMBMeeUh0Rr6Q__wsPienQNERn0Y"
-						data-callback="submitForm"
 						ng-disabled="sf.$invalid || !canUseId || !canUseNick" 
-						class="g-recaptcha btn btn-primary btn-block input-block-level" type="submit">가입</button>
+						class="btn btn-primary btn-block input-block-level" onclick="onSubmit()">가입</button>
 						
+						<div class="g-recaptcha"
+					          data-sitekey="6LcFcYEUAAAAAMBMeeUh0Rr6Q__wsPienQNERn0Y"
+					          data-callback="onSubmit"
+					          data-size="invisible">
+					    </div>
 						<div>
 							<p>가입하면 Instagram의 약관, 데이터 정책 및 쿠키 정책에 동의하게 됩니다.</p>
 						</div>
@@ -212,6 +220,7 @@ function submitForm() {
 				<div class="panel-body">
 					<p>계정이 있으신가요? <button class="btn btn-link" type="button" ng-click="loginBtn()">로그인</button></p>
 					<a href="logout.do">로그아웃</a>
+					<span ng-init="load()"></span>
 				</div>
 			</div>
 		</div>

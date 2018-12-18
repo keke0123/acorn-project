@@ -11,11 +11,12 @@ public class UsersDto {
 	private String orgfilename;
 	private long filesize;
 	private String regdate;
+	private String google_id;
 	
 	public UsersDto() {}
 
 	public UsersDto(String id, String pwd, String nick, String name, String status, String phone, String email,
-			String orgfilename, long filesize, String regdate) {
+			String orgfilename, long filesize, String regdate, String google_id) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -27,6 +28,7 @@ public class UsersDto {
 		this.orgfilename = orgfilename;
 		this.filesize = filesize;
 		this.regdate = regdate;
+		this.google_id = google_id;
 	}
 
 	public String getId() {
@@ -107,6 +109,14 @@ public class UsersDto {
 
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getGoogle_id() {
+		return google_id;
+	}
+
+	public void setGoogle_id(String google_id) {
+		this.google_id = google_id;
 	}
 	
 	
