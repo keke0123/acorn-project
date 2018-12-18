@@ -4,15 +4,18 @@
 	<select id="getList" parameterType="string" resultType="searchDto">
 	SELECT a.nick, a.name, a.id, b.count_follow
 	FROM (
-    	SELECT id_follow, count(id_follow) AS count_follow
-    	FROM acorn_follow
-    	GROUP BY id_follow
+	    	SELECT id_follow, count(id_follow) AS count_follow
+	    	FROM acorn_follow
+	    	GROUP BY id_follow
         ) b, (
-					SELECT nick, name, id
-					FROM acorn_user
-					WHERE nick LIKE '%'||#{keyword}||'%' 
-						OR name LIKE '%'||#{keyword}||'%'
-					) a
+			SELECT nick, name, id
+			FROM acorn_user
+			<where>
+				<if test="keyword != null">
+					WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
+				</if>
+			</where>
+		) a
     WHERE b.id_follow = a.id
 	</select>
 	<select id="getListTag" parameterType="string" resultType="searchDto">
@@ -26,7 +29,9 @@
 				(
 					SELECT num_board, tag
 					FROM acorn_tag
-					WHERE tag LIKE '%'||#{keyword}||'%' 
+					<if test="keyword != null">
+						WHERE tag LIKE '%'||#{keyword}||'%'
+					</if> 
 				) t, acorn_board b
 				WHERE b.num_board = t.num_board
 			)
@@ -38,15 +43,16 @@
 	<select id="getListHuman" parameterType="string" resultType="searchDto">
 		SELECT a.nick, a.name, a.id, b.count_follow
 	FROM (
-    	SELECT id_follow, count(id_follow) AS count_follow
-    	FROM acorn_follow
-    	GROUP BY id_follow
+	    	SELECT id_follow, count(id_follow) AS count_follow
+	    	FROM acorn_follow
+	    	GROUP BY id_follow
         ) b, (
-					SELECT nick, name, id
-					FROM acorn_user
-					WHERE nick LIKE '%'||#{keyword}||'%' 
-						OR name LIKE '%'||#{keyword}||'%'
-					) a
+			SELECT nick, name, id
+			FROM acorn_user
+			<if test="keyword != null">
+				WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
+			</if>
+		) a
     WHERE b.id_follow = a.id
 	</select>
 	<select id="getListDefault" resultType="searchDto">

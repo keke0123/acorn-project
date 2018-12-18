@@ -24,9 +24,6 @@
 			console.log($scope.searchValue);
 			$scope.getData=function(){
 				console.log($scope.searchValue);
-				if($scope.searchValue == "" || $scope.searchValue==undefined){
-					return false;
-				}
 				
 				$http({
 					url:"Search_like.do",
@@ -43,6 +40,8 @@
 				$scope.searchList=[];
 				$scope.getData();
 			};
+			
+			$scope.getData();
 			
 		});
 	</script>
