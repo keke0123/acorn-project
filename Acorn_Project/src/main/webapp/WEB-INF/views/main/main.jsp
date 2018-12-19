@@ -217,15 +217,7 @@
     }
    
 </style>
-<body ng-controller="myCtrl">
-<div class="container" style="margin-top:50px;">
-	<button ng-click="clickBtn()">버튼</button>
-	<p>${followList }</p>
-	<ul>
-		<!-- <li ng-repeat="tmp in followList"></li> -->
-	</ul>
-	</div>
-
+<body>
 <div id="nprogress" style="display: none;"></div>
 
   <!-- navbar -->
