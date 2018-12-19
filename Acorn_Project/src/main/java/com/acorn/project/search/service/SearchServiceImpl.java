@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.search.dao.SearchDao;
 import com.acorn.project.search.dto.SearchDto;
@@ -45,6 +46,21 @@ public class SearchServiceImpl implements SearchService{
 		}
 		return list;
 	}
+
+	@Override
+	public void getUserOwnList(HttpServletRequest request , ModelAndView mView) {
+		String value = request.getParameter("id");
+		
+		SearchDto dto = new SearchDto(); 
+				
+		dto =(SearchDto) searchDao.getUserOwnList(value);
+		mView.addObject("dto",dto);
+		
+		
+		
+	}
+
+	
 
 
 

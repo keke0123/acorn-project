@@ -12,11 +12,13 @@ public class SearchDto {
 	private String name;
 	private String id_follow;
 	private int countFollow;
+	private int lcount;
+	private int countFollower;
 	
 	public SearchDto() {}
 
 	public SearchDto(int num, String id, String nick, String orgFileName, String name, String id_follow,
-			int countFollow) {
+			int countFollow, int lcount, int countFollower) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -25,6 +27,8 @@ public class SearchDto {
 		this.name = name;
 		this.id_follow = id_follow;
 		this.countFollow = countFollow;
+		this.lcount = lcount;
+		this.countFollower = countFollower;
 	}
 
 	public int getNum() {
@@ -83,8 +87,21 @@ public class SearchDto {
 		this.countFollow = countFollow;
 	}
 
-	
-	
+	public int getLcount() {
+		return lcount;
+	}
+
+	public void setLcount(int lcount) {
+		this.lcount = lcount;
+	}
+
+	public int getCountFollower() {
+		return countFollower;
+	}
+
+	public void setCountFollower(int countFollower) {
+		this.countFollower = countFollower;
+	}
 	
 	
 }

@@ -37,6 +37,12 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectList("search.getListDefault");
 	}
 
+	@Override
+	public List<SearchDto> getUserOwnList(String value) {
+		return session.selectList("search.getUserOwnList" , value);
+		
+	}
+
 	
 
 }

@@ -14,6 +14,7 @@ public interface SearchDao {
 	public List<SearchDto> getList(String value);
 	public List<SearchDto> getListTag(String value);
 	public List<SearchDto> getListHuman(String value);
+	public List<SearchDto> getUserOwnList(String value);
 	
 /*	List<SearchDto> list = searchDao.getListTag(value);
 	}else {

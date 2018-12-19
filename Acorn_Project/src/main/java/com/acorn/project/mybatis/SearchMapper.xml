@@ -66,6 +66,26 @@
     WHERE b.id_follow = a.id
 	
 	</select>
+	<select id="getUserOwnList" parameterType="string" resultType="searchDto">
+		SELECT u.orgFileName ,u.id , lc.lcount , fwc.countFollow , fwlerc.countFollower
+	    FROM acorn_user u
+	        INNER JOIN
+	            (SELECT id_writer ,count(id_writer) as lcount 
+	            FROM acorn_board 
+	            GROUP by id_writer) lc
+	        ON lc.id_writer=u.id
+	            INNER JOIN
+	                (SELECT id_follow, count(id_follow) AS countFollow
+	                FROM acorn_follow
+	                GROUP BY id_follow) fwc
+	            ON u.id=fwc.id_follow
+	                INNER JOIN
+	                    (SELECT id_follower, count(id_follower) AS countFollower
+	                    FROM acorn_follow
+	                    GROUP BY id_follower) fwlerc
+	                ON u.id=fwlerc.id_follower
+	    WHERE u.id = #{id}
+	</select>
 		<!-- OR writer LIKE '%'||#{writer}||'%' -->
 
 </mapper>

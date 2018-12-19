@@ -43,6 +43,9 @@ public class Search {
 	
 	@RequestMapping("/search/userpage")
 	public ModelAndView userPage(ModelAndView mView, HttpServletRequest request) {
+		
+		
+		service.getUserOwnList(request,mView);
 		mView.setViewName("search/userpage");
 		return mView;
 	}
