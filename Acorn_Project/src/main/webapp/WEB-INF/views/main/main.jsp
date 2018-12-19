@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/insta-nav.css">
 <script src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
-<script>
+<!-- <script>
 	angular.module("myApp",[]).controller("myCtrl",function($scope){
 		$scope.id="${id}";
 		$scope.followList=[];
@@ -21,8 +21,8 @@
 	});
 	
 	
-</script>
-<title>아싸그램</title>
+</script> -->
+<title>mypage</title>
 </head>
 <style>
    @media (min-width: 1200px){
@@ -310,17 +310,17 @@
     <div class="row">
     <div class="col-xs-4 insList">
         <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">0개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">0개</span></div></div>
-         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/1.jpg"/></a>
+         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/y1.jpg"/></a>
 
       </div>
       <div class="col-xs-4 insList">
         <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">0개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">0개</span></div></div>
-         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/2.jpg"/></a>
+         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/y2.jpg"/></a>
 
       </div>
       <div class="col-xs-4 insList">
         <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">0개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">0개</span></div></div>
-         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/3.jpg"/></a>
+         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/y3.jpg"/></a>
 
       </div>
    </div>
@@ -330,17 +330,17 @@
    <div class="row">
       <div class="col-xs-4 insList">
         <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">0개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">0개</span></div></div>
-         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/4.jpg"/></a>
+         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/y4.jpg"/></a>
 
       </div>
       <div class="col-xs-4 insList">
         <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">0개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">0개</span></div></div>
-         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/5.jpg"/></a>
+         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/y5.jpg"/></a>
 
       </div>
       <div class="col-xs-4 insList">
         <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">0개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">0개</span></div></div>
-         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/6.jpg"/></a>
+         <img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/y6.jpg"/></a>
 
       </div>
    </div>
