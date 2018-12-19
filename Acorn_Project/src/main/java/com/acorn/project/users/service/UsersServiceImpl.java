@@ -34,21 +34,31 @@ public class UsersServiceImpl implements UsersService{
 	//로그인
 	@Override
 	public void validUser(HttpSession session, ModelAndView mView, UsersDto dto) {
-		//아이디 비밀번호가 유효한지 여부를 알아낸다
-		boolean isValid=false;
-		//DB에 저장된 암호화 된 비밀번호를 읽어온다
-		String pwdHash=dao.getPwdHash(dto.getId());
-		if(pwdHash != null) {
-			//입력한 비밀번호와 암호화된 비밀번호의 일치여부를 isValid에 담기
-			isValid=BCrypt.checkpw(dto.getPwd(), pwdHash);
-		}
-		if(isValid) {
-			//로그인 처리를 해준다
-			session.setAttribute("id", dto.getId());
-			//로그인 성공 여부를  객체에 담는다
-			mView.addObject("isSuccess",true);
+		String id=dto.getId();
+		String google_id=dao.googleLogin(id);
+		
+		//구글가입자 여부를 알아내기
+		if(google_id==null) {
+			//아이디 비밀번호가 유효한지 여부를 알아낸다
+			boolean isValid=false;
+			//DB에 저장된 암호화 된 비밀번호를 읽어온다
+			String pwdHash=dao.getPwdHash(id);
+			if(pwdHash != null) {
+				//입력한 비밀번호와 암호화된 비밀번호의 일치여부를 isValid에 담기
+				isValid=BCrypt.checkpw(dto.getPwd(), pwdHash);
+			}
+			if(isValid) {
+				//로그인 처리를 해준다
+				session.setAttribute("id", id);
+				//로그인 성공 여부를  객체에 담는다
+				mView.addObject("isSuccess",true);
+			}else {
+				mView.addObject("isSucess",false);
+			}
 		}else {
+			
 			mView.addObject("isSucess",false);
+			System.out.println("구글가입자");
 		}
 	}
 	
@@ -57,12 +67,9 @@ public class UsersServiceImpl implements UsersService{
 	public void validGoogle(HttpSession session, ModelAndView mView) {
 		String gLoginId=(String)session.getAttribute("gEmail");
 		String gUid=(String)session.getAttribute("gUid");
-		boolean isExist=dao.isExist(gLoginId);
-		System.out.print(isExist);
+		String google_Id=dao.googleLogin(gLoginId);
 		
-		if(isExist) {
-			String google_Id=dao.googleLogin(gLoginId);
-			
+		if(google_Id!=null) {
 			if(gUid.equals(google_Id)) {
 				session.setAttribute("id", gLoginId);
 				mView.addObject("isSuccess", true);

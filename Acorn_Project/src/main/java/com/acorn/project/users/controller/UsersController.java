@@ -201,8 +201,7 @@ public class UsersController {
             e.printStackTrace();
         }
 		 
-		 service.validGoogle(session, mView);
-		
+		 service.validGoogle(session, mView);	
 		 mView.setViewName("users/login");
 		 return mView;
 	
