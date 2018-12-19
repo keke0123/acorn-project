@@ -258,8 +258,7 @@
     </div><!--col-xs-3-->
     <div class="col-xs-7 text-center">
       <h1 style="font-weight:lighter; display: inline-block; " >Acorn</h1>
-      <a href="main/profile_form.jsp" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</a>
-      <!-- <button id="profileBtn" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button> -->
+      <button onclick="location.href='profile.jsp'" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button>
       <span class="glyphicon glyphicon-cog" style="font-size: 23px; margin-left: 5px;"  ></span>
       <br/>
       <div id="profileInfo"> 
