@@ -51,7 +51,6 @@ public class UsersDaoImpl implements UsersDao{
 	@Override
 	public String googleLogin(String googleId) {
 		String selectedId=session.selectOne("users.googleId",googleId);
-		
 		return selectedId;
 	}
 

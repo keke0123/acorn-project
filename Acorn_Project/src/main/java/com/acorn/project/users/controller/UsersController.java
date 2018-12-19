@@ -65,10 +65,12 @@ public class UsersController {
 	//일반 회원가입 처리
 	@RequestMapping("/users/signup")
 	public ModelAndView signup(ModelAndView mView, @ModelAttribute UsersDto dto, HttpSession session) {
+		//dto에 세션에 있는 구글 Uid 담기
 		dto.setGoogle_id((String)session.getAttribute("gUid"));
 		service.addUser(mView, dto);
 		//나중에 메인페이지로 연결되도록 수정
 		mView.setViewName("users/greeting");
+		
 		return mView;
 	}
 	
@@ -91,7 +93,7 @@ public class UsersController {
 		
 		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
 		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-		System.out.println(connection);
+		//System.out.println(connection);
 		
 		PlusOperations plusOperations = google.plusOperations();
 		Person profile = plusOperations.getGoogleProfile();
@@ -102,7 +104,7 @@ public class UsersController {
 		session.setAttribute("gNick", profile.getDisplayName());
 		session.setAttribute("gUid", profile.getId());
 		 try {
-            System.out.println("Closing Token....");
+           //System.out.println("Closing Token....");
             String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
             URL url = new URL(revokeUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -153,7 +155,6 @@ public class UsersController {
 	//구글 로그인 처리
 	@RequestMapping("/oauth2callback2")
 	public ModelAndView doSessionAssignActionPage2(HttpServletRequest request, ModelAndView mView) {
-		System.out.println("실행순서 들어오긴 하나요");
 		String code = request.getParameter("code");
 		
 		oauthOperations = googleConnectionFactory.getOAuthOperations();
@@ -165,21 +166,22 @@ public class UsersController {
 		
 		if(expireTime != null && expireTime < System.currentTimeMillis()) {
 			accessToken = accessGrant.getRefreshToken();     
-			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+			//System.out.printf("accessToken is expired. refresh token = {}", accessToken);
 		}
 		
 		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
 		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-		System.out.println(connection);
+		//System.out.println(connection);
 		
 		PlusOperations plusOperations = google.plusOperations();
 		Person profile = plusOperations.getGoogleProfile();
 	
 		HttpSession session = request.getSession();
 		session.setAttribute("gEmail", profile.getAccountEmail());
+		session.setAttribute("gUid", profile.getId());
 		
 		 try {
-            System.out.println("Closing Token....");
+            //System.out.println("Closing Token....");
             String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
             URL url = new URL(revokeUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -200,6 +202,7 @@ public class UsersController {
         }
 		 
 		 service.validGoogle(session, mView);
+		
 		 mView.setViewName("users/login");
 		 return mView;
 	

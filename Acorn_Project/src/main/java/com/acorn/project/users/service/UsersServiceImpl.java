@@ -27,7 +27,6 @@ public class UsersServiceImpl implements UsersService{
 		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 		String hash=encoder.encode(planText);
 		dto.setPwd(hash);
-		System.out.println(dto.getGoogle_id());
 		dao.insert(dto);
 		mView.addObject("id", dto.getId());
 	}
@@ -58,15 +57,22 @@ public class UsersServiceImpl implements UsersService{
 	public void validGoogle(HttpSession session, ModelAndView mView) {
 		String gLoginId=(String)session.getAttribute("gEmail");
 		String gUid=(String)session.getAttribute("gUid");
-		String google_Id =dao.googleLogin(gLoginId);
+		boolean isExist=dao.isExist(gLoginId);
+		System.out.print(isExist);
 		
-		if(gUid.equals(google_Id)) {
-			session.setAttribute("id", gLoginId);
-			mView.addObject("isSuccess", true);
+		if(isExist) {
+			String google_Id=dao.googleLogin(gLoginId);
+			
+			if(gUid.equals(google_Id)) {
+				session.setAttribute("id", gLoginId);
+				mView.addObject("isSuccess", true);
+			}else {
+				mView.addObject("isSuccess",false);
+			}
+			
 		}else {
 			mView.addObject("isSuccess",false);
 		}
-		
 	}
 
 	//아이디 중복체크
