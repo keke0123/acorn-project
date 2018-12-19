@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
@@ -11,8 +11,26 @@
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <title>Insert title here</title>
+<script>
+	angular.module("myApp", [])
+	.controller("myCtrl", function($scope, $http){
+		$scope.boardList=[];
+		// session 의 id 값을 바탕으로 게시판 data 가져오기
+		$scope.getData=function(){
+			$http({
+				url:"../getuserprofile.do",
+				method:"get"
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+			});
+		};
+		// 초기에 한번 데이타 가져오기
+		$scope.getData();
+	});
+</script>
 </head>
-<body>
+<body ng-controller="myCtrl">
 <div class="container" style="margin-top:150px;">
 	<div class="row " style="border:1px solid #BDBDBD;">
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 hidden-xs">

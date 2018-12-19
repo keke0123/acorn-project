@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="com.acorn.project.main.dto.MainDto" alias="mainDto"/>
 		<typeAlias type="com.acorn.project.main.dto.CommentDto" alias="commentDto"/>
+		<typeAlias type="com.acorn.project.profile.dto.ProfileDto" alias="profileDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/acorn/project/mybatis/MainMapper.xml"/>
