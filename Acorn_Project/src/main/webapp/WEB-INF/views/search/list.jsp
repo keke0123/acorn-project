@@ -102,7 +102,7 @@
 		</tbody>
 	</table>
 	</div>
-	<a href="userpage.do">유저 페이지</a>
+	<a href="userpage.do?id=user1">유저 페이지</a>
 
 </body>
 </html>

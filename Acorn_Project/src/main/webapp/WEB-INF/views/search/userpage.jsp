@@ -13,7 +13,30 @@
 <script>
 		angular.module("myApp",[])
 		.controller("myCtrl",function($scope,$http){
-			
+			$scope.dto={};
+			$scope.dtoList=[];
+			$scope.getData=function(){
+				$http({
+					url:"userpageData.do",
+					method:"get",
+					params:{"id":"${param.id}"}
+				}).success(function(data){
+					console.log(data);
+					$scope.dto=data;
+				});	
+			};
+			$scope.getBoardList=function(){
+				$http({
+					url:"userboardlist.do",
+					method:"get",
+					params:{"id":"${param.id}"}
+				}).success(function(data){
+					console.log(data);
+					$scope.dtoList=data;
+				});
+			};
+			$scope.getData();
+			$scope.getBoardList();
 		});
 		$(document).ready(function() {
 			$(".imgLiquidFill").imgLiquid();
@@ -54,7 +77,11 @@
 	    </div><!--col-xs-7-->
 	</div>
 	<div class="postContent">
-		<div class="row">
+		<span ng-repeat="tmp in dtoList">
+		<div class="row" ng-if="$index%3==0">
+			
+		</div>
+<%-- 	<div class="row">
 			<div class="col-xs-4">
 				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
 					<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/1.jpg"/>
@@ -71,6 +98,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="row">
 			<div class="col-xs-4">
 				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
@@ -87,7 +115,8 @@
 						<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/3.jpg"/>
 				</div>
 			</div>
-		</div>
+		</div> --%>
+		</span>
 	</div><!-- postContent -->
 </div>
 

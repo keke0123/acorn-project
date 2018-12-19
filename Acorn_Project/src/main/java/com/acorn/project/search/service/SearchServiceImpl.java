@@ -48,17 +48,18 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public void getUserOwnList(HttpServletRequest request , ModelAndView mView) {
-		String value = request.getParameter("id");
-		
-		SearchDto dto = new SearchDto(); 
-				
-		dto =(SearchDto) searchDao.getUserOwnList(value);
-		mView.addObject("dto",dto);
-		
-		
-		
+	public SearchDto getUserOwnList(HttpServletRequest request) {
+		String value = request.getParameter("id");	
+		SearchDto dto = searchDao.getUserOwnList(value);
+		return dto;
 	}
+
+	@Override
+	public List<SearchDto> getBoardList(HttpServletRequest request) {
+		String value = request.getParameter("id");	
+		return searchDao.getBoardPicture(value);
+	}
+	
 
 	
 

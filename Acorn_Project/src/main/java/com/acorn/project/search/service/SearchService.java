@@ -12,5 +12,6 @@ public interface SearchService {
 	public void getList(HttpServletRequest request);
 	public List<SearchDto> searchList(HttpServletRequest request);
 	
-	public void getUserOwnList(HttpServletRequest request, ModelAndView mView);
+	public SearchDto getUserOwnList(HttpServletRequest request);
+	public List<SearchDto> getBoardList(HttpServletRequest request);
 }

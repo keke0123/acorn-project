@@ -86,6 +86,16 @@
 	                ON u.id=fwlerc.id_follower
 	    WHERE u.id = #{id}
 	</select>
+	<select id="getBoardList" parameterType="string" resultType="searchDto">
+		select b.num_board, p.orgfilename as p_orgfilename
+		from 
+		    (
+		        select num_board
+		        from acorn_board
+		        where id_writer=#{id}
+		    ) b, acorn_picture p
+		WHERE b.num_board=p.num_board
+	</select>
 		<!-- OR writer LIKE '%'||#{writer}||'%' -->
 
 </mapper>

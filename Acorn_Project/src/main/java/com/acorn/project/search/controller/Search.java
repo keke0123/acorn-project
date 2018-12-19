@@ -43,13 +43,19 @@ public class Search {
 	
 	@RequestMapping("/search/userpage")
 	public ModelAndView userPage(ModelAndView mView, HttpServletRequest request) {
-		
-		
-		service.getUserOwnList(request,mView);
 		mView.setViewName("search/userpage");
 		return mView;
 	}
-	
+	@RequestMapping("/search/userpageData")
+	@ResponseBody
+	public SearchDto getUserData(HttpServletRequest request) {	
+		 return service.getUserOwnList(request);
+	}
+	@RequestMapping("/search/userboardlist")
+	@ResponseBody
+	public List<SearchDto> getBoard(HttpServletRequest request){
+		return service.getBoardList(request);
+	}
 
 	
 }
