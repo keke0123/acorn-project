@@ -20,6 +20,7 @@ public class UsersServiceImpl implements UsersService{
 	@Autowired
 	private UsersDao dao;
 
+	//회원가입
 	@Override
 	public void addUser(ModelAndView mView, UsersDto dto) {
 		String planText=dto.getPwd();
@@ -30,7 +31,8 @@ public class UsersServiceImpl implements UsersService{
 		dao.insert(dto);
 		mView.addObject("id", dto.getId());
 	}
-
+	
+	//로그인
 	@Override
 	public void validUser(HttpSession session, ModelAndView mView, UsersDto dto) {
 		//아이디 비밀번호가 유효한지 여부를 알아낸다
@@ -51,6 +53,7 @@ public class UsersServiceImpl implements UsersService{
 		}
 	}
 	
+	//구글 로그인
 	@Override
 	public void validGoogle(HttpSession session, ModelAndView mView) {
 		String gLoginId=(String)session.getAttribute("gEmail");
@@ -66,6 +69,7 @@ public class UsersServiceImpl implements UsersService{
 		
 	}
 
+	//아이디 중복체크
 	@Override
 	public Map<String, Object> canUseId(String inputId) {
 		//입력한 아이디가 존재하는지 여부를 받아온다
@@ -79,6 +83,7 @@ public class UsersServiceImpl implements UsersService{
 		return map;
 	}
 
+	//닉네임 중복체크
 	@Override
 	public Map<String, Object> canUseNick(String inputNick) {
 		//입력한 닉네임이 존재하는지 여부를 받아온다

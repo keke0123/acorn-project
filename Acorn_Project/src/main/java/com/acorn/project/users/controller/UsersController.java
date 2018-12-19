@@ -51,84 +51,28 @@ public class UsersController {
 	private OAuth2Parameters googleOAuth2Parameters2;
 	private OAuth2Operations oauthOperations;
 	
-	// 로그인 첫 화면 요청 메소드
+	// 회원 가입 폼 요청
 	@RequestMapping("/users/signup_form")
 	public String login(Model model, HttpServletResponse response, HttpSession session) {
-
 		//구글code 발행 
 		oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-	
-		System.out.println("구글:" + url);
-		
 		model.addAttribute("google_url", url);
-		
-		session.setAttribute("condition", "signup");
 		// 생성한 인증 URL을 View로 전달 
 		return "users/signup_form";
 	}
-
-	@RequestMapping("/oauth2callback2")
-	public ModelAndView doSessionAssignActionPage2(HttpServletRequest request, ModelAndView mView) {
-		System.out.println("실행순서 들어오긴 하나요");
-		String code = request.getParameter("code");
-		
-		oauthOperations = googleConnectionFactory.getOAuthOperations();
-		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, 
-				googleOAuth2Parameters.getRedirectUri(), null);
-		
-		String accessToken = accessGrant.getAccessToken();
-		Long expireTime = accessGrant.getExpireTime();
-		
-		if(expireTime != null && expireTime < System.currentTimeMillis()) {
-			accessToken = accessGrant.getRefreshToken();     
-			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
-		}
-		
-		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
-		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-		System.out.println(connection);
-		
-		PlusOperations plusOperations = google.plusOperations();
-		Person profile = plusOperations.getGoogleProfile();
-		
-		System.out.println("User Uid : " + profile.getId());
-		System.out.println("User Name : " + profile.getDisplayName());
-		System.out.println("User Email:" +profile.getAccountEmail());
-		System.out.println("User Profile : " + profile.getImageUrl());
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("gEmail", profile.getAccountEmail());
-		session.setAttribute("gName", profile.getGivenName()+profile.getFamilyName());
-		session.setAttribute("gNick", profile.getDisplayName());
-		session.setAttribute("gUid", profile.getId());
-		 try {
-            System.out.println("Closing Token....");
-            String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
-            URL url = new URL(revokeUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setDoOutput(true);
- 
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-          
-        } catch (Exception e) {
- 
-            e.printStackTrace();
-        }
-		 
-		 service.validGoogle(session, mView);
-		 mView.setViewName("users/login");
-			return mView;
 	
-    }
+	//일반 회원가입 처리
+	@RequestMapping("/users/signup")
+	public ModelAndView signup(ModelAndView mView, @ModelAttribute UsersDto dto, HttpSession session) {
+		dto.setGoogle_id((String)session.getAttribute("gUid"));
+		service.addUser(mView, dto);
+		//나중에 메인페이지로 연결되도록 수정
+		mView.setViewName("users/greeting");
+		return mView;
+	}
 	
+	// 구글 회원가입 처리
 	@RequestMapping("/oauth2callback")
 	public String doSessionAssignActionPage(HttpServletRequest request) {
 		String code = request.getParameter("code");
@@ -151,11 +95,6 @@ public class UsersController {
 		
 		PlusOperations plusOperations = google.plusOperations();
 		Person profile = plusOperations.getGoogleProfile();
-		
-		System.out.println("User Uid : " + profile.getId());
-		System.out.println("User Name : " + profile.getDisplayName());
-		System.out.println("User Email:" +profile.getAccountEmail());
-		System.out.println("User Profile : " + profile.getImageUrl());
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("gEmail", profile.getAccountEmail());
@@ -187,31 +126,18 @@ public class UsersController {
 		
     }
 	
-	
-	//회원가입 처리
-	@RequestMapping("/users/signup")
-	public ModelAndView signup(ModelAndView mView, @ModelAttribute UsersDto dto, HttpSession session) {
-		dto.setGoogle_id((String)session.getAttribute("gUid"));
-		service.addUser(mView, dto);
-		//나중에 메인페이지로 연결되도록 수정
-		mView.setViewName("users/greeting");
-		return mView;
-	}
-	
+	//로그인 폼 요청
 	@RequestMapping("/users/login_form")	
-	public String loginForm(Model model, HttpServletResponse response, HttpSession session) {
-		
+	public String loginForm(Model model, HttpServletResponse response, HttpSession session) {		
 		//구글code 발행 
 		oauthOperations = googleConnectionFactory.getOAuthOperations();
-		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters2);
-	
-		System.out.println("구글:" + url);
-		
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters2);	
 		model.addAttribute("google_url", url);
 		
 		return "users/login_form";
 	}
 	
+	//일반 로그인 처리
 	@RequestMapping("/users/login")
 	public ModelAndView login(HttpSession session, ModelAndView mView, @ModelAttribute UsersDto dto) {
 		//로그인 관련 처리
@@ -224,6 +150,62 @@ public class UsersController {
 		return mView;
 	}
 	
+	//구글 로그인 처리
+	@RequestMapping("/oauth2callback2")
+	public ModelAndView doSessionAssignActionPage2(HttpServletRequest request, ModelAndView mView) {
+		System.out.println("실행순서 들어오긴 하나요");
+		String code = request.getParameter("code");
+		
+		oauthOperations = googleConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, 
+				googleOAuth2Parameters2.getRedirectUri(), null);
+		
+		String accessToken = accessGrant.getAccessToken();
+		Long expireTime = accessGrant.getExpireTime();
+		
+		if(expireTime != null && expireTime < System.currentTimeMillis()) {
+			accessToken = accessGrant.getRefreshToken();     
+			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+		}
+		
+		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+		System.out.println(connection);
+		
+		PlusOperations plusOperations = google.plusOperations();
+		Person profile = plusOperations.getGoogleProfile();
+	
+		HttpSession session = request.getSession();
+		session.setAttribute("gEmail", profile.getAccountEmail());
+		
+		 try {
+            System.out.println("Closing Token....");
+            String revokeUrl = "https://accounts.google.com/o/oauth2/revoke?token=" + accessToken + "";
+            URL url = new URL(revokeUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setDoOutput(true);
+ 
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+          
+        } catch (Exception e) {
+ 
+            e.printStackTrace();
+        }
+		 
+		 service.validGoogle(session, mView);
+		 mView.setViewName("users/login");
+		 return mView;
+	
+    }
+	
+	//아이디 중복확인
 	@RequestMapping("/users/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
@@ -232,6 +214,7 @@ public class UsersController {
 		return map;
 	}
 	
+	//닉네임 중복확인
 	@RequestMapping("/users/checkNick")
 	@ResponseBody
 	public Map<String, Object> checkNick(@RequestParam String inputNick){
@@ -240,6 +223,7 @@ public class UsersController {
 		return map;
 	}
 	
+	//로그아웃 (임시)
 	@RequestMapping("/users/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();

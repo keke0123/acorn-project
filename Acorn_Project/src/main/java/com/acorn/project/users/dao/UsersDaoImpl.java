@@ -12,6 +12,7 @@ public class UsersDaoImpl implements UsersDao{
 	@Autowired
 	private SqlSession session;
 	
+	//회원가입
 	@Override
 	public void insert(UsersDto dto) {
 		session.insert("users.insert",dto);
@@ -28,13 +29,6 @@ public class UsersDaoImpl implements UsersDao{
 		}
 		
 	}
-
-	@Override
-	public String getPwdHash(String id) {
-		//비밀번호 hash 값을 select 해서 리턴해준다
-		return session.selectOne("users.getPwd",id);
-	}
-
 	//인자로 전달된 닉네임이 존재하는지 여부
 	@Override
 	public boolean isNickExist(String inputNick) {
@@ -45,7 +39,15 @@ public class UsersDaoImpl implements UsersDao{
 			return true;
 		}
 	}
+	
+	//로그인 할 때 비밀번호 가져오기
+	@Override
+	public String getPwdHash(String id) {
+		//비밀번호 hash 값을 select 해서 리턴해준다
+		return session.selectOne("users.getPwd",id);
+	}
 
+	//구글 로그인 할 때 uId값 가져오기
 	@Override
 	public String googleLogin(String googleId) {
 		String selectedId=session.selectOne("users.googleId",googleId);
