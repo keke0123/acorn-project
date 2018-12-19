@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test.jsp</title>
-		<link rel="stylesheet" href="../css/bootstrap.css">
+<title>/main/profile.jsp</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/insta-nav.css">
 	<link rel="shortcut icon" href="../favicon.ico">
 	<script src="../js/angular.min.js"></script>
@@ -78,8 +78,6 @@
 			font-weight: bold;
 
 		}
-
-
 	</style>
 </head>
 <body>
@@ -123,18 +121,6 @@
 			        </li>
 			        <li>
 			          <a href="#pwd" data-toggle="tab" class="menu">비밀번호 변경 </a>
-			        </li>
-			        <li>
-			          <a href="#app" data-toggle="tab"  class="menu">허가된 앱</a>
-			        </li>
-			        <li>
-			        	<a href="#comment" data-toggle="tab" class="menu" >댓글</a>
-			        </li>
-			        <li>
-			        	<a href="#emails" data-toggle="tab" class="menu" >이메일 및 SMS</a>
-			        </li>
-			        <li>
-			        	<a href="#phones" data-toggle="tab" class="menu" >연락처 관리 </a>
 			        </li>
 			    </ul>
 			</div><!-- col-xs-4 -->
@@ -287,147 +273,12 @@
 								</div>
 							</div>
 
+						</form>
 						
-							</form>
-						
 					</div>
 
+				</div>
 
-
-					<div class="tab-pane" id="app">
-
-						<div class="form-group">
-							<div class="col-sm-offset-1 contorl-label" style="padding-top:50px;">
-								<h3> <small>Instagram 계정에 액세스하도록 허용한 앱이 없습니다.</small></h3>
-							</div>
-							</div>
-
-
-					</div>
-
-					<div class="tab-pane" id="comment">
-						<div style=
-						"padding-top:50px;"></div>
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label>
-									<input type="checkbox"/>부적절한 댓글 숨기기
-								</label>
-								<div>불쾌한 내용으로 자주 신고되는 단어 또는 문구가 포함된 댓글을 숨깁니다.</div>
-							</div>
-						</div>
-						<br/>
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label >맞춤 키워드 </label>
-								<div>아래의 단어나 문구가 포함된 댓글은 숨겨집니다.</div>
-							</br>
-								<input type="text" class="form-control" id="intro"
-								placeholder="쉼표(,)로 구분하여 키워드를 추가하세요">
-							</div>
-						</div>
-
-									
-					</div>
-
-					<div class="tab-pane" id="emails">
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<h3 style="font-weight:bold;">
-									받아보기:
-								</h3>
-							</div>
-						</div>
-						<br/>
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label>
-									<input type="checkbox" checked>
-								</label>
-								<label>뉴스 이메일</label>
-								<p>새로운 제품에 대한 소식을 가장 먼저 받아보세요.</p>
-							</div>
-								
-						</div>
-						<br/>
-
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label>
-									<input type="checkbox" checked>
-								</label>
-								<label>알림 이메일</label>
-								<p>유용한 최신 정보를 빠짐없이 받아보세요.</p>
-							</div>
-								
-						</div><br/>
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label>
-									<input type="checkbox" checked>
-								</label>
-								<label>제품 이메일</label>
-								<p>Instagram 도구 사용에 대한 팁을 확인해보세요. </p>
-							</div>
-								
-						</div><br/>
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label>
-									<input type="checkbox" checked>
-								</label>
-								<label>설문 조사 이메일</label>
-								<p>의견을 보내 조사 연구에 참여하세요.</p>
-							</div>
-								
-						</div><br/>
-						<div class="form-group">
-							<div class="col-sm-offset-1 control-label">
-								<label>
-									<input type="checkbox" checked>
-								</label>
-								<label>SMS 메시지</label>
-								<p>SMS로 알림을 받아보세요.</p>
-							</div>
-								
-						</div><br/>
-					</div>
-	
-
-					<div class="tab-pane " id="phones">
-						<div class="form-group">
-							<div class="control-label col-sm-offset-1">
-								<h3 style="font-weight: bold;">연락처 관리</h3>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="control-label col-sm-offset-1">
-							<p>
-							Instagram에 업로드한 연락처입니다. 연락처를 삭제하려면 해당 연락처를 선택하고 삭제를 누르세요. 동기화된 모든 연락처를 삭제할 수도 있습니다. 단, 연락처 업로드 기능이 계속 설정되어 있는 경우 여기에서 연락처를 삭제해도 해당 정보가 다시 업로드됩니다.
-							</p>
-							<br/>
-							<p>
-							업로드한 연락처 정보는 Instagram이 회원님에게 친구를 추천하거나 이용 환경을 개선하는 데 사용됩니다. 이 연락처 정보는 회원님만 볼 수 있습니다.
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="control-label col-sm-offset-1">
-								<div class="bottom_border">
-								<h4 style="font-weight:bold;">동기화된 연락처 0개</h4>
-								</div>
-								
-								<p>
-									Instagram에 연락처를 업로드하면 여기에 표시됩니다.
-								</p>
-
-								<button type="submit" class="btn btn-primary disabled">삭제</button>
-								<br/>
-								
-							</div>
-						</div>
-					
-					</div>
-				</div>	
 			
 			</div><!-- col-xs-8 -->
 
@@ -528,7 +379,6 @@
           wPercent += 0.6;
         } , 10);
     }
-
 	</script>
 </body>
 </html>
