@@ -14,7 +14,7 @@
 <script>
 	angular.module("myApp", [])
 	.controller("myCtrl", function($scope, $http){
-		$scope.boardList=[];
+		$scope.boardList={};
 		// session 의 id 값을 바탕으로 게시판 data 가져오기
 		$scope.getData=function(){
 			$http({
@@ -23,6 +23,7 @@
 			}).success(function(data){
 				//서버에서 응답된 데이터를 모델에 연결
 				console.log(data);
+				$scope.boardList=data;
 			});
 		};
 		// 초기에 한번 데이타 가져오기
@@ -66,31 +67,18 @@
 						<div class="form-group">
 							<label for="name" class="col-sm-3 control-label">이름</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="name"/>
+								<input type="text" class="form-control" id="name" ng-model="boardList.name"/>
 							</div>
 						</div>
 				
 						<div class="form-group">
 							<label for="user_name" class="col-sm-3 control-label">사용자 이름</label>
 							<div class="col-sm-9">
-								<input value="Acorn" type="text" class="form-control" id="user_name"/>
+								<input value="Acorn" type="text" class="form-control" id="user_name" ng-model="boardList.nick"/>
 								
 							</div>
 						</div>
 				
-						<div class="form-group">
-							<label for="web" class="col-sm-3 control-label">웹사이트</label>
-							<div class="col-sm-9">
-								<input multiple type="text" class="form-control" id="web"/>
-							</div>
-						</div>
-						<div class="form-group" >
-							<label for="intro" class="col-sm-3 control-label">소개</label>
-							<div class="col-sm-9 "  >
-							<input type="text" class="form-control" id="intro">
-										
-							</div>								
-						</div>
 						<div class="form-goup">
 							<div class="col-sm-offset-3 col-sm-9">
 								<span id="helpBlock" class="help-block">개인정보</span>
@@ -101,36 +89,13 @@
 						<div class="form-group">
 							<label for="email" class="col-sm-3 control-label">이메일</label>
 							<div class="col-sm-9">
-								<input value="Acorn@naver.com" type="text" class="form-control" id="email"/>
+								<input value="Acorn@naver.com" type="text" class="form-control" id="email" ng-model="boardList.email"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="phone" class="col-sm-3 control-label">전화번호</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="phone"/>
-							</div>
-						</div>
-				
-						<div class="form-group">
-							<label for="sex" class="col-sm-3 control-label">성별</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="sex" id="sex">
-									<option value="none">선택안함</option>
-									<option value="female">여성</option>
-									<option value="male">남성</option>
-								</select>
-							
-							</div>
-						</div>
-				
-				
-						<div class="form-group">
-							<label  class="col-sm-3 control-label">비슷한 계정 추천</label>
-				
-							<div class="col-sm-8 control-label">
-								<label>
-									<input type="checkbox"/> 팔로우할 만한 비슷한 계정을 추천할 때 회원님의 계정을 포함합니다. 
-								</label>
+								<input type="text" class="form-control" id="phone" ng-model="boardList.phone"/>
 							</div>
 						</div>
 						

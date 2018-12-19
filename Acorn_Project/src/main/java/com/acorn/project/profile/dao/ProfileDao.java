@@ -4,16 +4,6 @@ import com.acorn.project.profile.dto.ProfileDto;
 
 public interface ProfileDao {
 	public ProfileDto getuserprofile(String id);
-	
+	public void update(ProfileDto dto);
+
 }
-
-
-
-
-
-
-
-
-
-
-

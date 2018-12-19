@@ -16,6 +16,12 @@ public class ProfileDaoImpl implements ProfileDao{
 		return session.selectOne("profile.getuserprofile", id);
 	}
 
+	@Override
+	public void update(ProfileDto dto) {
+		session.update("profile.update", dto);		
+	}
+
+
 }
 
 

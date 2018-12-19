@@ -18,6 +18,7 @@ public class ProfileController {
 	@RequestMapping("/getuserprofile")
 	@ResponseBody
 	public ProfileDto getUserdata(HttpSession session) {
+		session.setAttribute("id", "user1");
 		return service.getUser(session);	
 	}	
 }

@@ -19,5 +19,10 @@ public class ProfileServiceImpl implements ProfileService {
 		return dao.getuserprofile(id);
 	}
 
+	@Override
+	public void updateUser(ProfileDto dto) {
+		dao.update(dto);		
+	}
+
 
 }
