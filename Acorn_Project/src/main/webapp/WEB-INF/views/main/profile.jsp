@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>/main/profile.jsp</title>
-	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/insta-nav.css">
-	<link rel="shortcut icon" href="../favicon.ico">
-	<script src="../js/angular.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/insta-nav.css">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
+	<script src="${pageContext.request.contextPath}/js/angular.min.js"></script>
 	<style>
 		.container{
 			background-color: #fff;
