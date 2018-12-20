@@ -13,7 +13,7 @@
 	.controller("myCtrl", function($scope, $http){
 		
 		$scope.canUseId=false;
-		
+		$scope.isSuccess=true;
 		//id 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.idCheck=function(){
 			var id=$scope.id;
@@ -27,6 +27,33 @@
 			}
 			$scope.canUseId=true;
 		}
+		
+		$scope.onSubmit=function(e){
+			$http({
+				url:"loginCheck.do",
+				method:"post",
+				headers:{
+					"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+				},
+				data:"id="+$scope.id+"&pwd="+$scope.pwd 
+			})
+			.success(function(responseData){
+				$scope.isSuccess=responseData.isSuccess;
+				$scope.msg=responseData.msg;
+				console.log("res"+$scope.isSuccess);
+				
+				if($scope.isSuccess){
+					console.log("성공");
+					console.log($scope.isSuccess);
+					document.getElementById("loginForm").submit();
+				}else{
+					console.log("실패");
+					console.log($scope.isSuccess);
+					
+				}
+			});
+			e.preventDefault();
+		};
 	});
 </script>
 <style>
@@ -87,8 +114,12 @@
 					</div>
 				</div>
 				<!-- login form -->
-				<form action="login.do" id="loginForm" name="lf" method="post">		
+				<form action="login.do" id="loginForm" name="lf" method="post" ng-submit="onSubmit($event)">		
 					<div class="panel-body" style="text-align:center">
+						<div ng-show="!isSuccess" class="form-group has-feedback" ng-class="{'has-success':isSuccess, 'has-error': !isSuccess}">
+							<!-- <ngb-alert class="alert alert-danger" *ngIf="!isSuccess" ng-model="msg" (close)="successMessage = null"></ngb-alert> -->
+							<div ng-model="msg" class="alert alert-danger help-block">{{msg}}</div>
+						</div>
 						<div class="form-group has-feedback" ng-class="{'has-success':canUseId, 'has-error': !canUseId && lf.id.$dirty}">
 							<label class="control-label" for="id">전화번호 또는 이메일</label>
 							<input class="form-control" type="text" id="id" name="id" ng-model="id" ng-required="true" ng-blur="idCheck()" placeholder="전화번호 또는 이메일"/>
@@ -98,9 +129,9 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="pwd">비밀번호</label>
-							<input class="form-control" type="password" id="pwd" name="pwd" placeholder="비밀번호" />
+							<input class="form-control" type="password" id="pwd" name="pwd" ng-model="pwd" placeholder="비밀번호" />
 						</div>
-						<button ng-disabled="lf.$invalid || !canUseId" class="btn btn-primary btn-block input-block-level" type="submit">로그인</button>
+						<button ng-disabled="lf.$invalid || !canUseId" class="btn btn-primary btn-block input-block-level" >로그인</button>
 					</div>									
 				</form> <!-- form end -->
 				<p>또는</p>

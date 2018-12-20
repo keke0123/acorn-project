@@ -33,10 +33,10 @@ public class UsersServiceImpl implements UsersService{
 	
 	//로그인
 	@Override
-	public void validUser(HttpSession session, ModelAndView mView, UsersDto dto) {
+	public Map<String,Object> validUser(HttpSession session, ModelAndView mView, UsersDto dto) {
 		String id=dto.getId();
 		String google_id=dao.googleLogin(id);
-		
+		Map<String,Object> map=new HashMap<>();
 		//구글가입자 여부를 알아내기
 		if(google_id==null) {
 			//아이디 비밀번호가 유효한지 여부를 알아낸다
@@ -46,20 +46,29 @@ public class UsersServiceImpl implements UsersService{
 			if(pwdHash != null) {
 				//입력한 비밀번호와 암호화된 비밀번호의 일치여부를 isValid에 담기
 				isValid=BCrypt.checkpw(dto.getPwd(), pwdHash);
-			}
-			if(isValid) {
-				//로그인 처리를 해준다
-				session.setAttribute("id", id);
-				//로그인 성공 여부를  객체에 담는다
-				mView.addObject("isSuccess",true);
+				
+				if(isValid) {
+					//로그인 처리를 해준다
+					session.setAttribute("id", id);
+					//로그인 성공 여부를  객체에 담는다
+					map.put("isSuccess", true);
+				}else {				
+					map.put("isSuccess", false);
+					map.put("msg", "비밀번호가 일치하지 않습니다");
+				}
 			}else {
-				mView.addObject("isSucess",false);
+				map.put("isSuccess", false);
+				map.put("msg", "존재하지 않는 계정입니다");
+				
 			}
-		}else {
 			
-			mView.addObject("isSucess",false);
-			System.out.println("구글가입자");
+			
+		}else {
+			map.put("isSuccess", false);
+			map.put("msg", "구글 로그인을 이용해주세요");
 		}
+		
+		return map;
 	}
 	
 	//구글 로그인

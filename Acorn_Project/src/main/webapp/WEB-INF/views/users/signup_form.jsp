@@ -28,8 +28,8 @@ function pwdCheck(){
 
 /* 리캡차 때문에 만든거 */
 function onSubmit() {
+	grecaptcha.execute();
     document.getElementById("signupForm").submit();
-    grecaptcha.execute();
 }
 
 	angular.module("myApp",[])
@@ -143,6 +143,11 @@ function onSubmit() {
    		background-color: #fafafa;
    		border-radius: 3px;
 	}
+	
+	.btn-link >img{
+		width: 20px;
+		height: 20px;
+	}
 </style>
 </head>
 <body ng-controller="myCtrl">
@@ -166,8 +171,10 @@ function onSubmit() {
 					</span>		
 					<!-- google login -->
 					<a href="${google_url }">
-						<button id="btnJoinGoogle" class="btn btn-primary btn-round" style="width:100%">
-							<i class="fa fa-google" aria-hidden="true"></i>Google Sign Up		
+						<button id="btnJoinGoogle" class="btn btn-link" style="width:100%">
+							<i class="fa fa-google" aria-hidden="true"></i>
+							<img src="${pageContext.request.contextPath}/resources/images/google.jpg" />
+							<b>Google Sign Up</b>		
 						</button>
 					</a>
 				</div>
@@ -232,6 +239,7 @@ function onSubmit() {
 				</form> <!-- form end -->
 			</div><!-- panel end -->
 			
+			<!-- bottom panel -->
 			<div class="panel panel-default" style="text-align:center;">
 				<div class="panel-body">
 					<p>계정이 있으신가요? <button class="btn btn-link" type="button" ng-click="loginBtn()">로그인</button></p>

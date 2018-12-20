@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.api.impl.GoogleTemplate;
@@ -119,7 +120,7 @@ public class UsersController {
             }
             in.close();
           
-        } catch (Exception e) {
+        } catch (Exception e) {	
  
             e.printStackTrace();
         }
@@ -140,16 +141,30 @@ public class UsersController {
 	}
 	
 	//일반 로그인 처리
-	@RequestMapping("/users/login")
-	public ModelAndView login(HttpSession session, ModelAndView mView, @ModelAttribute UsersDto dto) {
-		//로그인 관련 처리
-		service.validUser(session, mView, dto);
-		//view 페이지 정보 담기
+	@RequestMapping("/users/loginCheck")
+	@ResponseBody
+	public Map<String,Object> loginCheck(HttpSession session, ModelAndView mView, @ModelAttribute UsersDto dto) {
 		
+		//로그인 관련 처리
+		Map<String,Object> map=service.validUser(session, mView, dto);
+		//view 페이지 정보 담기
 		//나중에 메인 페이지로 연결되게 바꾸기
-		mView.setViewName("users/login");
+		//mView.setViewName("users/login");
 		//ModelAndView 객체 리턴
-		return mView;
+		return map;
+	}
+	
+	
+	//일반 로그인 처리
+	@RequestMapping("/users/login")
+	public String login(HttpSession session, ModelAndView mView, @ModelAttribute UsersDto dto) {
+		//로그인 관련 처리
+		//service.validUser(session, mView, dto);
+		//view 페이지 정보 담기
+		//나중에 메인 페이지로 연결되게 바꾸기
+		//mView.setViewName("users/login");
+		//ModelAndView 객체 리턴
+		return "users/login";
 	}
 	
 	//구글 로그인 처리

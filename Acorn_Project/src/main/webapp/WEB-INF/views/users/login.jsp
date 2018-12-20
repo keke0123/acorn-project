@@ -8,16 +8,7 @@
 <title>/views/users/login.jsp</title>
 </head>
 <body>
-<c:choose>
-	<c:when test="${requestScope.isSuccess }">
-		<p> ${id } 님 로그인 되었습니다. 
-				<a href="${pageContext.request.contextPath}/home.do">확인</a>
-		</p>
-	</c:when>
-	<c:otherwise>
-		<p> 아이디 혹은 비밀번호가 틀려요. <a href="${pageContext.request.contextPath}/users/login_form.do">다시 로그인 하기</a></p>
-	</c:otherwise>
-</c:choose>
+<p>메인페이지로 연결시켜주세용</p>
 </body>
 </html>
 
