@@ -8,11 +8,12 @@
 <title>/views/list/list.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js "></script>
-<script src="${pageContext.request.contextPath}/resources/js/imgLiquid.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/imgLiquid.js"></script>
 <script>
-		angular.module("myApp",[])
-		.controller("myCtrl",function($scope,$http){
+		var myApp=angular.module("myApp",[]);
+		myApp.controller("myCtrl",function($scope,$http){
+			//
 			$scope.dto={};
 			$scope.dtoList=[];
 			$scope.getData=function(){
@@ -33,12 +34,19 @@
 				}).success(function(data){
 					console.log(data);
 					$scope.dtoList=data;
+					console.log($scope.dtoList.length);
+					$(".imgLiquidFill").imgLiquid();
 				});
 			};
 			$scope.getData();
 			$scope.getBoardList();
-		});
-		$(document).ready(function() {
+			
+			$scope.backImage=function(index){
+				$(".imgLiquidFill").imgLiquid();
+				return{
+					'background-image':'url(${pageContext.request.contextPath}'+$scope.dtoList[index].p_orgfilename+')'
+				}
+			};
 			$(".imgLiquidFill").imgLiquid();
 		});
 	</script>
@@ -50,6 +58,13 @@
 		}
 		.row{
 			margin-bottom:10px;
+		}
+		.testImage{
+		/* 	width: 350px;
+			hegith: 350px; */
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
 		}
 	</style>
 </head>
@@ -77,48 +92,27 @@
 	    </div><!--col-xs-7-->
 	</div>
 	<div class="postContent">
-		<span ng-repeat="tmp in dtoList">
-		<div class="row" ng-if="$index%3==0">
-			
+ 		<div class="row" ng-repeat="tmp in dtoList" ng-switch on="$index%3">
+			<div class="col-xs-4" ng-switch-when="0">
+				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px" ng-style="backImage({{$index}})">
+					<img class="img-responsive" src=""/>
+					<div ng-init="onLoad()"></div>
+				</div>
+			</div>
+			<div class="col-xs-4" ng-switch-when="0" ng-if="($index+1)<dtoList.length">
+				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px" ng-style="backImage({{$index+1}})">
+					<img class="img-responsive" src=""/>
+					<div ng-init="onLoad()"></div>
+				</div>
+			</div>
+			<div class="col-xs-4" ng-switch-when="0" ng-if="($index+2)<dtoList.length">
+				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px" ng-style="backImage({{$index+2}})">
+					<img class="img-responsive" src=""/>
+					<div ng-init="onLoad()"></div>
+				</div>
+			</div>
 		</div>
-<%-- 	<div class="row">
-			<div class="col-xs-4">
-				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
-					<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/1.jpg"/>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
-					<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/2.jpg"/>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
-						<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/3.jpg"/>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-xs-4">
-				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
-					<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/1.jpg"/>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
-					<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/2.jpg"/>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="imgLiquidFill imgLiquid" style="width:350px; height:350px">
-						<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/3.jpg"/>
-				</div>
-			</div>
-		</div> --%>
-		</span>
 	</div><!-- postContent -->
 </div>
-
 </body>
 </html>
