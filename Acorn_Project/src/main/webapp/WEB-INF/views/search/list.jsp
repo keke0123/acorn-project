@@ -97,7 +97,8 @@
 	<table class="table table-hover row-clickable">
 		<tbody>
 				<tr ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">
-					<td><img src="${pageContext.request.contextPath}{{tmp.orgFileName}}" width="50" style="border-radius: 50%; display:inline-block;" alt="" /><a href="userPage?id={{tmp.id}}" style="display:inline-block">{{tmp.name}} {{tmp.id}}</a>{{tmp.count}}</td>
+					<td><img src="${pageContext.request.contextPath}{{tmp.orgFileName}}" width="50" style="border-radius: 50%; display:inline-block;" alt="" />
+					<a href="userpage.do?id={{tmp.id}}" style="display:inline-block">{{tmp.name}} {{tmp.id}}</a>{{tmp.count}}</td>
 				</tr>
 		</tbody>
 	</table>
