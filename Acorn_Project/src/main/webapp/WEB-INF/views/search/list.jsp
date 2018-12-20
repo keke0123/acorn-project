@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js "></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jasny-bootstrap.min.js"></script> 
 <script>
 		angular.module("myApp",[])
 		.controller("myCtrl",function($scope,$http){
@@ -44,6 +45,8 @@
 			$scope.getData();
 			
 		});
+		
+
 	</script>
 	<style>
 		table.row-clickable tbody tr td {
@@ -94,9 +97,9 @@
 	</table> -->
 	
 	<h3>검색조건입니다.</h3>
-	<table class="table table-hover row-clickable">
+	<table class="table table-striped table-bordered table-hover">
 		<tbody>
-				<tr ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">
+				<tr data-link="row" class="rowlink" ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">
 					<td><img src="${pageContext.request.contextPath}{{tmp.orgFileName}}" width="50" style="border-radius: 50%; display:inline-block;" alt="" />
 					<a href="userpage.do?id={{tmp.id}}" style="display:inline-block">{{tmp.name}} {{tmp.id}}</a>{{tmp.count}}</td>
 				</tr>
@@ -104,6 +107,12 @@
 	</table>
 	</div>
 	<a href="userpage.do?id=user1">유저 페이지</a>
+	
+
+
+
+
+
 
 </body>
 </html>

@@ -31,10 +31,11 @@
 					url:"userboardlist.do",
 					method:"get",
 					params:{"id":"${param.id}"}
+					
 				}).success(function(data){
 					console.log(data);
 					$scope.dtoList=data;
-					console.log($scope.dtoList.length);
+			
 					$(".imgLiquidFill").imgLiquid();
 				});
 			};
@@ -73,8 +74,8 @@
 	<div class="row">
 		<div class="col-xs-3 col-xs-offset-1">
 	        <div id="profileImgs" class="text-center">
-	            <img id="one" src="${pageContext.request.contextPath}/resources/images/thumb_image1.png" class="rounded" alt="...">
-	            <img id="one_2" src="../images/멍멍이.jpg" class="rounded" alt="..." style="display: none;">
+	            <img id="one" src="${pageContext.request.contextPath}{{dto.orgFileName}}" class="rounded" alt="...">
+	            <!-- <img id="one_2" src="../images/멍멍이.jpg" class="rounded" alt="..." style="display: none;"> -->
         	</div>
 		</div><!--col-xs-3-->
 	    <div class="col-xs-7 text-center">
@@ -83,9 +84,15 @@
 			<span class="glyphicon glyphicon-cog" style="font-size: 23px; margin-left: 5px;"  ></span>
 			<br/>
 			<div id="profileInfo"> 
-			    <div style="font-size: 17px; display: inline-block; margin-top: 15px">게시물 24</div>
-			    <div id="three">팔로워 5K</div>
-			    <div id="three">팔로우 163</div>
+			    <div style="font-size: 17px; display: inline-block; margin-top: 15px">게시글 <span ng-if="dto.lcount!=null">{{dto.lcount}}</span>
+			    	<span ng-if="dto.lcount==null">0</span>
+			    </div>
+			    <div id="three">팔로워 <span ng-if="dto.countFollower!=null">{{dto.countFollower}}</span>
+			    	<span ng-if="dto.countFollower==null">0</span>
+			    </div>
+			    <div id="three">팔로우 <span ng-if="dto.countFollow!=null">{{dto.countFollow}}</span> 
+			    	<span ng-if="dto.countFollow==null">0</span> 
+			    </div>
 			</div>
 			<br/>
 			<div style="font-size: 20px; font-weight: bold; margin-top: 15px;">acorn </div>

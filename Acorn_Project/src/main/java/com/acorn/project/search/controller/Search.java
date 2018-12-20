@@ -30,7 +30,8 @@ public class Search {
 	@RequestMapping("/search/list")
 	public ModelAndView getList(HttpServletRequest request ) {
 		
-		return new ModelAndView("search/list");  
+		return new ModelAndView("search/list");
+		
 	}
 	
 	@RequestMapping("/search/Search_like")
@@ -43,9 +44,11 @@ public class Search {
 	
 	@RequestMapping("/search/userpage")
 	public ModelAndView userPage(ModelAndView mView, HttpServletRequest request) {
+		
 		mView.setViewName("search/userpage");
 		return mView;
 	}
+	
 	@RequestMapping("/search/userpageData")
 	@ResponseBody
 	public SearchDto getUserData(HttpServletRequest request) {	

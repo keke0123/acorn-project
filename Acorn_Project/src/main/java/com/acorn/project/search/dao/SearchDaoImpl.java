@@ -45,6 +45,7 @@ public class SearchDaoImpl implements SearchDao{
 
 	@Override
 	public List<SearchDto> getBoardPicture(String value) {
+		System.out.println(value);
 		return session.selectList("search.getBoardList", value);
 	}
 
