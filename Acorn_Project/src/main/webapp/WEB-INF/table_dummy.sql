@@ -31,6 +31,10 @@ INSERT INTO acorn_picture values(2, '/resources/images/2.jpg', 100);
 INSERT INTO acorn_picture values(3, '/resources/images/3.jpg', 100);
 INSERT INTO acorn_picture values(4, '/resources/images/4.jpg', 100);
 INSERT INTO acorn_picture values(5, '/resources/images/5.jpg', 100);
+INSERT INTO acorn_picture values(1, '/resources/images/4.jpg', 100);
+INSERT INTO acorn_picture values(1, '/resources/images/5.jpg', 100);
+INSERT INTO acorn_picture values(1, '/resources/images/6.jpg', 100);
+INSERT INTO acorn_picture values(1, '/resources/images/7.jpg', 100);
 
 -- acorn_comment
 -- acorn_comment(num_board, id_writer, content, id_target, ref_group, comment_group, deleted, regdate)
