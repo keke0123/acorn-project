@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.profile.dto.ProfileDto;
+import com.acorn.project.profile.dto.PwdDto;
 import com.acorn.project.profile.service.ProfileService;
 
 @Controller
@@ -34,5 +35,13 @@ public class ProfileController {
 		return new ModelAndView("redirect:/test/testProfile.jsp");
 	}	
 
+	@RequestMapping("/updatepwd")
+	@ResponseBody
+	public boolean authUpdatePwd(@ModelAttribute PwdDto dto, ModelAndView mView, HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		dto.setId(id);
+		System.out.println(dto.getPrev_pwd());
+		return service.updatePwd(dto);
+	}
 
 }

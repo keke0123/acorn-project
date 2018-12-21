@@ -6,11 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.project.profile.dao.ProfileDao;
 import com.acorn.project.profile.dto.ProfileDto;
+import com.acorn.project.profile.dto.PwdDto;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -57,6 +59,19 @@ public class ProfileServiceImpl implements ProfileService {
 				dto.setOrgfilename(saveFileName);
 				//FileDao 객체를 이용해서 DB 에 저장하기
 				dao.update(dto);		
+	}
+
+	@Override
+	public boolean updatePwd(PwdDto dto) {
+		String planText=dto.getPrev_pwd();
+		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+		String hash=encoder.encode(planText);
+		String pwd=dao.selectPwd(dto);
+		if(hash.equals(pwd)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 

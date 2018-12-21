@@ -26,6 +26,25 @@
 				$scope.boardList=data;
 			});
 		};
+		$scope.pwdForm={};
+		
+		$scope.updatePwd=function(e){
+			var data= getSerialize($scope.pwdForm);
+			e.preventDefault();
+			console.log("aa");
+			$http({
+				url:"../updatepwd.do",
+				method:"post"
+				headrs:{
+					"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+				},
+				data:data
+			}).success(function(data){
+				//서버에서 응답된 데이터를 모델에 연결
+				console.log(data);
+				//$scope.boardList=data;
+			});
+		};
 		// 초기에 한번 데이타 가져오기
 		$scope.getData();
 	});
@@ -120,23 +139,23 @@
 								</div>	
 							</div>
 						</div>
-						<form action="../updatepwd.do" name="pwdForm" method="post" id="pwdForm" novalidate>
+						<form action="../updatepwd.do" name="pwdForm" method="post" id="pwdForm" ng-submit="updatePwd($event)" novalidate>
 							 <div class="form-group">
 								<label class="col-sm-3 control-label">이전 비밀번호</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" id="prev_pwd" name="prev_pwd" ng-required="true" ng-model="boardList.pwd" />
+									<input type="password" class="form-control" id="prev_pwd" name="prev_pwd" ng-required="true" ng-model="pwdForm.prev_pwd" />
 								</div>
 							</div> 
 							<div class="form-group">
 								<label for="pwd" class="col-sm-3 control-label">새 비밀번호</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" name="pwd" id="pwd" ng-required="true" ng-model="new_pwd1"/>
+									<input type="password" class="form-control" name="pwd" id="pwd" ng-required="true" ng-model="pwdForm.new_pwd1"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">새 비밀번호 확인</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" name="pwd2" id="pwd2" ng-required="true" ng-model="new_pwd2">
+									<input type="password" class="form-control" name="pwd2" id="pwd2" ng-required="true" ng-model="pwdForm.new_pwd2">
 								</div>
 							</div>
 							<div class="form-group">

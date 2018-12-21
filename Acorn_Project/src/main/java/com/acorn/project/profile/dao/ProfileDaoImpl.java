@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.acorn.project.profile.dto.ProfileDto;
+import com.acorn.project.profile.dto.PwdDto;
 
 @Repository
 public class ProfileDaoImpl implements ProfileDao{
@@ -19,6 +20,11 @@ public class ProfileDaoImpl implements ProfileDao{
 	@Override
 	public void update(ProfileDto dto) {
 		session.update("profile.update", dto);		
+	}
+
+	@Override
+	public String selectPwd(PwdDto dto) {		
+		return session.selectOne("profile.selectPwd", dto);
 	}
 
 

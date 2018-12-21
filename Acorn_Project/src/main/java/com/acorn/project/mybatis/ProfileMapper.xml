@@ -29,6 +29,13 @@
 		</set>
 		WHERE id=#{id}
 	</update>
+	<select id="selectPwd" parameterType="pwdDto">
+		SELECT 
+			pwd
+		FROM ACORN_USER
+		WHERE
+		 id=#{id} 
+	</select>
 	
 		<update id="updatePwd" parameterType="profileDto">
 		UPDATE users
