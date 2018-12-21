@@ -66,8 +66,21 @@
 	    padding: 8px;
 	}
 	
-	.searchLabel{
+	#searchBtn{
+		background-color:white;
+	}
+	.searchLabel .SearchV{
 		display:none;
+	}
+	.input-group.input-group-unstyled input.form-control {
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+	}
+	.input-group-unstyled .input-group-addon {
+	    border-radius: 4px;
+	    border: 0px;
+	    background-color: transparent;
 	}
 </style>
 </head>
@@ -75,8 +88,7 @@
 <div class="container" style="margin-top:50px;">
 	<p>검색</p>
 </div>
-
-<div class="container">
+	<div class="container">
 	<!-- 메인에 연결될 검색폼 -->
 	<form class="form-inline" id="myForm" name="myForm">
 	   	<!-- <div class="form-group mx-sm-3 mb-2">
@@ -89,13 +101,11 @@
 	     		</select>
    			</div> -->
    			
-   		<div class="input-group mb-3">
-		  <input type="text"ng-keyup="getData()" ng-model="searchValue" ng-required="true"
-		  class="form-control" placeholder="검색조건을 입력해주세요" aria-label="검색조건" aria-describedby="basic-addon2">
-		  <div class="input-group-append">
+   		<div class="form-group has-feedback">
+		    <input type="text" ng-keyup="getData()" ng-model="searchValue" ng-required="true" class="form-control" id="searchInput" 
+		     placeholder="검색조건을 입력해주세요" aria-label="검색조건" aria-describedby="basic-addon2" style="margin-left:50px;">	 
 		    <button ng-click="getData()" ng-disabled="myForm.$invalid" data-toggle="modal" data-target="#myModal"
-		    class="btn btn-outline-secondary" type="submit">Button</button>
-		  </div>
+		    class="btn btn-outline-secondary" id="searchBtn" type="submit"><span class="glyphicon glyphicon-search form-control-feedback"></span></button>  
 		</div>
 		
   		<!--  <div class="form-group mx-sm-3 mb-2">
@@ -118,13 +128,12 @@
 	        <div class="modal-title">
 	        	<!-- 검색어 입력 -->
 		 		<div class="mb-3 mx-sm-3 mb-2">
-			   		<!-- 왜 이메일이죠...? <label for="staticEmail2" class="sr-only">Email</label> -->
+			   		
 			   		<input type="text" ng-keyup="getData()" ng-model="searchValue" class="form-control" aria-describedby="basic-addon2"
-			   			id="staticEmail2" ng-required="true" placeholder="검색조건을 입력해주세요">
+			   			id="innerSearch" ng-required="true" placeholder="검색조건을 입력해주세요">
 		 		</div>		
 	        	<!-- 카테고리 -->
 		   		<div class="form-group mx-sm-3 mb-2" id="">
-			   		<label class="searchLabel" for="inputState">검색조건</label>
 			   		<!-- <select id="inputState" class="form-control" ng-model="selectValue" ng-change="getChange()">
 			     			<option value="pop">인기</option>
 			 		 		<option value="human">사람</option>
