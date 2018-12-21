@@ -84,7 +84,7 @@
 	                    FROM acorn_follow
 	                    GROUP BY id_follower) fwlerc
 	                ON u.id=fwlerc.id_follower
-	    WHERE u.id = 'user4'
+	    WHERE u.id = #{id}
 	</select>
 	<select id="getBoardList" parameterType="string" resultType="searchDto">
 		select b.num_board, p.orgfilename as p_orgfilename
