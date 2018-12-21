@@ -55,7 +55,7 @@
 				if(data=='false'){
 					console.log("비밀번호를 잘못 입력하셧습니다.");
 					//
-					//document.getElementById("pwdForm").submit();
+					document.getElementById("pwdForm").submit();
 					
 				}else{
 					document.getElementById("pwdForm").submit();
@@ -71,6 +71,7 @@
 </head>
 <body ng-controller="myCtrl">
 <div class="container" style="margin-top:150px;">
+	<h3 align="center">프로필 편집</h3>
 	<div class="row " style="border:1px solid #BDBDBD;">
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 hidden-xs">
 			<ul  class="nav nav-stacked" >
@@ -145,21 +146,9 @@
 				</div> <!-- id=profile (프로필 변경 ) -->
 				<div class="tab-pane" id="pwd">					
 					<div class="form-horizontal">
-						<div class="form-group">
-							<div class="col-sm-3 control-label">
-								<img src="${pageContext.request.contextPath}/resources/images/thumb_image1.png" alt="">
-							</div>
-							<div class="col-sm-9 control-label " id="basic">
-								<div style="float:left;">
-									<div style="font-size:20px;">Acorn</div>
-										<label class="btn-file" style="cursor:pointer; color:#6699ff;">
-									프로필 사진 수정 <input  type="file" style="display:none;">
-									</label>
-								</div>	
-							</div>
-						</div>
 						<form action="../updatepwd.do" method="post" id="pwdForm" >
 							 <div class="form-group">
+							 	<br /><br />
 								<label class="col-sm-3 control-label">이전 비밀번호</label>
 								<div class="col-sm-9">
 									<input type="password" class="form-control" id="prev_pwd" name="prev_pwd" ng-required="true" ng-model="pwdForm.prev_pwd" />

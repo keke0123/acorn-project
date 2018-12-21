@@ -68,7 +68,12 @@ public class ProfileServiceImpl implements ProfileService {
 //		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 //		String hash=encoder.encode(planText);
 		String pwd=dao.selectPwd(dto);
-		boolean isSuccess=BCrypt.checkpw(dto.getPrev_pwd(), pwd);
+		boolean isSuccess = false;
+		try {
+			isSuccess=BCrypt.checkpw(dto.getPrev_pwd(), pwd);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println(pwd);
 		if(isSuccess) {
 			return true;
