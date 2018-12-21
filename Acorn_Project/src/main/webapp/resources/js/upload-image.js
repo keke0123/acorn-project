@@ -39,6 +39,13 @@ $(document).ready(function (e) {
       {
         $('#loading').hide();
         
+        $('#myModal').modal('toggle'); 
+        $('#myModal').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+        });
+        $('#myFile').val("");
+        $('#image-preview-div').html("");
+        
         // $('#message').html(data);
       }
     });
