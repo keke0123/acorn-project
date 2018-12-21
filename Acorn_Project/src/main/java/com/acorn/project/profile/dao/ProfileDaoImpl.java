@@ -21,12 +21,6 @@ public class ProfileDaoImpl implements ProfileDao{
 		session.update("profile.update", dto);		
 	}
 
-	@Override
-	public void updatepwd(ProfileDto dto) {
-		//비밀번호만 수정하기 
-		session.update("profile.updatepwd", dto);
-		
-	}
 
 
 }

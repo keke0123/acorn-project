@@ -1,5 +1,7 @@
 package com.acorn.project.profile.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProfileDto {
 	private String id;
 	private String nick;
@@ -8,6 +10,8 @@ public class ProfileDto {
 	private String phone;
 	private String email;
 	private String orgfilename;
+	
+	private MultipartFile file;
 	
 	public ProfileDto(){}
 
@@ -67,7 +71,16 @@ public class ProfileDto {
 		this.orgfilename = orgfilename;
 	}
 
-	public ProfileDto(String id, String nick, String pwd, String name, String phone, String email, String orgfilename) {
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public ProfileDto(String id, String nick, String pwd, String name, String phone, String email, String orgfilename,
+			MultipartFile file) {
 		super();
 		this.id = id;
 		this.nick = nick;
@@ -76,6 +89,7 @@ public class ProfileDto {
 		this.phone = phone;
 		this.email = email;
 		this.orgfilename = orgfilename;
+		this.file = file;
 	}
 
 	

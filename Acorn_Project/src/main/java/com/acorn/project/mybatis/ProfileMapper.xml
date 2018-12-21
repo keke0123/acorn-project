@@ -21,21 +21,19 @@
 				phone=#{phone},
 			</if>
 			<if test="email != null">
-				email=#{email}
+				email=#{email},
+			</if>	
+			<if test="orgfilename != null">
+				orgfilename=#{orgfilename}
 			</if>	
 		</set>
 		WHERE id=#{id}
 	</update>
-		<update id="updatepwd" parameterType="profileDto">
-		UPDATE ACORN_USER
-		<set>
-			<if test="pwd != null">
-			pwd=#{pwd}
-			</if>
-			<if test="pwd2 != null">
-			pwd2=#{pwd2}
-			</if>						
-		</set>
+	
+		<update id="updatePwd" parameterType="profileDto">
+		UPDATE users
+		SET pwd=#{pwd}
 		WHERE id=#{id}
 	</update>
+	
 </mapper>

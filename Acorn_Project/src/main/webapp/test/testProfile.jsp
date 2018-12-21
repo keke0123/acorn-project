@@ -48,16 +48,16 @@
 			<div class="tab-content" style="min-height:333px;">
 				<!-- 1. id가 profile일때 -->
 				<div class="tab-pane in active" id="profile"> 
-					<form action="../update.do" method="post" id="updateForm" class="form-horizontal"> 
+					<form action="../update.do" method="post" id="updateForm" class="form-horizontal" enctype="multipart/form-data"> 
 						<div class="form-group">
 							<div class="col-sm-3 control-label">
-							<img src="${pageContext.request.contextPath}/resources/images/thumb_image1.png" alt="">
+							<img src="${pageContext.request.contextPath}/upload/{{boardList.orgfilename}}" width="50" style="border-radius: 100%;">
 							</div>
 							<div class="col-sm-9 control-label " id="basic">
 								<div style="float:left;">
 							<div style="font-size:20px;">Acorn</div>
 							<label class="btn-file" style="cursor:pointer; color:#6699ff;">
-							프로필 사진 수정 <input  type="file" style="display:none;">
+							프로필 사진 수정 <input  type="file" name="file" style="display:none;">
 									</label>
 								</div>
 								
@@ -120,7 +120,7 @@
 								</div>	
 							</div>
 						</div>
-						<form action="updatepwd.do" name="pwdForm" method="post" id="pwdForm" novalidate>
+						<form action="../updatepwd.do" name="pwdForm" method="post" id="pwdForm" novalidate>
 							 <div class="form-group">
 								<label class="col-sm-3 control-label">이전 비밀번호</label>
 								<div class="col-sm-9">

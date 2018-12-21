@@ -28,17 +28,11 @@ public class ProfileController {
 	public ModelAndView authUpdate(@ModelAttribute ProfileDto dto, HttpServletRequest request, HttpSession session) {
 		String id=(String)session.getAttribute("id");
 		dto.setId(id);
-		service.updateUser(dto);
+		System.out.println(dto.getFile());
+		service.updateUser(dto,request);
 		// new ModelAndView("view 페이지 정보")
 		return new ModelAndView("redirect:/test/testProfile.jsp");
 	}	
 
-	//비밀번호 수정반영 요청처리
-	@RequestMapping("/updatepwd")
-	public ModelAndView authUpdatePwd(HttpServletRequest request) {
-		//비밀번호를 수정하는 비즈니스로직을 서비스로 수행하고
-		service.updatepwd(request);
-		//view 페이지로 forward 이동해서 응답
-		return new ModelAndView("redirect:/test/testProfile.jsp");
-	}
+
 }
