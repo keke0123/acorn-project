@@ -71,7 +71,10 @@ public class UsersController {
 		service.addUser(mView, dto);
 		//나중에 메인페이지로 연결되도록 수정
 		mView.setViewName("users/greeting");
-		
+		session.setAttribute("gUid", "");
+		session.setAttribute("gEmail", "");
+		session.setAttribute("gName", "");
+		session.setAttribute("gNick", "");
 		return mView;
 	}
 	
@@ -217,7 +220,9 @@ public class UsersController {
         }
 		 
 		 service.validGoogle(session, mView);	
-		 mView.setViewName("users/login");
+		 mView.setViewName("users/login_form");
+		 session.setAttribute("gEmail", "");
+		 session.setAttribute("gUid", "");
 		 return mView;
 	
     }

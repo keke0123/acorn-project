@@ -11,11 +11,12 @@
 <script>
 	angular.module("myApp",[])
 	.controller("myCtrl", function($scope, $http){
-		
+		$scope.gS="${isSuccess}";
 		$scope.canUseId=false;
 		$scope.isSuccess=true;
 		//id 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.idCheck=function(){
+			
 			var id=$scope.id;
 			var isEmail=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 			var isPhone=/^01[016789][0-9]{3,4}[0-9]{4}$/;
@@ -116,9 +117,11 @@
 				<!-- login form -->
 				<form action="login.do" id="loginForm" name="lf" method="post" ng-submit="onSubmit($event)">		
 					<div class="panel-body" style="text-align:center">
-						<div ng-show="!isSuccess" class="form-group has-feedback" ng-class="{'has-success':isSuccess, 'has-error': !isSuccess}">
-							<!-- <ngb-alert class="alert alert-danger" *ngIf="!isSuccess" ng-model="msg" (close)="successMessage = null"></ngb-alert> -->
-							<div ng-model="msg" class="alert alert-danger help-block">{{msg}}</div>
+						<div ng-show="!isSuccess">
+							<div ng-model="msg" class="alert alert-danger">{{msg}}</div>
+						</div>
+						<div ng-show="gS=='false'">
+							<div class="alert alert-danger">존재하지 않는 구글계정입니다</div>
 						</div>
 						<div class="form-group has-feedback" ng-class="{'has-success':canUseId, 'has-error': !canUseId && lf.id.$dirty}">
 							<label class="control-label" for="id">전화번호 또는 이메일</label>
@@ -147,7 +150,7 @@
 			<!-- sign up -->
 			<div class="panel panel-default text-center">
 				<div class="panel-body" style="align:center;">
-					<p>계정이 없으신가요? <a href="signup_form.do">가입하기</a></p>
+					<p>계정이 없으신가요? <a href="${pageContext.request.contextPath}/users/signup_form.do">가입하기</a></p>
 				</div>
 			</div>
 		</div> <!-- login(right) end -->

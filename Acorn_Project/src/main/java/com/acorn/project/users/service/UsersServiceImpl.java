@@ -82,12 +82,16 @@ public class UsersServiceImpl implements UsersService{
 			if(gUid.equals(google_Id)) {
 				session.setAttribute("id", gLoginId);
 				mView.addObject("isSuccess", true);
+				mView.addObject("gS", "success");
+				
 			}else {
 				mView.addObject("isSuccess",false);
+				mView.addObject("gS", "fail");
 			}
 			
 		}else {
 			mView.addObject("isSuccess",false);
+			mView.addObject("gS", "fail");
 		}
 	}
 
