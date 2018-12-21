@@ -218,6 +218,7 @@
    
 </style>
 <body>
+
 <div id="nprogress" style="display: none;"></div>
 
   <!-- navbar -->
@@ -256,9 +257,10 @@
             <img id="one_2" src="${pageContext.request.contextPath}/resources/images/basic.png" class="rounded" alt="${pageContext.request.contextPath}/resources." style="display: none;">
         </div>
     </div><!--col-xs-3-->
+    
     <div class="col-xs-7 text-center">
       <h1 style="font-weight:lighter; display: inline-block; " >Acorn</h1>
-      <button onclick="location.href='profile.jsp'" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button>
+      <button class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button>
       <span class="glyphicon glyphicon-cog" style="font-size: 23px; margin-left: 5px;"  ></span>
       <br/>
       <div id="profileInfo"> 
@@ -266,6 +268,7 @@
           <div id="three">팔로워 0</div>
           <div id="three">팔로우 0</div>
       </div>
+      
       <br/>
       <div style="font-size: 20px; font-weight: bold; margin-top: 15px;"> </div>
     </div><!--col-xs-9-->

@@ -3,18 +3,39 @@
 <mapper namespace="profile">
 	<select id="getuserprofile" parameterType="string" resultType="profileDto">
 		SELECT 
-		id, nick, name, phone, email,orgfilename
+		id, nick, name, phone, email, orgfilename, pwd
 		FROM ACORN_USER
 		WHERE
 		 id=#{id} 
 	</select>
 	<update id="update" parameterType="profileDto">
 		UPDATE ACORN_USER
-		SET nick=#{nick},
-			name=#{name},
-			phone=#{phone},
-			email=#{email},
-			orgfilename=#{orgfilename}
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="nick != null">
+				nick=#{nick},
+			</if>
+			<if test="phone != null">
+				phone=#{phone},
+			</if>
+			<if test="email != null">
+				email=#{email}
+			</if>	
+		</set>
+		WHERE id=#{id}
+	</update>
+		<update id="updatepwd" parameterType="profileDto">
+		UPDATE ACORN_USER
+		<set>
+			<if test="pwd != null">
+			pwd=#{pwd}
+			</if>
+			<if test="pwd2 != null">
+			pwd2=#{pwd2}
+			</if>						
+		</set>
 		WHERE id=#{id}
 	</update>
 </mapper>

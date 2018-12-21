@@ -48,7 +48,7 @@
 			<div class="tab-content" style="min-height:333px;">
 				<!-- 1. id가 profile일때 -->
 				<div class="tab-pane in active" id="profile"> 
-					<form class="form-horizontal">
+					<form action="../update.do" method="post" id="updateForm" class="form-horizontal"> 
 						<div class="form-group">
 							<div class="col-sm-3 control-label">
 							<img src="${pageContext.request.contextPath}/resources/images/thumb_image1.png" alt="">
@@ -62,19 +62,18 @@
 								</div>
 								
 							</div>
-						</div>
-				
+						</div>				
 						<div class="form-group">
 							<label for="name" class="col-sm-3 control-label">이름</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="name" ng-model="boardList.name"/>
+								<input type="text" class="form-control" id="name" name="name" ng-model="boardList.name"/>
 							</div>
 						</div>
 				
 						<div class="form-group">
 							<label for="user_name" class="col-sm-3 control-label">사용자 이름</label>
 							<div class="col-sm-9">
-								<input value="Acorn" type="text" class="form-control" id="user_name" ng-model="boardList.nick"/>
+								<input value="Acorn" type="text" class="form-control" id="user_name" name="nick" ng-model="boardList.nick"/>
 								
 							</div>
 						</div>
@@ -89,19 +88,19 @@
 						<div class="form-group">
 							<label for="email" class="col-sm-3 control-label">이메일</label>
 							<div class="col-sm-9">
-								<input value="Acorn@naver.com" type="text" class="form-control" id="email" ng-model="boardList.email"/>
+								<input value="Acorn@naver.com" type="text" class="form-control" id="email" name="email" ng-model="boardList.email"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="phone" class="col-sm-3 control-label">전화번호</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="phone" ng-model="boardList.phone"/>
+								<input type="text" class="form-control" id="phone" name="phone" ng-model="boardList.phone"/>
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6 col-sm-offset-3">
-								<button type="submit" class="btn btn-primary">제출</button>
+								<button type="submit" >제출</button>
 							</div>
 						</div>
 					</form>
@@ -121,32 +120,30 @@
 								</div>	
 							</div>
 						</div>
-						<form action="pwdAction" name="pwdForm" id="pwdForm" novalidate>
-							<div class="form-group">
+						<form action="updatepwd.do" name="pwdForm" method="post" id="pwdForm" novalidate>
+							 <div class="form-group">
 								<label class="col-sm-3 control-label">이전 비밀번호</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" id="prev_pwd" name="prev_pwd" ng-required="true" ng-model="prev_pwd" />
+									<input type="password" class="form-control" id="prev_pwd" name="prev_pwd" ng-required="true" ng-model="boardList.pwd" />
 								</div>
-							</div>
+							</div> 
 							<div class="form-group">
-								<label class="col-sm-3 control-label">새 비밀번호</label>
+								<label for="pwd" class="col-sm-3 control-label">새 비밀번호</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" id="new_pwd1" name="new_pwd1" ng-required="true" ng-model="new_pwd1"/>
+									<input type="password" class="form-control" name="pwd" id="pwd" ng-required="true" ng-model="new_pwd1"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">새 비밀번호 확인</label>
 								<div class="col-sm-9">
-									<input type="password" class="form-control" id="new_pwd2" name="new_pwd2" ng-required="true" ng-model="new_pwd2">
+									<input type="password" class="form-control" name="pwd2" id="pwd2" ng-required="true" ng-model="new_pwd2">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-offset-3">
-									<button id="pwdBtn" ng-disabled="pwdForm.$invalid"  type="submit" class="btn btn-primary">비밀번호 변경</button>
+									<button type="submit">비밀번호 변경</button>
 								</div><br/>
-								<div class="col-sm-9 col-sm-offset-3">
-									<p id="pwdCheck"></p>
-								</div>
+
 							</div>
 						</form>
 					</div>
@@ -154,5 +151,17 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$("#pwdForm").on("submit", function(){
+	//입력한 두 비밀번호가 일치하는지 확인해서 일치하지 않으면 폼전송 막기
+	var pwd=$("#pwd").val();
+	var pwd2=$("#pwd2").val();
+	if(pwd != pwd2){
+		alert("비밀번호를 확인 하세요!");
+		return false;//폼전송 막기
+	}
+});
+</script>
 </body>
 </html>

@@ -3,12 +3,13 @@ package com.acorn.project.profile.dto;
 public class ProfileDto {
 	private String id;
 	private String nick;
+	private String pwd;
 	private String name;
 	private String phone;
 	private String email;
 	private String orgfilename;
 	
-	ProfileDto(){}
+	public ProfileDto(){}
 
 	public String getId() {
 		return id;
@@ -24,6 +25,14 @@ public class ProfileDto {
 
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public String getName() {
@@ -58,15 +67,18 @@ public class ProfileDto {
 		this.orgfilename = orgfilename;
 	}
 
-	public ProfileDto(String id, String nick, String name, String phone, String email, String orgfilename) {
+	public ProfileDto(String id, String nick, String pwd, String name, String phone, String email, String orgfilename) {
 		super();
 		this.id = id;
 		this.nick = nick;
+		this.pwd = pwd;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
 		this.orgfilename = orgfilename;
 	}
+
+	
 }
 
 
