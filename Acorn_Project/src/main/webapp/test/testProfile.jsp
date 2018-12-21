@@ -14,6 +14,20 @@
 <script>
 	angular.module("myApp", [])
 	.controller("myCtrl", function($scope, $http){
+		//전달된 object 의 내용을 serialize 문자열로 반환하는 함수 
+		function getSerialize(obj){
+			var query;
+			var isFirst=true;
+			for(var key in obj){
+				if(isFirst){
+					query=key+"="+obj[key];
+					isFirst=false;
+				}else{
+					query+="&"+key+"="+obj[key];
+				}
+			}
+			return query;
+		}
 		$scope.boardList={};
 		// session 의 id 값을 바탕으로 게시판 data 가져오기
 		$scope.getData=function(){
@@ -26,24 +40,29 @@
 				$scope.boardList=data;
 			});
 		};
-		$scope.pwdForm={};
-		
+		//$scope.pwdForm={};
 		$scope.updatePwd=function(e){
-			var data= getSerialize($scope.pwdForm);
 			e.preventDefault();
 			console.log("aa");
-			$http({
-				url:"../updatepwd.do",
-				method:"post"
-				headrs:{
-					"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
-				},
-				data:data
+ 			$http({
+				url:"../selectpwd.do",
+				method:"get",
+				params:{
+					'prev_pwd':$scope.pwdForm.prev_pwd
+				}
 			}).success(function(data){
-				//서버에서 응답된 데이터를 모델에 연결
 				console.log(data);
-				//$scope.boardList=data;
+				if(data=='false'){
+					console.log("비밀번호를 잘못 입력하셧습니다.");
+					//
+					//document.getElementById("pwdForm").submit();
+					
+				}else{
+					document.getElementById("pwdForm").submit();
+				}
+				
 			});
+			
 		};
 		// 초기에 한번 데이타 가져오기
 		$scope.getData();
@@ -70,7 +89,7 @@
 					<form action="../update.do" method="post" id="updateForm" class="form-horizontal" enctype="multipart/form-data"> 
 						<div class="form-group">
 							<div class="col-sm-3 control-label">
-							<img src="${pageContext.request.contextPath}/upload/{{boardList.orgfilename}}" width="50" style="border-radius: 100%;">
+							<img ng-src="${pageContext.request.contextPath}/upload/{{boardList.orgfilename}}" width="50" style="border-radius: 100%;">
 							</div>
 							<div class="col-sm-9 control-label " id="basic">
 								<div style="float:left;">
@@ -139,7 +158,7 @@
 								</div>	
 							</div>
 						</div>
-						<form action="../updatepwd.do" name="pwdForm" method="post" id="pwdForm" ng-submit="updatePwd($event)" novalidate>
+						<form action="../updatepwd.do" method="post" id="pwdForm" >
 							 <div class="form-group">
 								<label class="col-sm-3 control-label">이전 비밀번호</label>
 								<div class="col-sm-9">
@@ -160,7 +179,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-offset-3">
-									<button type="submit">비밀번호 변경</button>
+									<button type="submit" ng-click="updatePwd($event)">비밀번호 변경</button>
 								</div><br/>
 
 							</div>
@@ -182,5 +201,6 @@ $("#pwdForm").on("submit", function(){
 	}
 });
 </script>
+
 </body>
 </html>

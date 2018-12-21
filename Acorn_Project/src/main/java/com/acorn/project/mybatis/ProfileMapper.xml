@@ -29,7 +29,7 @@
 		</set>
 		WHERE id=#{id}
 	</update>
-	<select id="selectPwd" parameterType="pwdDto">
+	<select id="selectPwd" parameterType="pwdDto" resultType="string">
 		SELECT 
 			pwd
 		FROM ACORN_USER
@@ -37,8 +37,8 @@
 		 id=#{id} 
 	</select>
 	
-		<update id="updatePwd" parameterType="profileDto">
-		UPDATE users
+	<update id="updatePwd" parameterType="profileDto">
+		UPDATE acorn_user
 		SET pwd=#{pwd}
 		WHERE id=#{id}
 	</update>

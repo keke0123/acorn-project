@@ -7,5 +7,6 @@ public interface ProfileDao {
 	public ProfileDto getuserprofile(String id);
 	public void update(ProfileDto dto);
 	public String selectPwd(PwdDto dto);
+	public void updatePwd(PwdDto dto);
 
 }

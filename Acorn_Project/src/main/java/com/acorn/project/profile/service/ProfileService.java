@@ -12,4 +12,5 @@ public interface ProfileService {
 	public void updateUser(ProfileDto dto, HttpServletRequest request);
 	
 	public boolean updatePwd(PwdDto dto);
+	public void updatePwd2(PwdDto dto);
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,15 +64,26 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public boolean updatePwd(PwdDto dto) {
-		String planText=dto.getPrev_pwd();
-		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-		String hash=encoder.encode(planText);
+//		String planText=dto.getPrev_pwd();
+//		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+//		String hash=encoder.encode(planText);
 		String pwd=dao.selectPwd(dto);
-		if(hash.equals(pwd)) {
+		boolean isSuccess=BCrypt.checkpw(dto.getPrev_pwd(), pwd);
+		System.out.println(pwd);
+		if(isSuccess) {
 			return true;
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public void updatePwd2(PwdDto dto) {
+		String planText=dto.getPwd();
+		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+		String hash=encoder.encode(planText);
+		dto.setPwd(hash);
+		dao.updatePwd(dto);
 	}
 
 

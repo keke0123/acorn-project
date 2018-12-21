@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +28,7 @@ public class ProfileController {
 	}
 	@RequestMapping("/update")
 	public ModelAndView authUpdate(@ModelAttribute ProfileDto dto, HttpServletRequest request, HttpSession session) {
+		session.setAttribute("id", "user1");
 		String id=(String)session.getAttribute("id");
 		dto.setId(id);
 		System.out.println(dto.getFile());
@@ -35,13 +37,21 @@ public class ProfileController {
 		return new ModelAndView("redirect:/test/testProfile.jsp");
 	}	
 
-	@RequestMapping("/updatepwd")
+	@RequestMapping("/selectpwd")
 	@ResponseBody
-	public boolean authUpdatePwd(@ModelAttribute PwdDto dto, ModelAndView mView, HttpSession session) {
+	public boolean authSelectPwd(@ModelAttribute PwdDto dto, HttpSession session) {
+		System.out.println(dto.getPrev_pwd());
+		session.setAttribute("id", "user1");
 		String id=(String)session.getAttribute("id");
 		dto.setId(id);
-		System.out.println(dto.getPrev_pwd());
 		return service.updatePwd(dto);
 	}
-
+	@RequestMapping("/updatepwd")
+	public ModelAndView authUpdatePwd(@ModelAttribute PwdDto dto, HttpServletRequest request, HttpSession session) {
+		session.setAttribute("id", "user1");
+		String id=(String)session.getAttribute("id");
+		dto.setId(id);
+		service.updatePwd2(dto);
+		return new ModelAndView("redirect:/test/testProfile.jsp");
+	}	
 }

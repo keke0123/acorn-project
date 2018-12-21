@@ -27,6 +27,11 @@ public class ProfileDaoImpl implements ProfileDao{
 		return session.selectOne("profile.selectPwd", dto);
 	}
 
+	@Override
+	public void updatePwd(PwdDto dto) {
+		session.update("profile.updatePwd", dto);
+	}
+
 
 
 }
