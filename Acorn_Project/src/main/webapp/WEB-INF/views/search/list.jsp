@@ -96,7 +96,7 @@
     </tbody>
 	</table> -->
 	
-	<h3>검색조건입니다.</h3>
+	<h3>검색결과 : 총  {{searchList.length}} 개 의 결과</h3>
 	<table class="table table-striped table-bordered table-hover">
 		<tbody>
 				<tr data-link="row" class="rowlink" ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">
@@ -106,7 +106,7 @@
 		</tbody>
 	</table>
 	</div>
-	<a href="userpage.do?id=user1">유저 페이지</a>
+	
 	
 
 

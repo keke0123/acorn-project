@@ -67,7 +67,7 @@
 	
 	</select>
 	<select id="getUserOwnList" parameterType="string" resultType="searchDto">
-		SELECT u.orgFileName ,u.id , lc.lcount , fwc.countFollow , fwlerc.countFollower
+		SELECT u.orgFileName ,u.id , u.nick ,lc.lcount , fwc.countFollow , fwlerc.countFollower
 	    FROM acorn_user u
 	        INNER JOIN
 	            (SELECT id_writer ,count(id_writer) as lcount 
