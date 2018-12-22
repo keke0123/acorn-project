@@ -34,6 +34,8 @@ public class ImageUploadController {
 	@RequestMapping("/gallery/upload")
 	public ModelAndView Upload(@ModelAttribute ImageUploadDto dto, 
 			HttpServletRequest request) {
+		String id_writer=(String)request.getSession().getAttribute("id");
+		dto.setId_writer(id_writer);
 		//FileDto 에는 업로드된 파일의 제목(title)과 파일정보(file)이 들어있다.
 		service.saveFile(dto, request);
 		

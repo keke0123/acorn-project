@@ -10,11 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.project.imageupload.dao.ImageUploadDao;
 import com.acorn.project.imageupload.dto.ImageUploadDto;
+import com.acorn.project.main.dao.MainDao;
 
 @Service
 public class ImageUploadServiceImpl implements ImageUploadService {
 	@Autowired
 	private ImageUploadDao dao;
+	@Autowired
+	private MainDao mainDao;
 
 	@Override
 	public void getList(HttpServletRequest request) {
@@ -58,12 +61,21 @@ public class ImageUploadServiceImpl implements ImageUploadService {
 		dto.setId_writer(id); // 작성자
 
 		dto.setOrgfileName(saveFileName);
-		
 		dto.setFileSize(fileSize);
+		// sequence 값 받아오기
+		int sequence=mainDao.getSequence();
+		dto.setNum_board(sequence);
+		// 만약 tag 가 있으면 tag 저장
+		String tag = dto.getTag();
+		if(tag!=null && !tag.equals("")) {
+			dao.insertTag(dto);
+			System.out.println("tag_insert");
+		}
+		
 		// FileDao 객체를 이용해서 DB 에 저장하기
 		dao.insert(dto);
 		dao.insertImage(dto);
-		
+		System.out.println("picture_insert");
 
 	}
 	

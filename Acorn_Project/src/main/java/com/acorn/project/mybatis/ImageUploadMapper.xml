@@ -4,13 +4,19 @@
 	<insert id="insert" parameterType="ImageUploadDto">
 		INSERT INTO acorn_board
 		(num_board, id_writer, content, regdate)
-		VALUES(num_board_seq.NEXTVAL, 'abcd', #{content}, SYSDATE)
+		VALUES(#{num_board}, #{id_writer}, #{content}, SYSDATE)
 	</insert>
 	
 	<insert id="insert2" parameterType="ImageUploadDto">
 		INSERT INTO acorn_picture
 		(num_board, orgfileName, fileSize)
-		VALUES(num_board_seq.NEXTVAL, #{orgfileName}, #{fileSize})
+		VALUES(#{num_board}, #{orgfileName}, #{fileSize})
+	</insert>
+	
+	<insert id="insert3" parameterType="ImageUploadDto">
+		INSERT INTO acorn_tag
+		(num_board, tag)
+		VALUES(#{num_board}, #{tag})
 	</insert>
 </mapper>
 

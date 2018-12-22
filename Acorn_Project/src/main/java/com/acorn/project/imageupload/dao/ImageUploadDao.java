@@ -10,4 +10,5 @@ public interface ImageUploadDao {
 	public ImageUploadDto getData(int num);
 	public void insert(ImageUploadDto dto);
 	public void insertImage(ImageUploadDto dto);
+	public void insertTag(ImageUploadDto dto);
 }

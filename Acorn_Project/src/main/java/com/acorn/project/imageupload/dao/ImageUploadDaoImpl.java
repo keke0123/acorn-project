@@ -36,4 +36,9 @@ public class ImageUploadDaoImpl implements ImageUploadDao{
 		session.insert("imageupload.insert2", dto);	
 	}
 
+	@Override
+	public void insertTag(ImageUploadDto dto) {
+		session.insert("imageupload.insert3", dto);
+	}
+
 }

@@ -45,7 +45,7 @@
 			$scope.backImage=function(index){
 				$(".imgLiquidFill").imgLiquid();
 				return{
-					'background-image':'url(${pageContext.request.contextPath}'+$scope.dtoList[index].p_orgfilename+')'
+					'background-image':'url(${pageContext.request.contextPath}/upload/'+$scope.dtoList[index].p_orgfilename+')'
 				}
 			};
 			$(".imgLiquidFill").imgLiquid();

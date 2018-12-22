@@ -282,7 +282,7 @@
 			<div class="panel panel-default" ng-repeat="tmp in boardList" ng-init="boardIndex=$index">
 				<div class="panel-heading" style="background-color: white;">
 					<h3 class="panel-title">
-						<img ng-src="${pageContext.request.contextPath}{{tmp.thumbNail}}" width="50" style="border-radius: 50%;">
+						<img ng-src="${pageContext.request.contextPath}/upload/{{tmp.thumbNail}}" width="50" style="border-radius: 50%;">
 						{{tmp.id_writer}} // {{boardIndex}}
 						<a href="#myModal3" sytle="float: right;" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 20px;"></span></a>
 					</h3>
@@ -306,7 +306,7 @@
 					<div id="" ng-attr-id="{{'myCarousel'+boardIndex}}" class="carousel slide" data-ride="carousel" data-interval="100000000">
 						<div class="carousel-inner">
 							<div class="item" ng-repeat="tmp_orgfilename in tmp.orgfilename" ng-class="{'active':$index==0}">
-								<img ng-src="${pageContext.request.contextPath}{{tmp_orgfilename}}" class="img-responsive"/>
+								<img ng-src="${pageContext.request.contextPath}/upload/{{tmp_orgfilename}}" class="img-responsive"/>
 							</div>
 						</div>
 						<!-- Carousel 하단의 동그란 nav 요소  -->
@@ -389,7 +389,8 @@
 									<div class="form-group">
 										<!-- <input class="form-control" rows = "5" type="text" name="content" id="content"/> -->
 										<textarea name="content" id="content" rows="5" class = "form-control" placeholder="오늘 기분이 어떻신가요?"></textarea>
-									</div>							
+									</div>
+									<input type="text" name="tag" placeholder="tag를 입력하세요">							
 									<input type="file" name="file" id="myFile" required>
 									<div id="image-preview-div" style="display: none">
 										<img id="preview-img" src="">
