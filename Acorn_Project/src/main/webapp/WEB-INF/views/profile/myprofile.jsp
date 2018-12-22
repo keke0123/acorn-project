@@ -10,6 +10,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+<script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
 <title>Insert title here</title>
 <style>
 	.modal-content .container {
@@ -62,6 +63,7 @@
 				$scope.boardList=data;
 			});
 		};
+		$scope.getData();
 		//$scope.pwdForm={};
 		$scope.updatePwd=function(e){
 			e.preventDefault();
@@ -86,35 +88,67 @@
 			});
 			
 		};
-		// 초기에 한번 데이타 가져오기
-		$scope.getData();
+		$scope.searchList=[];
+		$scope.searchValue="";
+		$scope.searchValue2="";
+		$scope.selectValue="pop";
+		
+		$scope.onClick=function(a){
+			console.log(a);
+		}; 
+		console.log($scope.selectValue);
+		console.log($scope.searchValue);
+		$scope.getData2=function(msg){
+			$scope.searchValue=msg;
+			$scope.searchValue2=msg;
+			//console.log($scope.searchValue);
+			
+			$http({
+				url:"${pageContext.request.contextPath}/search/Search_like.do",
+				method:"get",
+				params:{"keyword":$scope.searchValue,"keyword2":$scope.selectValue}
+	
+			}).success(function(data){
+				console.log($scope.selectValue);
+				console.log(data);
+				$scope.searchList=data;
+			});
+		};
+		$scope.getChange=function(){
+			$scope.searchList=[];
+			$scope.getData2();
+		};
+		$scope.test=function(test){
+			console.log("test : "+test);
+		};
+		//$scope.getData();
 	});
 </script>
 </head>
 <body ng-controller="myCtrl">
-<div class="navbar navbar-default navbar-fixed-top">
-	<div class="navbar-header">
-		<a href="#" class="navbar-brand">Acorn</a>
-		<!-- <button class="navbar-toggle" data-toggle="collapse" data-target="#three">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button> -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand">Acorn</a>
+			<!-- <button class="navbar-toggle" data-toggle="collapse" data-target="#three">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button> -->
+		</div>
+		<div class="collapse navbar-collapse" id="three">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
+				<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
+				<li><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a></li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="searchValue" placeholder="Search" />
+				</div>
+				<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#myModal4" ng-click="getData2(searchValue);test(searchValue2)">검색</button>
+			</form>
+		</div>
 	</div>
-	<div class="collapse navbar-collapse" id="three">
-		<ul class="nav navbar-nav">
-			<li><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
-			<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
-			<li class="active"><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a></li>
-		</ul>
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search" />
-			</div>
-			<button type="submit" class="btn btn-warning">검색</button>
-		</form>
-	</div>
-</div>
 <div class="container" style="margin-top:150px;">
 	<h3 align="center">프로필 편집</h3>
 	<div class="row " style="border:1px solid #BDBDBD;">
@@ -239,7 +273,8 @@
 									<div class="form-group">
 										<!-- <input class="form-control" rows = "5" type="text" name="content" id="content"/> -->
 										<textarea name="content" id="content" rows="5" class = "form-control" placeholder="오늘 기분이 어떻신가요?"></textarea>
-									</div>							
+									</div>
+									<input type="text" name="tag" placeholder="tag를 입력하세요">							
 									<input type="file" name="file" id="myFile" required>
 									<div id="image-preview-div" style="display: none">
 										<img id="preview-img" src="">
@@ -270,7 +305,52 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
+	<!-- 모달로 뜨는 검색 결과창 -->
+	<div class="modal fade" id="myModal4">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <button type="button" class="close" data-dismiss="modal"><span>&times;</span><span class="sr-only">모달 닫기</span></button>
+	        <div class="modal-title">
+	        	<!-- 검색어 입력 -->
+		 		<div class="mb-3 mx-sm-3 mb-2">
+			   		<input type="text" ng-keyup="getData2(searchValue2)" ng-model="searchValue2" class="form-control" aria-describedby="basic-addon2"
+			   			id="innerSearch" placeholder="검색조건을 입력해주세요">
+		 		</div>		
+	        	<!-- 카테고리 -->
+		   		<div class="form-group mx-sm-3 mb-2" id="">    	
+			    	<ul class="nav nav-pills nav-justified">
+					    <li class="active">
+					      <a href="#a" ng-click="selectValue='pop'; getData2(searchValue);" data-toggle="tab">인기</a>
+					    </li>
+					    <li>
+					      <a href="#a" ng-click="selectValue='human'; getData2(searchValue);" data-toggle="tab">사람</a>
+					    </li>
+					    <li>
+					      <a href="#a" ng-click="selectValue='tag'; getData2(searchValue);" data-toggle="tab">태그</a>
+					    </li>
+				    </ul>
+		  		</div>
+		  				
+	        </div>   
+	      <!-- 검색 결과창 modal-body -->      
+	      	<div class="tab-contents">
+	      		<div class="tab-pane fade in active" id="a">
+					<table class="table table-striped table-bordered table-hover">
+						<tbody class="tab-pane">
+							<tr data-link="row" class="rowlink" ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">
+								<td><img ng-src="${pageContext.request.contextPath}/upload/{{tmp.orgFileName}}" width="50" style="border-radius: 50%; display:inline-block;" alt="" />
+								<a href="${pageContext.request.contextPath}/search/userpage.do?id={{tmp.id}}" style="display:inline-block">{{tmp.name}} {{tmp.id}}</a>{{tmp.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	      </div>
+	     
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 <script>
 $("#pwdForm").on("submit", function(){
 	//입력한 두 비밀번호가 일치하는지 확인해서 일치하지 않으면 폼전송 막기
