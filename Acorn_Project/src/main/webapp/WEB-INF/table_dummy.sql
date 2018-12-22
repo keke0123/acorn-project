@@ -1,11 +1,21 @@
 
+-- 데이타 초기화를 위해 table 에서 데이타들을 지우는 쿼리
+DELETE FROM acorn_board;
+DELETE FROM acorn_bookmark;
+DELETE FROM acorn_comment;
+DELETE FROM acorn_follow;
+DELETE FROM acorn_like;
+DELETE FROM acorn_picture;
+DELETE FROM acorn_tag;
+DELETE FROM acorn_user;
+
 -- acorn_user table
--- acorn_user(id, pwd, nick, name, status, phone, email, orgfilename, filesize, regdate)
-INSERT INTO acorn_user values('user1', '12345', '유저1', '유저일', '나는 유저1이다', '010-1274-1337', 'user1@gmail.com', '/resources/images/thumb_image1.png', 100, SYSDATE);
-INSERT INTO acorn_user values('user2', '12345', '유저2', '유저이', '나는 유저2이다', '010-4536-2345', 'user2@gmail.com', '/resources/images/thumb_image2.png', 100, SYSDATE);
-INSERT INTO acorn_user values('user3', '12345', '유저3', '유저삼', '나는 유저3이다', '010-2363-2321', 'user3@gmail.com', '/resources/images/thumb_image3.png', 100, SYSDATE);
-INSERT INTO acorn_user values('user4', '12345', '유저4', '유저사', '나는 유저4이다', '010-8753-1267', 'user4@gmail.com', '/resources/images/thumb_image4.png', 100, SYSDATE);
-INSERT INTO acorn_user values('user5', '12345', '유저5', '유저오', '나는 유저5이다', '010-2113-1121', 'user5@gmail.com', '/resources/images/thumb_image5.png', 100, SYSDATE);
+-- acorn_user(id, pwd, nick, name, status, phone, email, orgfilename, filesize, regdate, google_ID)
+INSERT INTO acorn_user values('user1', '12345', '유저1', '유저일', '나는 유저1이다', '010-1274-1337', 'user1@gmail.com', '/resources/images/thumb_image1.png', 100, SYSDATE, 'keke@gmail.com');
+INSERT INTO acorn_user values('user2', '12345', '유저2', '유저이', '나는 유저2이다', '010-4536-2345', 'user2@gmail.com', '/resources/images/thumb_image2.png', 100, SYSDATE, 'keke@gmail.com');
+INSERT INTO acorn_user values('user3', '12345', '유저3', '유저삼', '나는 유저3이다', '010-2363-2321', 'user3@gmail.com', '/resources/images/thumb_image3.png', 100, SYSDATE, 'keke@gmail.com');
+INSERT INTO acorn_user values('user4', '12345', '유저4', '유저사', '나는 유저4이다', '010-8753-1267', 'user4@gmail.com', '/resources/images/thumb_image4.png', 100, SYSDATE, 'keke@gmail.com');
+INSERT INTO acorn_user values('user5', '12345', '유저5', '유저오', '나는 유저5이다', '010-2113-1121', 'user5@gmail.com', '/resources/images/thumb_image5.png', 100, SYSDATE, 'keke@gmail.com');
 
 -- acorn_board table(수정전)
 -- acorn_board(num_board, id_writer, orgfilename, filesize, content, regdate)
@@ -86,5 +96,6 @@ INSERT INTO acorn_bookmark values(1, 'user5', SYSDATE);
 INSERT INTO acorn_bookmark values(2, 'user1', SYSDATE);
 INSERT INTO acorn_bookmark values(3, 'user1', SYSDATE);
 INSERT INTO acorn_bookmark values(5, 'user1', SYSDATE);
+
 
 
