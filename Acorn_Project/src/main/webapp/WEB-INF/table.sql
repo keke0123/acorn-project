@@ -1,3 +1,4 @@
+
 CREATE TABLE acorn_user(
 	id VARCHAR2(100) PRIMARY KEY, -- 아이디
 	pwd VARCHAR2(100) NOT NULL, -- 비번
@@ -53,3 +54,4 @@ CREATE TABLE acorn_bookmark(
 	num_board NUMBER, -- 게시물 번호
 	id_bookmark VARCHAR2(100) -- 북마크한 사람 아이디
 );
+

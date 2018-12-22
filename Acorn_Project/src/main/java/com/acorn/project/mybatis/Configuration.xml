@@ -8,14 +8,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.acorn.project.users.dto.UsersDto" alias="usersDto"/>
 		<typeAlias type="com.acorn.project.main.dto.MainDto" alias="mainDto"/>
 		<typeAlias type="com.acorn.project.main.dto.CommentDto" alias="commentDto"/>
+		<typeAlias type="com.acorn.project.imageupload.dto.ImageUploadDto" alias="imageUploadDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/acorn/project/mybatis/UsersMapper.xml"/>
 		<mapper resource="com/acorn/project/mybatis/MainMapper.xml"/>
 		<mapper resource="com/acorn/project/mybatis/TestMapper.xml"/>
+		<mapper resource="com/acorn/project/mybatis/ImageUploadMapper.xml"/>
 	</mappers>
 	
 </configuration>
-
-
 

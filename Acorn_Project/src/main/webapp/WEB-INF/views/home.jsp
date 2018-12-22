@@ -25,6 +25,7 @@
 
 	<a href="users/signup_form.do">회원가입</a>
 	<a href="users/login_form.do">로그인</a>
+	
 
 </div>
 </body>
