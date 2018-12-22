@@ -115,7 +115,8 @@
 					</div>
 				</div>
 				<!-- login form -->
-				<form action="login.do" id="loginForm" name="lf" method="post" ng-submit="onSubmit($event)">		
+				<!-- 로그인 성공시 mainpage로 이동 -->
+				<form action="main/mainpage.do" id="loginForm" name="lf" method="post" ng-submit="onSubmit($event)">		
 					<div class="panel-body" style="text-align:center">
 						<div ng-show="!isSuccess">
 							<div ng-model="msg" class="alert alert-danger">{{msg}}</div>

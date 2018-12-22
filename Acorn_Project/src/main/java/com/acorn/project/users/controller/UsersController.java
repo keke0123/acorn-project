@@ -167,7 +167,15 @@ public class UsersController {
 		//나중에 메인 페이지로 연결되게 바꾸기
 		//mView.setViewName("users/login");
 		//ModelAndView 객체 리턴
-		return "users/login";
+		// 로그인 성공시 main 페이지로 이동시켜주기 위해 만든 땜빵 session
+		boolean isLogined=(boolean)session.getAttribute("isLogined");
+		System.out.println("isLogined : "+isLogined);
+		if(isLogined) {
+			System.out.println("test success");
+			return "main/mainpage";
+		}else {
+			return "users/login";
+		}
 	}
 	
 	//구글 로그인 처리
@@ -220,7 +228,17 @@ public class UsersController {
         }
 		 
 		 service.validGoogle(session, mView);	
-		 mView.setViewName("users/login_form");
+		
+		 boolean isLogined=(boolean)session.getAttribute("isLogined");
+		 System.out.println("isLogined : "+isLogined);
+		 // 이부분 조금 이상하다? 왜 login_form 으로만 가야되지?
+		 if(isLogined) {
+			 System.out.println("test success in google_login");
+			 //mView.setViewName("main/mainpage");
+			 mView.setViewName("users/login_form");
+		 }else {
+			 mView.setViewName("users/login_form");
+		 }
 		 session.setAttribute("gEmail", "");
 		 session.setAttribute("gUid", "");
 		 return mView;

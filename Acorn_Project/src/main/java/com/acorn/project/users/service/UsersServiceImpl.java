@@ -52,20 +52,27 @@ public class UsersServiceImpl implements UsersService{
 					session.setAttribute("id", id);
 					//로그인 성공 여부를  객체에 담는다
 					map.put("isSuccess", true);
+					// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+					session.setAttribute("isLogined", true);
 				}else {				
 					map.put("isSuccess", false);
 					map.put("msg", "비밀번호가 일치하지 않습니다");
+					// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+					session.setAttribute("isLogined", false);
 				}
 			}else {
 				map.put("isSuccess", false);
 				map.put("msg", "존재하지 않는 계정입니다");
-				
+				// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+				session.setAttribute("isLogined", false);
 			}
 			
 			
 		}else {
 			map.put("isSuccess", false);
 			map.put("msg", "구글 로그인을 이용해주세요");
+			// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+			session.setAttribute("isLogined", false);
 		}
 		
 		return map;
@@ -83,15 +90,21 @@ public class UsersServiceImpl implements UsersService{
 				session.setAttribute("id", gLoginId);
 				mView.addObject("isSuccess", true);
 				mView.addObject("gS", "success");
+				// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+				session.setAttribute("isLogined", true);
 				
 			}else {
 				mView.addObject("isSuccess",false);
 				mView.addObject("gS", "fail");
+				// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+				session.setAttribute("isLogined", false);
 			}
 			
 		}else {
 			mView.addObject("isSuccess",false);
 			mView.addObject("gS", "fail");
+			// 로그인 성공되면 분기를 주어 main 페이지로 전송시켜주기 위해 만듬
+			session.setAttribute("isLogined", false);
 		}
 	}
 
