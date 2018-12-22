@@ -33,6 +33,7 @@ INSERT INTO acorn_board values(2, 'user2', 'Lorem ipsum dolor sit amet, consecte
 INSERT INTO acorn_board values(3, 'user2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 INSERT INTO acorn_board values(4, 'user3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 INSERT INTO acorn_board values(5, 'user3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
+INSERT INTO acorn_board values(6, 'user5', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, saepe! Facere delectus aperiam impedit vel temporibus earum et, ipsam soluta qui non dolor veniam assumenda doloribus facilis quidem ab quasi.',  SYSDATE);
 
 -- acorn_picture
 INSERT INTO acorn_picture values(1, '/resources/images/1.jpg', 100);
@@ -56,6 +57,14 @@ INSERT INTO acorn_comment values(1, 'user3', '저거 다 사진빨이다', 'user
 INSERT INTO acorn_comment values(1, 'user4', '알지 ㅋㅋㅋ', 'user1', 105, 104, 'n', SYSDATE);
 INSERT INTO acorn_comment values(1, 'user1', '어이없네ㅋㅋㅋ', 'user1', 106, 106, 'n', SYSDATE);
 INSERT INTO acorn_comment values(1, 'user5', '북마크 했어요', 'user1', 107, 107, 'n', SYSDATE);
+
+INSERT INTO acorn_comment values(2, 'user2', '커피가 맛나염', 'user2', 101, 101, 'n', SYSDATE);
+INSERT INTO acorn_comment values(2, 'user1', '거기 어디임?', 'user1', 102, 101, 'n', SYSDATE);
+INSERT INTO acorn_comment values(2, 'user2', '어디게?', 'user1', 103, 101, 'n', SYSDATE);
+INSERT INTO acorn_comment values(2, 'user3', '오 사진기 간지다', 'user2', 104, 104, 'n', SYSDATE);
+INSERT INTO acorn_comment values(2, 'user4', 'ㄴㄴ 배경이 더 간지남', 'user3', 105, 104, 'n', SYSDATE);
+INSERT INTO acorn_comment values(2, 'user1', '오 사진 한장 더 있었네요?', 'user2', 106, 106, 'n', SYSDATE);
+INSERT INTO acorn_comment values(2, 'user5', '북마크 했어요', 'user2', 107, 107, 'n', SYSDATE);
 -- ref_group 도 역시 test 를 위해 임의로 숫자를 넣었지만 원래는 num_board_seq.NEXTVAL 넣어야 한다.
 
 -- acorn_follow
@@ -82,7 +91,7 @@ INSERT INTO acorn_tag values(3,'유럽');
 
 -- acorn_like
 -- acorn_like(num_board, id_like)
-INSERT INTO acorn_like values(1, 'user1');
+INSERT INTO acorn_like values(2, 'user1');
 INSERT INTO acorn_like values(1, 'user2');
 INSERT INTO acorn_like values(1, 'user5');
 INSERT INTO acorn_like values(101, 'user2');
