@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="profile">
+	<select id="getuserprofile" parameterType="string" resultType="profileDto">
+		SELECT 
+		id, nick, name, phone, email, orgfilename, pwd
+		FROM ACORN_USER
+		WHERE
+		 id=#{id} 
+	</select>
+	<update id="update" parameterType="profileDto">
+		UPDATE ACORN_USER
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="nick != null">
+				nick=#{nick},
+			</if>
+			<if test="phone != null">
+				phone=#{phone},
+			</if>
+			<if test="email != null">
+				email=#{email},
+			</if>	
+			<if test="orgfilename != null">
+				orgfilename=#{orgfilename}
+			</if>	
+		</set>
+		WHERE id=#{id}
+	</update>
+	<select id="selectPwd" parameterType="pwdDto" resultType="string">
+		SELECT 
+			pwd
+		FROM ACORN_USER
+		WHERE
+		 id=#{id} 
+	</select>
+	
+	<update id="updatePwd" parameterType="profileDto">
+		UPDATE acorn_user
+		SET pwd=#{pwd}
+		WHERE id=#{id}
+	</update>
+	
+</mapper>

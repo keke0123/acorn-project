@@ -10,6 +10,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.acorn.project.main.dto.CommentDto" alias="commentDto"/>
 		<typeAlias type="com.acorn.project.imageupload.dto.ImageUploadDto" alias="imageUploadDto"/>
 		<typeAlias type="com.acorn.project.search.dto.SearchDto" alias="searchDto"/>
+		<typeAlias type="com.acorn.project.profile.dto.ProfileDto" alias="profileDto"/>
+		<typeAlias type="com.acorn.project.profile.dto.PwdDto" alias="pwdDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/acorn/project/mybatis/UsersMapper.xml"/>
@@ -17,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/acorn/project/mybatis/TestMapper.xml"/>
 		<mapper resource="com/acorn/project/mybatis/ImageUploadMapper.xml"/>
 		<mapper resource="com/acorn/project/mybatis/SearchMapper.xml"/>
+		<mapper resource="com/acorn/project/mybatis/ProfileMapper.xml"/>
 	</mappers>
 	
 </configuration>

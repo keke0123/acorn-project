@@ -192,6 +192,7 @@
 		<div class="col-md-7 col-sm-7 col-xs-12 col-sm-offset-3">
 			<a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br />
 			<a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br />
+			<a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a><br />
 			<!-- ng-init 으로 index 값을 list 형식으로 저장할수 있다. -->
 			<div class="panel panel-default" ng-repeat="tmp in boardList" ng-init="boardIndex=$index">
 				<div class="panel-heading" style="background-color: white;">
