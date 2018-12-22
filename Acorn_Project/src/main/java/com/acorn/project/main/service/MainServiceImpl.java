@@ -23,7 +23,6 @@ public class MainServiceImpl implements MainService{
 	public void getBoardList(ModelAndView mView, String id, HttpServletRequest request) {
 		List<MainDto> followList=dao.getFollowList(id);
 		request.setAttribute("followList", followList);
-		//mView.addObject("followList", followList);
 	}
 
 	@Override

@@ -234,8 +234,8 @@ public class UsersController {
 		 // 이부분 조금 이상하다? 왜 login_form 으로만 가야되지?
 		 if(isLogined) {
 			 System.out.println("test success in google_login");
-			 //mView.setViewName("main/mainpage");
-			 mView.setViewName("users/login_form");
+			 mView.setViewName("redirect:/main/mainpage.do");
+			 //mView.setViewName("users/login_form");
 		 }else {
 			 mView.setViewName("users/login_form");
 		 }

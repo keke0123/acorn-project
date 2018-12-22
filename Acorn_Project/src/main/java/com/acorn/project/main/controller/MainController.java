@@ -22,27 +22,18 @@ public class MainController {
 	@Autowired
 	private MainService service;
 	
-	@RequestMapping("/main/main")
+	@RequestMapping("/main/mainpage")
 	public ModelAndView authMain(ModelAndView mView, HttpServletRequest request,
 			HttpSession session) {
-		// test 용도로 임의로 session 에 id 값을 넣는다.
+		// 임시로 아이디 변경 시켜놓음
 		session.setAttribute("id", "user1");
-		//
-		String id=(String)session.getAttribute("id");
-		
-		service.getBoardList(mView, id, request);
-		
-		mView.addObject("id",id);
-		mView.setViewName("main/main");
-		
+		mView.setViewName("main/mainpage");		
 		return mView;
 	}
 	@RequestMapping("/main/mainBoard")
 	@ResponseBody
 	public List<MainDto> authGetMainBoard(HttpSession session, @ModelAttribute MainDto dto){
-		session.setAttribute("id", "user1");
 		String id = (String)session.getAttribute("id");
-		//MainDto dto = new MainDto();
 		dto.setId(id);
 		return service.getMainBoard(dto);
 	}
