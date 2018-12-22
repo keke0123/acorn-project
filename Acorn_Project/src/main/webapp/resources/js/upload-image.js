@@ -29,7 +29,7 @@ $(document).ready(function (e) {
     $('#loading').show();
 
     $.ajax({
-      url: "upload.do",
+      url: "/project/gallery/upload.do",
       type: "POST",
       data: new FormData(this),
       contentType: false,

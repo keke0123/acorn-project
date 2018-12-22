@@ -10,6 +10,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+<script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
 <title>/test/testMain.jsp</title>
 <style>
 	.contentsP{
@@ -17,6 +18,33 @@
 		overflow:hidden;
 		text-overflow:ellipsis;
 		white-space:nowrap;
+	}
+
+	a.glyphicon{
+		color: blue; 
+		text-decoration: none;
+		font-size:30px;
+		margin-right: 30px;
+	}
+	.container {
+	  width: 90%;
+	  height: 70%;
+	  margin:  auto;
+	}
+	.panel{
+	
+	  width: 100%;
+	  height: 80%;
+	  margin: auto;
+	}
+	.modal-content{
+		width: 65%;
+		
+		margin: auto;
+		vertical-align: middle;
+		horizontal-align: middle;
+		/* padding-top: 10%;
+		padding-bottom: 10%; */	
 	}
 
 </style>
@@ -146,6 +174,7 @@
 				}
 			});
 		};
+		
 		/* 스크롤 이벤트 */
 		window.onscroll=function(){
 			scroll_event();
@@ -188,9 +217,31 @@
 
 </head>
 <body ng-controller="myCtrl">
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">Acorn</a>
+		<button class="navbar-toggle" data-toggle="collapse" data-target="#three">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse" id="three">
+		<ul class="nav navbar-nav">
+			<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
+			<li><a href="#two">Two</a></li>
+		</ul>
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" />
+			</div>
+			<button type="submit" class="btn btn-warning">검색</button>
+		</form>
+	</div>
+</div>
 	<div class="container" style="margin-top: 150px;">
 		<div class="col-md-7 col-sm-7 col-xs-12 col-sm-offset-3">
-			<a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br />
+			<%-- <a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br /> --%>
 			<a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br />
 			<a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a><br />
 			<!-- ng-init 으로 index 값을 list 형식으로 저장할수 있다. -->
@@ -199,9 +250,9 @@
 					<h3 class="panel-title">
 						<img ng-src="${pageContext.request.contextPath}{{tmp.thumbNail}}" width="50" style="border-radius: 50%;">
 						{{tmp.id_writer}} // {{boardIndex}}
-						<a href="#myModal" sytle="float: right;" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 20px;"></span></a>
+						<a href="#myModal3" sytle="float: right;" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 20px;"></span></a>
 					</h3>
-		            <div class="modal fade" id="myModal">
+		            <div class="modal fade" id="myModal3">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header text-center">
@@ -288,6 +339,53 @@
 			</div>
 		</div>
 	</div>
+	<!-- 사진 업로드 모달 -->
+	<div class="modal fade" id="myModal2">
+		<!-- modal-lg  | default | modal-sm -->	
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" >
+				<div class="modal-body" id = "loadModalBody" >
+				<!-- 업로드 폼 Modal -->	
+				<div class="container">
+					<div style="width: 480px; margin: auto;">
+						<div class="panel panel-primary"  >
+							<form id="upload-image-form" method="post" enctype="multipart/form-data">			
+								<label for="content"></label>					
+								<div class="panel-body">								
+									<div class="form-group">
+										<!-- <input class="form-control" rows = "5" type="text" name="content" id="content"/> -->
+										<textarea name="content" id="content" rows="5" class = "form-control" placeholder="오늘 기분이 어떻신가요?"></textarea>
+									</div>							
+									<input type="file" name="file" id="myFile" required>
+									<div id="image-preview-div" style="display: none">
+										<img id="preview-img" src="">
+									</div>
+								</div>		
+								<div class="panel-footer">
+									<button class="btn  btn-primary" id="upload-button" type="submit" disabled>업로드</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+								</div>
+							</form>
+						</div>				
+					</div>
+			<!-- 여기까지!!!!! -->
+						<br>
+						<div class="alert alert-info" id="loading" style="display: none;"
+							role="alert">
+							Uploading image...
+							<div class="progress">
+								<div class="progress-bar progress-bar-striped active"
+									role="progressbar" aria-valuenow="45" aria-valuemin="0"
+									aria-valuemax="100" style="width: 100%"></div>
+							</div>
+						</div>
+					<div id="message">
+					</div>
+				</div>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 </body>
 </html>
 

@@ -13,9 +13,7 @@
 	<script	src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
-
 <style>
-
 .container {
   width: 90%;
   height: 70%;
@@ -26,10 +24,7 @@
   width: 100%;
   height: 80%;
   margin: auto;
-  
-  
 }
-
 .modal-content{
 	width: 65%;
 	
@@ -37,10 +32,7 @@
 	vertical-align: middle;
 	horizontal-align: middle;
 	/* padding-top: 10%;
-	padding-bottom: 10%; */
-	
-	
-	
+	padding-bottom: 10%; */	
 }
 </style>
 </head>
@@ -121,18 +113,13 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	
-	
 	<script>
 		// .modal(옵션)
 		$("#myModal").modal({
 			$("#myModal").modal("show");
 			backdrop:false, // backdrop 여부
 			show:false // 로딩 시점에 modal 을 띄울지 여부
-			
 		});
-		
-		
 	</script>
 
 </body>
