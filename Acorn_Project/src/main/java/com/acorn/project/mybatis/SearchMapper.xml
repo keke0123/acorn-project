@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="search">
+	<select id="getList" parameterType="string" resultType="searchDto">
+	SELECT a.nick, a.name, a.id, b.count_follow, a.orgfilename
+	FROM (
+	    	SELECT id_follow, count(id_follow) AS count_follow
+	    	FROM acorn_follow
+	    	GROUP BY id_follow
+        ) b, (
+			SELECT nick, name, id, orgfilename
+			FROM acorn_user
+			<if test="value != null">
+				WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
+			</if>
+		) a
+    WHERE b.id_follow = a.id
+	</select>
+	<select id="getListTag" parameterType="string" resultType="searchDto">
+		SELECT a.nick, a.name, b.id_writer as id, b.count_tag as count
+		FROM (
+			SELECT id_writer, count(id_writer) AS count_tag
+			FROM
+			(
+				SELECT b.id_writer
+			    FROM
+				(
+					SELECT num_board, tag
+					FROM acorn_tag
+					<if test="value != null">
+						WHERE tag LIKE '%'||#{keyword}||'%'
+					</if> 
+				) t, acorn_board b
+				WHERE b.num_board = t.num_board
+			)
+			GROUP BY id_writer
+		) b, acorn_user a
+		WHERE b.id_writer=a.id
+		ORDER BY count_tag DESC
+	</select>
+	<select id="getListHuman" parameterType="string" resultType="searchDto">
+		SELECT a.nick, a.name, a.id, b.count_follow, a.orgfilename
+	FROM (
+	    	SELECT id_follow, count(id_follow) AS count_follow
+	    	FROM acorn_follow
+	    	GROUP BY id_follow
+        ) b, (
+			SELECT nick, name, id, orgfilename
+			FROM acorn_user
+			<if test="value != null">
+				WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
+			</if>
+		) a
+    WHERE b.id_follow = a.id
+	</select>
+	<select id="getListDefault" resultType="searchDto">
+		SELECT a.nick, a.name, a.id, b.count_follow, a.orgfilename
+	FROM (
+    	SELECT id_follow, count(id_follow) AS count_follow
+    	FROM acorn_follow
+    	GROUP BY id_follow
+        ) b, (
+					SELECT nick, name, id, orgfilename
+					FROM acorn_user
+					) a
+    WHERE b.id_follow = a.id
+	
+	</select>
+	<select id="getUserOwnList" parameterType="string" resultType="searchDto">
+		SELECT u.orgFileName ,u.id , u.nick ,lc.lcount , fwc.countFollow , fwlerc.countFollower
+	    FROM acorn_user u
+	        LEFT OUTER JOIN
+	            (SELECT id_writer ,count(id_writer) as lcount 
+	            FROM acorn_board 
+	            GROUP by id_writer) lc
+	        ON lc.id_writer=u.id
+	            LEFT OUTER JOIN
+	                (SELECT id_follow, count(id_follow) AS countFollow
+	                FROM acorn_follow
+	                GROUP BY id_follow) fwc
+	            ON u.id=fwc.id_follow
+	                LEFT OUTER JOIN
+	                    (SELECT id_follower, count(id_follower) AS countFollower
+	                    FROM acorn_follow
+	                    GROUP BY id_follower) fwlerc
+	                ON u.id=fwlerc.id_follower
+	    WHERE u.id = #{id}
+	</select>
+	<select id="getBoardList" parameterType="string" resultType="searchDto">
+		select b.num_board, p.orgfilename as p_orgfilename
+		from 
+		    (
+		        select num_board
+		        from acorn_board
+		        where id_writer=#{id}
+		    ) b, acorn_picture p
+		WHERE b.num_board=p.num_board
+	</select>
+		<!-- OR writer LIKE '%'||#{writer}||'%' -->
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

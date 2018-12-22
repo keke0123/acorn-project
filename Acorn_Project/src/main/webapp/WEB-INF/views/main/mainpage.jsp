@@ -190,7 +190,8 @@
 <body ng-controller="myCtrl">
 	<div class="container" style="margin-top: 150px;">
 		<div class="col-md-7 col-sm-7 col-xs-12 col-sm-offset-3">
-			<a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a>
+			<a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br />
+			<a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br />
 			<!-- ng-init 으로 index 값을 list 형식으로 저장할수 있다. -->
 			<div class="panel panel-default" ng-repeat="tmp in boardList" ng-init="boardIndex=$index">
 				<div class="panel-heading" style="background-color: white;">
@@ -286,7 +287,6 @@
 			</div>
 		</div>
 	</div>
-	<button ng-click="getData()">정보 가져오기</button>
 </body>
 </html>
 
