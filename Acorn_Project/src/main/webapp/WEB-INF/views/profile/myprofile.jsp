@@ -11,6 +11,28 @@
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <title>Insert title here</title>
+<style>
+	.modal-content .container {
+	  width: 90%;
+	  height: 70%;
+	  margin:  auto;
+	}
+	.modal-content .panel{
+	
+	  width: 100%;
+	  height: 80%;
+	  margin: auto;
+	  margin-bottom: 20px;
+	}
+	.modal-content{
+		width: 65%;
+		margin: auto;
+		vertical-align: middle;
+		horizontal-align: middle;
+		/* padding-top: 10%;
+		padding-bottom: 10%; */	
+	}
+</style>
 <script>
 	angular.module("myApp", [])
 	.controller("myCtrl", function($scope, $http){
@@ -70,6 +92,29 @@
 </script>
 </head>
 <body ng-controller="myCtrl">
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">Acorn</a>
+		<!-- <button class="navbar-toggle" data-toggle="collapse" data-target="#three">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button> -->
+	</div>
+	<div class="collapse navbar-collapse" id="three">
+		<ul class="nav navbar-nav">
+			<li><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
+			<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a></li>
+		</ul>
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" />
+			</div>
+			<button type="submit" class="btn btn-warning">검색</button>
+		</form>
+	</div>
+</div>
 <div class="container" style="margin-top:150px;">
 	<h3 align="center">프로필 편집</h3>
 	<div class="row " style="border:1px solid #BDBDBD;">
@@ -178,6 +223,53 @@
 		</div>
 	</div>
 </div>
+	<!-- 사진 업로드 모달 -->
+	<div class="modal fade" id="myModal2">
+		<!-- modal-lg  | default | modal-sm -->	
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" >
+				<div class="modal-body" id = "loadModalBody" >
+				<!-- 업로드 폼 Modal -->	
+				<div class="container">
+					<div style="width: 480px; margin: auto;">
+						<div class="panel panel-primary"  >
+							<form id="upload-image-form" method="post" enctype="multipart/form-data">			
+								<label for="content"></label>					
+								<div class="panel-body">								
+									<div class="form-group">
+										<!-- <input class="form-control" rows = "5" type="text" name="content" id="content"/> -->
+										<textarea name="content" id="content" rows="5" class = "form-control" placeholder="오늘 기분이 어떻신가요?"></textarea>
+									</div>							
+									<input type="file" name="file" id="myFile" required>
+									<div id="image-preview-div" style="display: none">
+										<img id="preview-img" src="">
+									</div>
+								</div>		
+								<div class="panel-footer">
+									<button class="btn  btn-primary" id="upload-button" type="submit" disabled>업로드</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+								</div>
+							</form>
+						</div>				
+					</div>
+			<!-- 여기까지!!!!! -->
+						<br>
+						<div class="alert alert-info" id="loading" style="display: none;"
+							role="alert">
+							Uploading image...
+							<div class="progress">
+								<div class="progress-bar progress-bar-striped active"
+									role="progressbar" aria-valuenow="45" aria-valuemin="0"
+									aria-valuemax="100" style="width: 100%"></div>
+							</div>
+						</div>
+					<div id="message">
+					</div>
+				</div>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 <script>
 $("#pwdForm").on("submit", function(){

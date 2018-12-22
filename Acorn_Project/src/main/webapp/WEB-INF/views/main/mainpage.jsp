@@ -26,20 +26,20 @@
 		font-size:30px;
 		margin-right: 30px;
 	}
-	.container {
+	.modal-content .container {
 	  width: 90%;
 	  height: 70%;
 	  margin:  auto;
 	}
-	.panel{
+	.modal-content .panel{
 	
 	  width: 100%;
 	  height: 80%;
 	  margin: auto;
+	  margin-bottom: 20px;
 	}
 	.modal-content{
 		width: 65%;
-		
 		margin: auto;
 		vertical-align: middle;
 		horizontal-align: middle;
@@ -217,33 +217,33 @@
 
 </head>
 <body ng-controller="myCtrl">
-<div class="navbar navbar-default navbar-fixed-top">
-	<div class="navbar-header">
-		<a href="#" class="navbar-brand">Acorn</a>
-		<button class="navbar-toggle" data-toggle="collapse" data-target="#three">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand">Acorn</a>
+			<!-- <button class="navbar-toggle" data-toggle="collapse" data-target="#three">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button> -->
+		</div>
+		<div class="collapse navbar-collapse" id="three">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
+				<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
+				<li><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a></li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search" />
+				</div>
+				<button type="submit" class="btn btn-warning">검색</button>
+			</form>
+		</div>
 	</div>
-	<div class="collapse navbar-collapse" id="three">
-		<ul class="nav navbar-nav">
-			<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
-			<li><a href="#two">Two</a></li>
-		</ul>
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search" />
-			</div>
-			<button type="submit" class="btn btn-warning">검색</button>
-		</form>
-	</div>
-</div>
 	<div class="container" style="margin-top: 150px;">
 		<div class="col-md-7 col-sm-7 col-xs-12 col-sm-offset-3">
 			<%-- <a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br /> --%>
 			<a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br />
-			<a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a><br />
 			<!-- ng-init 으로 index 값을 list 형식으로 저장할수 있다. -->
 			<div class="panel panel-default" ng-repeat="tmp in boardList" ng-init="boardIndex=$index">
 				<div class="panel-heading" style="background-color: white;">
