@@ -3,6 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+	<typeAliases>
+		<typeAlias type="com.acorn.project.users.dto.UsersDto" alias="usersDto"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/acorn/project/mybatis/UsersMapper.xml"/>
+	</mappers>
 	
 </configuration>
 
