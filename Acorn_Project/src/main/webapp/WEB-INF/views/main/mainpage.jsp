@@ -211,6 +211,40 @@
 				});
 			}
 		}
+		$scope.searchList=[];
+		$scope.searchValue="";
+		$scope.searchValue2="";
+		$scope.selectValue="pop";
+		
+		$scope.onClick=function(a){
+			console.log(a);
+		}; 
+		console.log($scope.selectValue);
+		console.log($scope.searchValue);
+		$scope.getData=function(msg){
+			$scope.searchValue=msg;
+			$scope.searchValue2=msg;
+			//console.log($scope.searchValue);
+			
+			$http({
+				url:"${pageContext.request.contextPath}/search/Search_like.do",
+				method:"get",
+				params:{"keyword":$scope.searchValue,"keyword2":$scope.selectValue}
+	
+			}).success(function(data){
+				console.log($scope.selectValue);
+				console.log(data);
+				$scope.searchList=data;
+			});
+		};
+		$scope.getChange=function(){
+			$scope.searchList=[];
+			$scope.getData();
+		};
+		$scope.test=function(test){
+			console.log("test : "+test);
+		};
+		//$scope.getData();
 		
 	});
 </script>
@@ -234,16 +268,16 @@
 			</ul>
 			<form class="navbar-form navbar-right">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search" />
+					<input type="text" class="form-control" ng-model="searchValue" placeholder="Search" />
 				</div>
-				<button type="submit" class="btn btn-warning">검색</button>
+				<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#myModal4" ng-click="getData(searchValue);test(searchValue2)">검색</button>
 			</form>
 		</div>
 	</div>
 	<div class="container" style="margin-top: 150px;">
 		<div class="col-md-7 col-sm-7 col-xs-12 col-sm-offset-3">
 			<%-- <a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br /> --%>
-			<a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br />
+			<%-- <a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br /> --%>
 			<!-- ng-init 으로 index 값을 list 형식으로 저장할수 있다. -->
 			<div class="panel panel-default" ng-repeat="tmp in boardList" ng-init="boardIndex=$index">
 				<div class="panel-heading" style="background-color: white;">
@@ -385,6 +419,52 @@
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- 모달로 뜨는 검색 결과창 -->
+	<div class="modal fade" id="myModal4">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <button type="button" class="close" data-dismiss="modal"><span>&times;</span><span class="sr-only">모달 닫기</span></button>
+	        <div class="modal-title">
+	        	<!-- 검색어 입력 -->
+		 		<div class="mb-3 mx-sm-3 mb-2">
+			   		<input type="text" ng-keyup="getData(searchValue2)" ng-model="searchValue2" class="form-control" aria-describedby="basic-addon2"
+			   			id="innerSearch" placeholder="검색조건을 입력해주세요">
+		 		</div>		
+	        	<!-- 카테고리 -->
+		   		<div class="form-group mx-sm-3 mb-2" id="">    	
+			    	<ul class="nav nav-pills nav-justified">
+					    <li class="active">
+					      <a href="#a" ng-click="selectValue='pop'; getData(searchValue);" data-toggle="tab">인기</a>
+					    </li>
+					    <li>
+					      <a href="#a" ng-click="selectValue='human'; getData(searchValue);" data-toggle="tab">사람</a>
+					    </li>
+					    <li>
+					      <a href="#a" ng-click="selectValue='tag'; getData(searchValue);" data-toggle="tab">태그</a>
+					    </li>
+				    </ul>
+		  		</div>
+		  				
+	        </div>   
+	      <!-- 검색 결과창 modal-body -->      
+	      	<div class="tab-contents">
+	      		<div class="tab-pane fade in active" id="a">
+					<table class="table table-striped table-bordered table-hover">
+						<tbody class="tab-pane">
+							<tr data-link="row" class="rowlink" ng-required="true" ng-model="ulli" ng-repeat="tmp in searchList">
+								<td><img ng-src="${pageContext.request.contextPath}/upload/{{tmp.orgFileName}}" width="50" style="border-radius: 50%; display:inline-block;" alt="" />
+								<a href="${pageContext.request.contextPath}/search/userpage.do?id={{tmp.id}}" style="display:inline-block">{{tmp.name}} {{tmp.id}}</a>{{tmp.count}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	      </div>
+	     
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 </body>
 </html>

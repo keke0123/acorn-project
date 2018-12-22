@@ -21,8 +21,14 @@
 	</c:otherwise>
 </c:choose>
 	<h3>home</h3>
+<<<<<<< HEAD
 
 	<a href="users/signup_form.do">회원가입</a>
 	<a href="users/login_form.do">로그인</a>
+=======
+	<a href="search/list.do">인기인리스트보기</a>
+	<a href="search/test.do">모달 테스트</a>
+</div>
+>>>>>>> refs/heads/test
 </body>
 </html>

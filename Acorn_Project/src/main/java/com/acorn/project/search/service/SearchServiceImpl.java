@@ -34,7 +34,8 @@ public class SearchServiceImpl implements SearchService{
 		String value2=request.getParameter("keyword2");
 		
 		String value=request.getParameter("keyword");
-		System.out.print(value2);
+		System.out.println(value2);
+		System.out.println(value);
 		List<SearchDto> list = null;
 		if(value2.equals("pop")) {
 			list = searchDao.getList(value);
@@ -42,6 +43,9 @@ public class SearchServiceImpl implements SearchService{
 			list = searchDao.getListTag(value);
 		}else {
 			list = searchDao.getListHuman(value);
+		}
+		for(int i=0; i<list.size();i++) {
+			System.out.println(list.get(i));
 		}
 		return list;
 	}
@@ -56,7 +60,7 @@ public class SearchServiceImpl implements SearchService{
 	@Override
 	public List<SearchDto> getBoardList(HttpServletRequest request) {
 		String value = request.getParameter("id");	
-		System.out.println("service value : " + value);
+		//System.out.println("service value : " + value);
 		return searchDao.getBoardPicture(value);
 	}
 	

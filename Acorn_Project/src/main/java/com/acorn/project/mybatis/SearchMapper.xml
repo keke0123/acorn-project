@@ -14,7 +14,7 @@
 				WHERE nick LIKE '%'||#{keyword}||'%' OR name LIKE '%'||#{keyword}||'%'
 			</if>
 		) a
-    WHERE b.id_follow = a.id
+    WHERE b.id_follow(+) = a.id
 	</select>
 	<select id="getListTag" parameterType="string" resultType="searchDto">
 		SELECT a.nick, a.name, b.id_writer as id, b.count_tag as count
@@ -35,7 +35,7 @@
 			)
 			GROUP BY id_writer
 		) b, acorn_user a
-		WHERE b.id_writer=a.id
+		WHERE b.id_writer(+)=a.id
 		ORDER BY count_tag DESC
 	</select>
 	<select id="getListHuman" parameterType="string" resultType="searchDto">
@@ -63,7 +63,7 @@
 					SELECT nick, name, id, orgfilename
 					FROM acorn_user
 					) a
-    WHERE b.id_follow = a.id
+    WHERE b.id_follow(+) = a.id
 	
 	</select>
 	<select id="getUserOwnList" parameterType="string" resultType="searchDto">

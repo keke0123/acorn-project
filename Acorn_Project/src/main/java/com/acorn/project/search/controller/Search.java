@@ -26,6 +26,11 @@ public class Search {
 	@Autowired
 	private SearchService service;
 	
+	@RequestMapping("/search/test")
+	public String gettest() {
+		return "search/test";
+	}
+	
 	/*인기 검색*/
 	@RequestMapping("/search/list")
 	public ModelAndView getList(HttpServletRequest request ) {
