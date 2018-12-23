@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +65,32 @@ public class Search {
 	public List<SearchDto> getBoard(HttpServletRequest request){
 		return service.getBoardList(request);
 	}
-
+	@RequestMapping("/search/search_followed")
+	@ResponseBody
+	public SearchDto searchFollowed(HttpSession session, @RequestParam String id_follow) {
+		String id_follower=(String)session.getAttribute("id");
+		//System.out.println("id_follow");
+		int isFollowed=service.checkFollowed(id_follower, id_follow);
+		SearchDto dto = new SearchDto();
+		dto.setIsFollowed(isFollowed);
+		System.out.println(dto.getIsFollowed());
+		return dto;
+	}
+	@RequestMapping("/search/do_follow")
+	@ResponseBody
+	public boolean doFollow(HttpSession session, @RequestParam String id_follow) {
+		String id_follower=(String)session.getAttribute("id");
+		//System.out.println("id_follow");
+		service.getFollow(id_follower, id_follow);
+		return true;
+	}
+	@RequestMapping("/search/remove_follow")
+	@ResponseBody
+	public boolean removeFollow(HttpSession session, @RequestParam String id_follow) {
+		String id_follower=(String)session.getAttribute("id");
+		//System.out.println("id_follow");
+		service.notFollow(id_follower, id_follow);
+		return true;
+	}
 	
 }

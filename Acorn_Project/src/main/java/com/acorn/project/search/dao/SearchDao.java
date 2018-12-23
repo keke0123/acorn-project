@@ -16,6 +16,9 @@ public interface SearchDao {
 	public List<SearchDto> getListHuman(String value);
 	public SearchDto getUserOwnList(String value);
 	public List<SearchDto> getBoardPicture(String value);
+	public int isFollowed(SearchDto dto);
+	public void isFollow(SearchDto dto);
+	public void isNotFollow(SearchDto dto);
 /*	List<SearchDto> list = searchDao.getListTag(value);
 	}else {
 		List<SearchDto> list = searchDao.getListHuman(value);*/

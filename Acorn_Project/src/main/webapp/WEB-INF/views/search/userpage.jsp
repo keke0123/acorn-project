@@ -86,6 +86,53 @@
 				console.log("test : "+test);
 			};
 			//$scope.getData();
+			// 팔로우 된 사람인지, 본인인지 체크해서 저장할 변수
+			// 3=본인, 0=not followed, 1=followed
+			$scope.isFollowed=0;
+			$scope.getFollowCheck=function(){
+				console.log("hi");
+				$http({
+					url:"${pageContext.request.contextPath}/search/search_followed.do",
+					method:"get",
+					params:{
+						"id_follow":"${param.id}"
+					}
+				}).success(function(data){
+					console.log(data);
+					$scope.isFollowed=data.isFollowed;
+					console.log("isFollowed : "+$scope.isFollowed);
+				});
+			};
+			$scope.getFollowCheck();
+			$scope.doFollow=function(){
+				console.log("doFollow");
+				$http({
+					url:"${pageContext.request.contextPath}/search/do_follow.do",
+					method:"get",
+					params:{
+						"id_follow":"${param.id}"
+					}
+				}).success(function(data){
+					console.log(data);
+					$scope.isFollowed=1;
+					console.log("isFollowed : "+$scope.isFollowed);
+				});
+			};
+			$scope.removeFollow=function(){
+				console.log("removeFollow");
+				$http({
+					url:"${pageContext.request.contextPath}/search/remove_follow.do",
+					method:"get",
+					params:{
+						"id_follow":"${param.id}"
+					}
+				}).success(function(data){
+					console.log(data);
+					$scope.isFollowed=0;
+					console.log("isFollowed : "+$scope.isFollowed);
+				});
+			};
+			
 		});
 	</script>
 	<style>
@@ -157,7 +204,9 @@
 		</div><!--col-xs-3-->
 	    <div class="col-xs-7 text-center">
 			<h1 style="font-weight:lighter; display: inline-block;">{{dto.nick}}</h1>
-			<button onclick="fn_movePage('profile')" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button>
+			<button ng-if="isFollowed==3" onclick="location.href='${pageContext.request.contextPath}/profile/myprofile.do'" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button>
+			<button ng-if="isFollowed==0" ng-click="doFollow()" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >팔로우 하기</button>
+			<button ng-if="isFollowed==1" ng-click="removeFollow()" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >팔로우 해제</button>
 			<span class="glyphicon glyphicon-cog" style="font-size: 23px; margin-left: 5px;"  ></span>
 			<br/>
 			<div id="profileInfo"> 

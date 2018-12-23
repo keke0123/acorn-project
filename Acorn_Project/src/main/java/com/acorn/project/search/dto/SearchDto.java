@@ -16,11 +16,12 @@ public class SearchDto {
 	private int countFollower;
 	private int num_board;
 	private String p_orgfilename;
+	private int isFollowed;
 	
 	public SearchDto() {}
 
 	public SearchDto(int num, String id, String nick, String orgFileName, String name, String id_follow,
-			int countFollow, int lcount, int countFollower, int num_board, String p_orgfilename) {
+			int countFollow, int lcount, int countFollower, int num_board, String p_orgfilename, int isFollowed) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -33,6 +34,7 @@ public class SearchDto {
 		this.countFollower = countFollower;
 		this.num_board = num_board;
 		this.p_orgfilename = p_orgfilename;
+		this.isFollowed = isFollowed;
 	}
 
 	public int getNum() {
@@ -122,6 +124,16 @@ public class SearchDto {
 	public void setP_orgfilename(String p_orgfilename) {
 		this.p_orgfilename = p_orgfilename;
 	}
+
+	public int getIsFollowed() {
+		return isFollowed;
+	}
+
+	public void setIsFollowed(int isFollowed) {
+		this.isFollowed = isFollowed;
+	}
+
+	
 
 
 }

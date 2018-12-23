@@ -49,6 +49,23 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectList("search.getBoardList", value);
 	}
 
+	@Override
+	public int isFollowed(SearchDto dto) {
+		return session.selectOne("search.isFollowed", dto);
+	}
+
+	@Override
+	public void isFollow(SearchDto dto) {
+		session.update("search.doFollow", dto);
+		
+	}
+
+	@Override
+	public void isNotFollow(SearchDto dto) {
+		session.delete("search.removeFollow", dto);
+		
+	}
+
 	
 
 }

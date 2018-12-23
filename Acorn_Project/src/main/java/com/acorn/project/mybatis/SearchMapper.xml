@@ -97,7 +97,20 @@
 		WHERE b.num_board=p.num_board
 	</select>
 		<!-- OR writer LIKE '%'||#{writer}||'%' -->
-
+		
+	<select id="isFollowed" parameterType="searchDto" resultType="int">
+		SELECT count(id_follower)
+		FROM acorn_follow 
+		WHERE id_follower=#{id} AND id_follow=#{id_follow}
+	</select>
+	<insert id="doFollow" parameterType="searchDto">
+		INSERT INTO acorn_follow
+		VALUES (#{id_follow}, #{id}, SYSDATE)
+	</insert>
+	<delete id="removeFollow" parameterType="searchDto">
+		DELETE FROM acorn_follow
+		WHERE id_follow=#{id_follow} AND id_follower=#{id}
+	</delete>
 </mapper>
 
 

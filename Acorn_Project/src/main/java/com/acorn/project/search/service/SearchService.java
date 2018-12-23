@@ -14,4 +14,8 @@ public interface SearchService {
 	
 	public SearchDto getUserOwnList(HttpServletRequest request);
 	public List<SearchDto> getBoardList(HttpServletRequest request);
+	
+	public int checkFollowed(String id_follower, String id_follow);
+	public void getFollow(String id_follower, String id_follow);
+	public void notFollow(String id_follower, String id_follow);
 }

@@ -63,6 +63,33 @@ public class SearchServiceImpl implements SearchService{
 		//System.out.println("service value : " + value);
 		return searchDao.getBoardPicture(value);
 	}
+
+	@Override
+	public int checkFollowed(String id_follower, String id_follow) {
+		SearchDto dto = new SearchDto();
+		dto.setId(id_follower);
+		dto.setId_follow(id_follow);
+		if(id_follower.equals(id_follow)) {
+			return 3;
+		}
+		return searchDao.isFollowed(dto);
+	}
+
+	@Override
+	public void getFollow(String id_follower, String id_follow) {
+		SearchDto dto = new SearchDto();
+		dto.setId(id_follower);
+		dto.setId_follow(id_follow);
+		searchDao.isFollow(dto);
+	}
+
+	@Override
+	public void notFollow(String id_follower, String id_follow) {
+		SearchDto dto = new SearchDto();
+		dto.setId(id_follower);
+		dto.setId_follow(id_follow);
+		searchDao.isNotFollow(dto);
+	}
 	
 
 	
