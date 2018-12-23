@@ -43,7 +43,7 @@
 							</div>
 							<div class="filebox">
 								<input type="text" name="tag" placeholder="tag를 입력하세요">		
-								<input  type="file" name="file" class="myFile" required>	
+								<input  type="file" name="file" id="myFile" class="myFile" required>	
 							</div>
 							<div id="image-preview-div" style="display: none">
 								<img id="preview-img" src="">

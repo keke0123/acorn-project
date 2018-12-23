@@ -130,7 +130,7 @@
 		}; 
 		console.log($scope.selectValue);
 		console.log($scope.searchValue);
-		$scope.getData=function(msg){
+		$scope.getData2=function(msg){
 			$scope.searchValue=msg;
 			$scope.searchValue2=msg;
 			//console.log($scope.searchValue);
@@ -148,7 +148,7 @@
 		};
 		$scope.getChange=function(){
 			$scope.searchList=[];
-			$scope.getData();
+			$scope.getData2();
 		};
 		$scope.test=function(test){
 			console.log("test : "+test);
