@@ -57,7 +57,9 @@ public class ProfileServiceImpl implements ProfileService {
 					e.printStackTrace();
 				}
 				System.out.println(saveFileName);
-				dto.setOrgfilename(saveFileName);
+				if(!orgFileName.equals("")) {
+					dto.setOrgfilename(saveFileName);
+				}
 				//FileDao 객체를 이용해서 DB 에 저장하기
 				dao.update(dto);		
 	}
