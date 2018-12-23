@@ -62,11 +62,16 @@
 
 	}
 	
+	.alert1{
+		text-align:center;
+	}
+	
 	
 </style>
 <script>
 	angular.module("myApp", [])
 	.controller("myCtrl", function($scope, $http){
+		$scope.data2=true;
 		//전달된 object 의 내용을 serialize 문자열로 반환하는 함수 
 		function getSerialize(obj){
 			var query;
@@ -98,26 +103,31 @@
 		//$scope.pwdForm={};
 		$scope.updatePwd=function(e){
 			e.preventDefault();
-			console.log("aa");
  			$http({
 				url:"../selectpwd.do",
 				method:"get",
 				params:{
 					'prev_pwd':$scope.pwdForm.prev_pwd
 				}
-			}).success(function(data){
-				console.log(data);
-				if(data=='false'){
+			}).success(function(data1){
+				console.log(data1);
+				if(data1=='false'){
 					console.log("비밀번호를 잘못 입력하셧습니다.");
-					//
-					document.getElementById("pwdForm").submit();
+					$scope.data1=data1;
+					//document.getElementById("pwdForm").submit();
 					
 				}else{
-					document.getElementById("pwdForm").submit();
+					
+					if($scope.pwdForm.new_pwd1 == $scope.pwdForm.new_pwd2){
+						document.getElementById("pwdForm").submit();
+					}else{
+						$scope.data2=false;
+						console.log($scope.data2);
+					}
 				}
 				
 			});
-			
+ 			
 		};
 		
 		$scope.searchList=[];
@@ -263,6 +273,14 @@
 										<input type="password" class="form-control" name="pwd2" id="pwd2" ng-required="true" ng-model="pwdForm.new_pwd2">
 									</div>
 								</div>
+								<div ng-show="data1=='false'" class="form-group alert1">
+									<label for="pwderror" class="col-sm-3 control-label"></label>
+									<div class="alert alert-danger">비밀번호가 일치하지 않습니다</div>
+								</div>
+								<div ng-show="!data2" class="form-group alert1">
+									<label for="pwderror" class="col-sm-3 control-label"></label>
+									<div class="alert alert-danger">비밀번호 확인을 잘못 입력하셨습니다</div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-6 col-sm-offset-3">
 										<button class="btn btn-primary" type="submit" ng-click="updatePwd($event)">비밀번호 변경</button>
@@ -277,16 +295,6 @@
 	</div>
 	</div> <!-- div container -->
 <script>
-$("#pwdForm").on("submit", function(){
-	//입력한 두 비밀번호가 일치하는지 확인해서 일치하지 않으면 폼전송 막기
-	var pwd=$("#pwd").val();
-	var pwd2=$("#pwd2").val();
-	if(pwd != pwd2){
-		alert("비밀번호를 확인 하세요!");
-		return false;//폼전송 막기
-	}
-});
-
 $(".menu").click(function(){
 	
 	$(".nav-stacked > li").removeClass("a_click");
