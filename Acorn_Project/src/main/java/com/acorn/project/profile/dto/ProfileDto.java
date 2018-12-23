@@ -7,6 +7,7 @@ public class ProfileDto {
 	private String nick;
 	private String pwd;
 	private String name;
+	private String status;
 	private String phone;
 	private String email;
 	private String orgfilename;
@@ -14,6 +15,20 @@ public class ProfileDto {
 	private MultipartFile file;
 	
 	public ProfileDto(){}
+
+	public ProfileDto(String id, String nick, String pwd, String name, String status, String phone, String email,
+			String orgfilename, MultipartFile file) {
+		super();
+		this.id = id;
+		this.nick = nick;
+		this.pwd = pwd;
+		this.name = name;
+		this.status = status;
+		this.phone = phone;
+		this.email = email;
+		this.orgfilename = orgfilename;
+		this.file = file;
+	}
 
 	public String getId() {
 		return id;
@@ -47,6 +62,14 @@ public class ProfileDto {
 		this.name = name;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getPhone() {
 		return phone;
 	}
@@ -76,19 +99,6 @@ public class ProfileDto {
 	}
 
 	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-
-	public ProfileDto(String id, String nick, String pwd, String name, String phone, String email, String orgfilename,
-			MultipartFile file) {
-		super();
-		this.id = id;
-		this.nick = nick;
-		this.pwd = pwd;
-		this.name = name;
-		this.phone = phone;
-		this.email = email;
-		this.orgfilename = orgfilename;
 		this.file = file;
 	}
 

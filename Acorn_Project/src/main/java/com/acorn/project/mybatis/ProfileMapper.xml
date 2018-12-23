@@ -3,7 +3,7 @@
 <mapper namespace="profile">
 	<select id="getuserprofile" parameterType="string" resultType="profileDto">
 		SELECT 
-		id, nick, name, phone, email, orgfilename, pwd
+		id, nick, name, status, phone, email, orgfilename, pwd
 		FROM ACORN_USER
 		WHERE
 		 id=#{id} 
