@@ -35,7 +35,7 @@
 			)
 			GROUP BY id_writer
 		) b, acorn_user a
-		WHERE b.id_writer(+)=a.id
+		WHERE b.id_writer=a.id
 		ORDER BY count_tag DESC
 	</select>
 	<select id="getListHuman" parameterType="string" resultType="searchDto">
