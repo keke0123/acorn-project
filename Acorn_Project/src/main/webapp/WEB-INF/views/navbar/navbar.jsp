@@ -13,7 +13,7 @@
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
 			<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
-			<li><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보 수정페이지</a></li>
+			<li><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보</a></li>
 		</ul>
 		<form class="navbar-form navbar-right">
 			<div class="form-group">
