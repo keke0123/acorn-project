@@ -24,8 +24,9 @@
 				email=#{email},
 			</if>	
 			<if test="orgfilename != null">
-				orgfilename=#{orgfilename}
+				orgfilename=#{orgfilename},
 			</if>	
+				status=#{status}
 		</set>
 		WHERE id=#{id}
 	</update>
