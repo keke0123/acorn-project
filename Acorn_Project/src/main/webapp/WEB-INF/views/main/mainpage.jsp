@@ -33,6 +33,7 @@ a.glyphicon{
 	angular.module("myApp", [])
 	.controller("myCtrl", function($scope, $http){
 		// 
+		$scope.isNull=false;
 		$scope.boardList=[];
 		// session 의 id 값을 바탕으로 게시판 data 가져오기
 		$scope.getData=function(){
@@ -41,8 +42,12 @@ a.glyphicon{
 				method:"get"
 			}).success(function(data){
 				//서버에서 응답된 데이터를 모델에 연결
-				console.log(data);
 				$scope.boardList=data;
+				console.log("bd:"+$scope.boardList);
+				if(data == 0){
+					$scope.isNull=true;
+				}
+				console.log($scope.isNull);
 			});
 		};
 		// 초기에 한번 데이타 가져오기
@@ -238,11 +243,13 @@ a.glyphicon{
 		<%-- <a href="${pageContext.request.contextPath}/gallery/list.do">이미지 리스트 화면으로 이동</a><br /> --%>
 		<%-- <a href="${pageContext.request.contextPath}/search/list.do">인기인리스트보기</a><br /> --%>
 		<!-- ng-init 으로 index 값을 list 형식으로 저장할수 있다. -->
+		<div ng-show="isNull"><p style="text-align:center;font-size:15px;">
+			<br /><strong>아직 아무도 팔로우 하고 있지 않네요 <br /> 좋아하는 주제나 친구들을 찾아 팔로우 해보세요!</strong></p></div>
 		<div class="panel panel-default" ng-repeat="tmp in boardList" ng-init="boardIndex=$index">
 			<div class="panel-heading" style="background-color: white;">
 				<h3 class="panel-title">
 					<img ng-src="${pageContext.request.contextPath}/upload/{{tmp.thumbNail}}" width="50" style="border-radius: 50%;">
-					{{tmp.id_writer}} // {{boardIndex}}
+					<strong>{{tmp.id_writer}}</strong> <!-- // {{boardIndex}} -->
 					<a href="#myModal3" style="float: right;" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 5px;"></span></a>
 				</h3>
 	            <div class="modal fade" id="myModal3">

@@ -19,6 +19,7 @@
 	var myApp=angular.module("myApp",[]);
 	myApp.controller("myCtrl",function($scope,$http){
 		//
+		$scope.isNull=false;
 		$scope.dto={};
 		$scope.dtoList=[];
 		$scope.getData=function(){
@@ -40,6 +41,10 @@
 			}).success(function(data){
 				console.log(data);
 				$scope.dtoList=data;
+				
+				if(data == 0){
+					$scope.isNull=true;
+				}
 		
 				$(".imgLiquidFill").imgLiquid();
 			});
@@ -202,6 +207,8 @@
 	    </div><!--col-xs-7-->
 	</div>
 	<div class="postContent">
+		<div ng-show="isNull" style="align:center;"><p style="text-align:center;font-size:15px;">
+			<br /><strong>아직 등록된 사진이 없습니다 <br />사진을 친구들과 함께 공유해보세요</strong></p></div>
  		<div class="row" ng-repeat="tmp in dtoList" ng-switch on="$index%3">
 			<div class="insList col-xs-4" ng-switch-when="0">
 				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index}})">
