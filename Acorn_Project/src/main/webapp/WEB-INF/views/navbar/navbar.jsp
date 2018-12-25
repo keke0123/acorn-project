@@ -10,17 +10,22 @@
 		</button> -->
 	</div>
 	<div class="collapse navbar-collapse" id="three">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
-			<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
-			<li><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보</a></li>
-		</ul>
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="searchValue" placeholder="Search" />
-			</div>
-			<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#myModal4" ng-click="getData2(searchValue);test(searchValue2)">검색</button>
-		</form>
+		<div class="nav-logo">
+			<a href="picturelist.html" class="navbar-brand nav-fixed-1"></a>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
+				<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
+				<li><a href="${pageContext.request.contextPath}/profile/myprofile.do">회원정보</a></li>
+			</ul>
+		</div>
+		<div class="nav-logo">
+			<form class="navbar-form">
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="searchValue" placeholder="Search" />
+				</div>
+				<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#myModal4" ng-click="getData2(searchValue);test(searchValue2)">검색</button>
+			</form>
+		</div>
 	</div>
 </div>
 

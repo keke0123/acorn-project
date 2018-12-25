@@ -46,6 +46,21 @@
 		/* padding-top: 10%;
 		padding-bottom: 10%; */	
 	}
+	/* nav-logo 작업중 */
+	.nav-logo {
+	  width: 37.5%;
+	  position: relative;
+	  float: left;
+	}
+	.nav-fixed-1 {
+	  background: url(${pageContext.request.contextPath }/resources/images/rabbit_1.png);
+	  position:relative;
+	  top:10px;
+	  width: 30px;
+	  height: 30px;
+	  background-size: 30px 30px;
+	}
+
 
 </style>
 <script>
