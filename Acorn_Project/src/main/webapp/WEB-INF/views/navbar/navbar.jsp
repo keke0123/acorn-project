@@ -2,16 +2,11 @@
     pageEncoding="UTF-8"%>
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header">
-		<a href="#" class="navbar-brand">Acorn</a>
-		<!-- <button class="navbar-toggle" data-toggle="collapse" data-target="#three">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button> -->
+		<a href="#" class="navbar-brand"></a>
 	</div>
 	<div class="collapse navbar-collapse" id="three">
 		<div class="nav-logo">
-			<a href="picturelist.html" class="navbar-brand nav-fixed-1"></a>
+			<a href="${pageContext.request.contextPath}/main/mainpage.do" class="navbar-brand nav-fixed-1"></a>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="${pageContext.request.contextPath}/main/mainpage.do">메인페이지</a></li>
 				<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2">글쓰기</a></li>
@@ -20,10 +15,10 @@
 		</div>
 		<div class="nav-logo">
 			<form class="navbar-form">
-				<div class="form-group">
+				<div class="form-group nav-control">
 					<input type="text" class="form-control" ng-model="searchValue" placeholder="Search" />
 				</div>
-				<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#myModal4" ng-click="getData2(searchValue);test(searchValue2)">검색</button>
+				<button type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal4" ng-click="getData2(searchValue);test(searchValue2)"><i class="glyphicon glyphicon-search"></i></button>
 			</form>
 		</div>
 	</div>

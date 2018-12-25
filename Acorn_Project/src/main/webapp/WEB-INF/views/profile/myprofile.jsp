@@ -66,6 +66,21 @@
 		text-align:center;
 	}
 	
+	/* nav-logo 작업중 */
+	.nav-logo {
+	  width: 37.5%;
+	  position: relative;
+	  float: left;
+	}
+	.nav-fixed-1 {
+	  background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
+	  position:relative;
+	  width: 120px;
+	  height: 50px;
+	  margin-right:20px;
+	  background-size: 120px 50px;
+	  background-repeat: no-repeat;
+	}
 	
 </style>
 <script>

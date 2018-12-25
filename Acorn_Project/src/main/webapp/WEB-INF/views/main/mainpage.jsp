@@ -53,12 +53,13 @@
 	  float: left;
 	}
 	.nav-fixed-1 {
-	  background: url(${pageContext.request.contextPath }/resources/images/rabbit_1.png);
+	  background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
 	  position:relative;
-	  top:10px;
-	  width: 30px;
-	  height: 30px;
-	  background-size: 30px 30px;
+	  width: 120px;
+	  height: 50px;
+	  margin-right:20px;
+	  background-size: 120px 50px;
+	  background-repeat: no-repeat;
 	}
 
 
