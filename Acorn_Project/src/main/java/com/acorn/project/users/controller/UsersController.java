@@ -70,7 +70,7 @@ public class UsersController {
 		dto.setGoogle_id((String)session.getAttribute("gUid"));
 		service.addUser(mView, dto);
 		//나중에 메인페이지로 연결되도록 수정
-		mView.setViewName("users/greeting");
+		mView.setViewName("users/login_form");
 		session.setAttribute("gUid", "");
 		session.setAttribute("gEmail", "");
 		session.setAttribute("gName", "");
@@ -171,7 +171,7 @@ public class UsersController {
 		boolean isLogined=(boolean)session.getAttribute("isLogined");
 		System.out.println("isLogined : "+isLogined);
 		if(isLogined) {
-			System.out.println("test success");
+			//System.out.println("test success");
 			return "main/mainpage";
 		}else {
 			return "users/login";

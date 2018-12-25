@@ -197,7 +197,7 @@
 			    </div>
 			</div>
 			<br/>
-			<div style="font-size: 20px; font-weight: bold; margin-top: 15px;">acorn </div>
+			<div style="font-size: 20px; font-weight: bold; margin-top: 15px;"></div>
 	    </div><!--col-xs-7-->
 	</div>
 	<div class="postContent">

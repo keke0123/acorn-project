@@ -8,12 +8,15 @@
 <title>LOGIN</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 	angular.module("myApp",[])
 	.controller("myCtrl", function($scope, $http){
 		$scope.gS="${isSuccess}";
 		$scope.canUseId=false;
 		$scope.isSuccess=true;
+		
 		//id 입력란이 포커스를 잃었을 때 호출되는 함수
 		$scope.idCheck=function(){
 			
@@ -93,6 +96,22 @@
 		width: 20px;
 		height: 20px;
 	}
+	
+	.mainImgWrapper-1 {
+		width: 454px;
+   		height: 660px;
+   		margin-left: 55px;
+   		background: url(${pageContext.request.contextPath}/resources/images/main_01.png);
+	    background-size: 454px 618px;
+	    background-repeat: no-repeat;
+	}
+	.mainImgWrapper-1 > img {
+		width: 247px;
+	    height: 436px;
+	    margin-left: 148px;
+	    margin-top: 95px;
+	    position: absolute;
+	}
 </style>
 </head>
 <body ng-controller="myCtrl">
@@ -100,8 +119,10 @@
 	<div class="row">
 		<!-- image (left) -->
 		<div id="content-left" class="col-lg-5 col-sm-offset-1 hidden-sm hidden-xs" style="top:70px;">
-			<div class="mainImg">
-				<img src="${pageContext.request.contextPath}/resources/images/main1.png" />
+				<div class="mainImgWrapper-1">
+				<img src="${pageContext.request.contextPath}/resources/images/main_inappImage1.jpg" />  
+				<img src="${pageContext.request.contextPath}/resources/images/main_inappImage2.jpg"/>  
+				<img src="${pageContext.request.contextPath}/resources/images/main_inappImage3.jpg" />  
 			</div>
 		</div>
 		
@@ -147,15 +168,30 @@
 					<b>Google Login	</b>
 				</button></a><br /><br />
 			</div> <!-- panel end -->
-			
 			<!-- sign up -->
 			<div class="panel panel-default text-center">
 				<div class="panel-body" style="align:center;">
 					<p>계정이 없으신가요? <a href="${pageContext.request.contextPath}/users/signup_form.do">가입하기</a></p>
 				</div>
 			</div>
+			<!-- recaptcat -->
+			<div class="g-recaptcha"
+		          data-sitekey="6LcFcYEUAAAAAMBMeeUh0Rr6Q__wsPienQNERn0Y"
+		          data-callback="onSubmit"
+		          data-size="invisible">
+		    </div>
 		</div> <!-- login(right) end -->
 	</div>
 </div>
+<script>
+var imgs = $(".mainImgWrapper-1 img");
+var imgId = 1;
+setInterval(function() {
+	$(".mainImgWrapper-1 img").fadeOut(2000);
+	$(imgs[imgId-1]).fadeIn(2000);
+	if(imgId == 3) imgId = 1;
+	else imgId++
+}, 4000);
+</script>
 </body>
 </html>
