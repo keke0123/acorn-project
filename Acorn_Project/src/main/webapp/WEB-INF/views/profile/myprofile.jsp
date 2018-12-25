@@ -7,116 +7,45 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav-modal.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
 <title>Insert title here</title>
 <style>
-	.panel-primary{
-		height:100%;
-		width:100%;
-		magin: 0;
-		padding: 0;
-		margin-bottom:0px;
-	}
-	.modal-body{
-		margin:0;
-		padding: 0;
-	}
 	
-	.modal-footer{
-		margin:0;
-		padding:0;
-	}
+.profilePic{
+	height: 70px;
+	width: 70px; 
+	border-radius: 100%;
+}
+.nav-stacked > li > a{
+		color:black;
+		font-size:16px;
+	 	line-height: 20px;
+	 	padding: 16px 16px 16px 30px;
 
-	.modal-content{
-		
-		
-		width: 70%;
-		margin: auto;
-		vertical-align: middle;
-		horizontal-align: middle;
-		/*  padding-top: 10%;
-		padding-bottom: 10%;  */
-	}
-	
-	.profilePic{
-		height: 70px;
-		width: 70px; 
-		border-radius: 100%;
-	}
-	.nav-stacked > li > a{
-			color:black;
-			font-size:16px;
-		 	line-height: 20px;
-		 	padding: 16px 16px 16px 30px;
+}
+.nav-stacked > li > a:hover{
+	border-left :2px solid #BDBDBD ;
 
-	}
-	.nav-stacked > li > a:hover{
-		border-left :2px solid #BDBDBD ;
+}
+.a_click{
+		font-weight:bold;
+		border-left: 2px solid black;
+}
 
-	}
-	.a_click{
-			font-weight:bold;
-			border-left: 2px solid black;
-	}
-	
-	.col-xs-3{
-			font-size: 15px;
-			padding-right: 0;
-			padding-left: 0;
+.col-xs-3{
+		font-size: 15px;
+		padding-right: 0;
+		padding-left: 0;
 
-	}
-	
-	.alert1{
-		text-align:center;
-	}
-	
-	/* nav-logo 작업중 */
-	.nav-logo {
-	  width: 37.5%;
-	  position: relative;
-	  float: left;
-	}
-	.nav-fixed-1 {
-	  background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
-	  position:relative;
-	  width: 120px;
-	  height: 50px;
-	  margin-right:20px;
-	  background-size: 120px 50px;
-	  background-repeat: no-repeat;
-	}
-	
-	/* 파일 업로드 버튼 */
-	.btn-file{
-            position: relative;
-            overflow: hidden;
-     }
-     .btn-file input[type=file] {
-         position: absolute;
-         top: 0;
-             right: 0;
-         min-width: 100%;
-         min-height: 100%;
-         font-size: 100px;
-         text-align: right;
-         filter: alpha(opacity=0);
-         opacity: 0;
-         outline: none;
-         background: white;
-         cursor: inherit;
-         display: block;
-     }
-     
-     .insideSearch button{
-        position: absolute;
-		top: 1px;
-		right: 1px;
-		border:0px;
-	 }
-	
+}
+
+.alert1{
+	text-align:center;
+}
 </style>
 <script>
 	angular.module("myApp", [])

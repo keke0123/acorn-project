@@ -7,115 +7,26 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav-modal.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
 <title>/test/testMain.jsp</title>
 <style>
-	.contentsP{
-		width:100%;
-		overflow:hidden;
-		text-overflow:ellipsis;
-		white-space:nowrap;
-	}
+.contentsP{
+	width:100%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
 
-	a.glyphicon{
-		color: blue; 
-		text-decoration: none;
-		font-size:30px;
-		margin-right: 30px;
-	}
-	
-	.panel-primary{
-		height:100%;
-		width:100%;
-		magin: 0;
-		padding: 0;
-		margin-bottom:0px;
-	}
-	.modal-body{
-		margin:0;
-		padding: 0;
-	}
-	
-	.modal-footer{
-		margin:0;
-		padding:0;
-	}
-
-	.modal-content{
-		
-		
-		width: 70%;
-		margin: auto;
-		vertical-align: middle;
-		horizontal-align: middle;
-		/*  padding-top: 10%;
-		padding-bottom: 10%;  */
-	}
-	
-	/* nav-logo 작업중 */
-	.nav-logo {
-	  width: 37.5%;
-	  position: relative;
-	  float: left;
-	}
-	.nav-fixed-1 {
-	  background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
-	  position:relative;
-	  width: 120px;
-	  height: 50px;
-	  margin-right:20px;
-	  background-size: 120px 50px;
-	  background-repeat: no-repeat;
-	}
-	
-	/* 파일 업로드 버튼 */
-	.btn-file{
-            position: relative;
-            overflow: hidden;
-     }
-     .btn-file input[type=file] {
-         position: absolute;
-         top: 0;
-             right: 0;
-         min-width: 100%;
-         min-height: 100%;
-         font-size: 100px;
-         text-align: right;
-         filter: alpha(opacity=0);
-         opacity: 0;
-         outline: none;
-         background: white;
-         cursor: inherit;
-         display: block;
-     }
-     
-     .insideSearch button{
-        position: absolute;
-		top: 1px;
-		right: 1px;
-		border:0px;
-	 }
-	 
-	 .nav-justified > li > a{
-		color:black;
-		font-size:15px;
-	 	line-height: 20px;
-	 	padding: 16px 16px 16px 30px;
-
-	}
-	.nav-justified > li > a:hover{
-		border-top :2px solid #BDBDBD ;
-
-	}
-	.a_click{
-		font-weight:bold;
-		border-top: 2px solid black;
-	}
-
-
+a.glyphicon{
+	color: blue; 
+	text-decoration: none;
+	font-size:30px;
+	margin-right: 30px;
+}
 </style>
 <script>
 	angular.module("myApp", [])

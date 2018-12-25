@@ -8,235 +8,165 @@
 <title>/views/list/list.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav-modal.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/imgLiquid.js"></script>
 <script>
-		var myApp=angular.module("myApp",[]);
-		myApp.controller("myCtrl",function($scope,$http){
-			//
-			$scope.dto={};
-			$scope.dtoList=[];
-			$scope.getData=function(){
-				$http({
-					url:"userpageData.do",
-					method:"get",
-					params:{"id":"${param.id}"}
-				}).success(function(data){
-					console.log(data);
-					$scope.dto=data;
-				});	
-			};
-			$scope.getBoardList=function(){
-				$http({
-					url:"userboardlist.do",
-					method:"get",
-					params:{"id":"${param.id}"}
-					
-				}).success(function(data){
-					console.log(data);
-					$scope.dtoList=data;
-			
-					$(".imgLiquidFill").imgLiquid();
-				});
-			};
-			$scope.getData();
-			$scope.getBoardList();
-			
-			$scope.backImage=function(index){
-				$(".imgLiquidFill").imgLiquid();
-				return{
-					'background-image':'url(${pageContext.request.contextPath}/upload/'+$scope.dtoList[index].p_orgfilename+')'
-				}
-			};
-			$(".imgLiquidFill").imgLiquid();
-			
-			$scope.searchList=[];
-			$scope.searchValue="";
-			$scope.searchValue2="";
-			$scope.selectValue="pop";
-			
-			$scope.onClick=function(a){
-				console.log(a);
-			}; 
-			console.log($scope.selectValue);
-			console.log($scope.searchValue);
-			$scope.getData2=function(msg){
-				$scope.searchValue=msg;
-				$scope.searchValue2=msg;
-				//console.log($scope.searchValue);
+	var myApp=angular.module("myApp",[]);
+	myApp.controller("myCtrl",function($scope,$http){
+		//
+		$scope.dto={};
+		$scope.dtoList=[];
+		$scope.getData=function(){
+			$http({
+				url:"userpageData.do",
+				method:"get",
+				params:{"id":"${param.id}"}
+			}).success(function(data){
+				console.log(data);
+				$scope.dto=data;
+			});	
+		};
+		$scope.getBoardList=function(){
+			$http({
+				url:"userboardlist.do",
+				method:"get",
+				params:{"id":"${param.id}"}
 				
-				$http({
-					url:"${pageContext.request.contextPath}/search/Search_like.do",
-					method:"get",
-					params:{"keyword":$scope.searchValue,"keyword2":$scope.selectValue}
+			}).success(function(data){
+				console.log(data);
+				$scope.dtoList=data;
 		
-				}).success(function(data){
-					console.log($scope.selectValue);
-					console.log(data);
-					$scope.searchList=data;
-				});
-			};
-			$scope.getChange=function(){
-				$scope.searchList=[];
-				$scope.getData2();
-			};
-			$scope.test=function(test){
-				console.log("test : "+test);
-			};
-			//$scope.getData();
-			// 팔로우 된 사람인지, 본인인지 체크해서 저장할 변수
-			// 3=본인, 0=not followed, 1=followed
-			$scope.isFollowed=0;
-			$scope.getFollowCheck=function(){
-				console.log("hi");
-				$http({
-					url:"${pageContext.request.contextPath}/search/search_followed.do",
-					method:"get",
-					params:{
-						"id_follow":"${param.id}"
-					}
-				}).success(function(data){
-					console.log(data);
-					$scope.isFollowed=data.isFollowed;
-					console.log("isFollowed : "+$scope.isFollowed);
-				});
-			};
-			$scope.getFollowCheck();
-			$scope.doFollow=function(){
-				console.log("doFollow");
-				$http({
-					url:"${pageContext.request.contextPath}/search/do_follow.do",
-					method:"get",
-					params:{
-						"id_follow":"${param.id}"
-					}
-				}).success(function(data){
-					console.log(data);
-					$scope.isFollowed=1;
-					console.log("isFollowed : "+$scope.isFollowed);
-				});
-			};
-			$scope.removeFollow=function(){
-				console.log("removeFollow");
-				$http({
-					url:"${pageContext.request.contextPath}/search/remove_follow.do",
-					method:"get",
-					params:{
-						"id_follow":"${param.id}"
-					}
-				}).success(function(data){
-					console.log(data);
-					$scope.isFollowed=0;
-					console.log("isFollowed : "+$scope.isFollowed);
-				});
-			};
+				$(".imgLiquidFill").imgLiquid();
+			});
+		};
+		$scope.getData();
+		$scope.getBoardList();
+		
+		$scope.backImage=function(index){
+			$(".imgLiquidFill").imgLiquid();
+			return{
+				'background-image':'url(${pageContext.request.contextPath}/upload/'+$scope.dtoList[index].p_orgfilename+')'
+			}
+		};
+		$(".imgLiquidFill").imgLiquid();
+		
+		$scope.searchList=[];
+		$scope.searchValue="";
+		$scope.searchValue2="";
+		$scope.selectValue="pop";
+		
+		$scope.onClick=function(a){
+			console.log(a);
+		}; 
+		console.log($scope.selectValue);
+		console.log($scope.searchValue);
+		$scope.getData2=function(msg){
+			$scope.searchValue=msg;
+			$scope.searchValue2=msg;
+			//console.log($scope.searchValue);
 			
-		});
-	</script>
-	<style>
-		#three{
-		   display: inline;
-		   margin-left: 20px;
-		   /* font-size: 17px; */
-		}
-		.testImage{
-		/* 	width: 350px;
-			hegith: 350px; */
-			background-size: cover;
-			background-position: center center;
-			background-repeat: no-repeat;
-		}
-		.panel-primary{
-		height:100%;
-		width:100%;
-		magin: 0;
-		padding: 0;
-		margin-bottom:0px;
-		}
-		.modal-body{
-			margin:0;
-			padding: 0;
-		}
-		
-		.modal-footer{
-			margin:0;
-			padding:0;
-		}
+			$http({
+				url:"${pageContext.request.contextPath}/search/Search_like.do",
+				method:"get",
+				params:{"keyword":$scope.searchValue,"keyword2":$scope.selectValue}
 	
-		.modal-content{
-			
-			
-			width: 70%;
-			margin: auto;
-			vertical-align: middle;
-			horizontal-align: middle;
-			/*  padding-top: 10%;
-			padding-bottom: 10%;  */
-		}
+			}).success(function(data){
+				console.log($scope.selectValue);
+				console.log(data);
+				$scope.searchList=data;
+			});
+		};
+		$scope.getChange=function(){
+			$scope.searchList=[];
+			$scope.getData2();
+		};
+		$scope.test=function(test){
+			console.log("test : "+test);
+		};
+		//$scope.getData();
+		// 팔로우 된 사람인지, 본인인지 체크해서 저장할 변수
+		// 3=본인, 0=not followed, 1=followed
+		$scope.isFollowed=0;
+		$scope.getFollowCheck=function(){
+			console.log("hi");
+			$http({
+				url:"${pageContext.request.contextPath}/search/search_followed.do",
+				method:"get",
+				params:{
+					"id_follow":"${param.id}"
+				}
+			}).success(function(data){
+				console.log(data);
+				$scope.isFollowed=data.isFollowed;
+				console.log("isFollowed : "+$scope.isFollowed);
+			});
+		};
+		$scope.getFollowCheck();
+		$scope.doFollow=function(){
+			console.log("doFollow");
+			$http({
+				url:"${pageContext.request.contextPath}/search/do_follow.do",
+				method:"get",
+				params:{
+					"id_follow":"${param.id}"
+				}
+			}).success(function(data){
+				console.log(data);
+				$scope.isFollowed=1;
+				console.log("isFollowed : "+$scope.isFollowed);
+			});
+		};
+		$scope.removeFollow=function(){
+			console.log("removeFollow");
+			$http({
+				url:"${pageContext.request.contextPath}/search/remove_follow.do",
+				method:"get",
+				params:{
+					"id_follow":"${param.id}"
+				}
+			}).success(function(data){
+				console.log(data);
+				$scope.isFollowed=0;
+				console.log("isFollowed : "+$scope.isFollowed);
+			});
+		};
 		
-		.container {
-	    	 width:970px;
-		}
-		
-		.row{
-	      position: relative;
-	      left: 5px;
-	      top: 6px;
-	  	}
-	  	
-	  	.imgLiquidFill{
-	  		margin-right:20px;
-	  		margin-bottom:15px;
-	  	}
-	  	
-	  	/* nav-logo 작업중 */
-		.nav-logo {
-		  width: 37.5%;
-		  position: relative;
-		  float: left;
-		}
-		.nav-fixed-1 {
-		  background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
-		  position:relative;
-		  width: 120px;
-		  height: 50px;
-		  margin-right:20px;
-		  background-size: 120px 50px;
-		  background-repeat: no-repeat;
-		}
-	
-	/* 파일 업로드 버튼 */
-	.btn-file{
-            position: relative;
-            overflow: hidden;
-     }
-     .btn-file input[type=file] {
-         position: absolute;
-         top: 0;
-             right: 0;
-         min-width: 100%;
-         min-height: 100%;
-         font-size: 100px;
-         text-align: right;
-         filter: alpha(opacity=0);
-         opacity: 0;
-         outline: none;
-         background: white;
-         cursor: inherit;
-         display: block;
-     }
-     
-     .insideSearch button{
-        position: absolute;
-		top: 1px;
-		right: 1px;
-		border:0px;
-	 }
-	  	
-	</style>
+	});
+</script>
+<style>
+#three{
+   display: inline;
+   margin-left: 20px;
+   /* font-size: 17px; */
+}
+.testImage{
+/* 	width: 350px;
+	hegith: 350px; */
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.container {
+   	 width:970px;
+}
+
+.row{
+	position: relative;
+	left: 5px;
+	top: 6px;
+}
+
+.imgLiquidFill{
+	margin-right:20px;
+	margin-bottom:15px;
+}
+
+</style>
 </head>
 <body ng-controller="myCtrl">
 <jsp:include page="../navbar/navbar.jsp"/>

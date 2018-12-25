@@ -110,7 +110,7 @@
        	<!-- 카테고리 -->
    		<div class="form-group mx-sm-3 mb-2" id="">    	
 	    	<ul class="nav nav-justified">
-			    <li class="a_click active">
+			    <li class="b_click active">
 			      <a href="#a" ng-click="selectValue='pop'; getData2(searchValue);" data-toggle="tab" class="smenu">인기</a>
 			    </li>
 			    <li>
