@@ -61,6 +61,19 @@
 	  background-size: 120px 50px;
 	  background-repeat: no-repeat;
 	}
+	/* file_image 작업중 */
+	.file_image{
+		background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
+		position:relative;
+		width: 120px;
+		height: 50px;
+		margin-right:20px;
+		background-size: 120px 50px;
+		background-repeat: no-repeat;
+	}
+	#myFile{
+		display:none;
+	}
 
 
 </style>

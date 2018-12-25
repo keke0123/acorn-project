@@ -42,8 +42,10 @@
 								<textarea name="content" id="content" rows="5" class = "form-control" placeholder="오늘 기분이 어떠신가요?"></textarea>
 							</div>
 							<div class="filebox">
-								<input type="text" name="tag" placeholder="tag를 입력하세요">		
-								<input  type="file" name="file" id="myFile" class="myFile" required>	
+								<input type="text" name="tag" placeholder="tag를 입력하세요">
+								<label for="myFile" class="file_image">
+									<input  type="file" name="file" id="myFile" class="myFile" required>
+								</label>	
 							</div>
 							<div id="image-preview-div" style="display: none">
 								<img id="preview-img" src="">
