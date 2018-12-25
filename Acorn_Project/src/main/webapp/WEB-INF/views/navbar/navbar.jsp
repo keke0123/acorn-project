@@ -16,7 +16,7 @@
 		<div class="nav-logo">
 			<form class="navbar-form">
 				<div class="form-group nav-control">
-					<input type="text" class="form-control" ng-model="searchValue" placeholder="Search" />
+					<input type="text" class="form-control" ng-model="searchValue" size="40" placeholder="Search" />
 				</div>
 				<button type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal4" ng-click="getData2(searchValue);test(searchValue2)"><i class="glyphicon glyphicon-search"></i></button>
 			</form>
@@ -48,17 +48,32 @@
 								<input type="text" class="form-control" name="tag" placeholder="hashtag를 입력하세요"><br />
 								<label class="btn btn-default btn-file">
 									파일추가<input  type="file" name="file" id="myFile" class="myFile" required>
-								</label>	
+								</label>
+								<div id="image-preview-div" style="display: none">
+		                        	<img id="preview-img" src="">
+		                     	</div>	
 							</div>
 						</div>		
-						<div class="panel-footer">
-							<button class="btn  btn-primary" id="upload-button" type="submit" disabled>업로드</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<div class="panel-footer panel-right">
+								<button class="btn  btn-primary" id="upload-button" type="submit" disabled>업로드</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
 					</form>
+					
+					<div class="alert alert-info" id="loading" style="display: none;"
+					role="alert">
+						Uploading image...
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active"
+								role="progressbar" aria-valuenow="45" aria-valuemin="0"
+								aria-valuemax="100" style="width: 100%"></div>
+						</div>
+					</div>
+					<div id="message">
+					</div>
 				</div>				
 	<!-- 여기까지!!!!! -->
-			<!-- 	<br> 물어볼곳
+			<!-- 물어볼곳	<br> 
 				<div class="alert alert-info" id="loading" style="display: none;"
 					role="alert">
 					Uploading image...
@@ -67,9 +82,9 @@
 							role="progressbar" aria-valuenow="45" aria-valuemin="0"
 							aria-valuemax="100" style="width: 100%"></div>
 					</div>
-				</div>
+				</div> 
 			<div id="message">
-			</div>		 -->	
+			</div>		-->	
 		</div>
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

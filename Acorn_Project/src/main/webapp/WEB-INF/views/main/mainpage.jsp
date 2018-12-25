@@ -307,7 +307,8 @@
 					<h3 class="panel-title">
 						<img ng-src="${pageContext.request.contextPath}/upload/{{tmp.thumbNail}}" width="50" style="border-radius: 50%;">
 						{{tmp.id_writer}} // {{boardIndex}}
-						<a href="#myModal3" sytle="float: right;" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 20px;"></span></a>
+						<a href="#myModal3" sytle="float: right;" data-toggle="modal" data-target="#
+"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 5px;"></span></a>
 					</h3>
 		            <div class="modal fade" id="myModal3">
 						<div class="modal-dialog">
@@ -363,7 +364,7 @@
 					<p class="" ng-class="{'contentsP':showContent}" ng-init="showContent=true">
 						<strong>{{tmp.id_writer}}</strong>&nbsp;&nbsp;{{tmp.content}}<br/>
 						<label class="showLabel" class="btn" ng-click="showContent=!showContent" style="color:gray;"><small>문구 더 보기</small></label><br />
-						<span class="moreSpan" ng-repeat="tmp_tag in tmp.tag">@{{tmp_tag}}&nbsp;</span>
+						<span class="moreSpan" ng-repeat="tmp_tag in tmp.tag">\#{{tmp_tag}}&nbsp;</span>
 					</p>
 					<a href="javascript:" ng-click="getComment(boardIndex, tmp.commentList.length, tmp.num_board)">댓글 더보기</a>
 					<a href="#commentModal" data-toggle="modal" data-target="#commentModal">댓글 모두보기</a>
