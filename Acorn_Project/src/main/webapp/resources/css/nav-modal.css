@@ -10,9 +10,10 @@
 
 .modal-body{
 	margin:0;
-	padding: 0;
+	padding: 1;
+	padding-top: 0;
+	padding-bottom:0; 
 }
-
 	
 .nav-fixed-1 {
 	 background: url(../images/instagram-new-logo.png);
@@ -44,7 +45,12 @@
 	 position: relative;
 	 float: left;
 }
-
+.nav-right{
+	postion:relative;
+	margin-right:80px;
+	float:right;
+	
+}
 /* 파일 업로드 버튼 */
 .btn-file{
      position: relative;
@@ -69,13 +75,13 @@
 .insideSearch button{
 	position: absolute;
 	top: 1px;
-	right: 1px;
+	right: 17px;
 	border:0px;
 }
 
 .nav-justified > li > a{
 	color:black;
-	font-size:15px;
+	font-size:16px;
  	line-height: 20px;
  	padding: 16px 16px 16px 30px;
 
@@ -84,7 +90,26 @@
 	border-top :2px solid #BDBDBD ;
 
 }
-.b_click{
+.s_click{
 	font-weight:bold;
 	border-top: 2px solid black;
 }
+
+.n_click{
+	font-weight:bold;
+}
+
+.search-category{
+	margin-bottom:0px;
+	margin-top:15px;
+}
+
+.s-result{
+	color:black;
+	font-size:15px;
+}
+
+.table>tbody>tr>td{
+	padding:0px;
+}
+

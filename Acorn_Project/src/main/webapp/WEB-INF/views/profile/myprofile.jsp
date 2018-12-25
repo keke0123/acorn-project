@@ -52,19 +52,6 @@
 	.controller("myCtrl", function($scope, $http){
 		$scope.data2=true;
 		//전달된 object 의 내용을 serialize 문자열로 반환하는 함수 
-		function getSerialize(obj){
-			var query;
-			var isFirst=true;
-			for(var key in obj){
-				if(isFirst){
-					query=key+"="+obj[key];
-					isFirst=false;
-				}else{
-					query+="&"+key+"="+obj[key];
-				}
-			}
-			return query;
-		}
 		
 		$scope.boardList={};
 		// session 의 id 값을 바탕으로 게시판 data 가져오기
@@ -283,6 +270,17 @@ $(".menu").click(function(){
 	.addClass("a_click");
 
 });
+
+$(".s_menu").click(function(){
+	
+	$(".nav-justified > li").removeClass("s_click");
+
+	$(this)
+	.parent()
+	.addClass("s_click");
+
+});
+
 </script>
 
 </body>

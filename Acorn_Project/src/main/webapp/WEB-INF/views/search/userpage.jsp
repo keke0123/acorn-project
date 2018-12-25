@@ -223,5 +223,17 @@
 		</div>
 	</div><!-- postContent -->
 </div>
+<script>
+$(".s_menu").click(function(){
+	
+	$(".nav-justified > li").removeClass("s_click");
+
+	$(this)
+	.parent()
+	.addClass("s_click");
+
+});
+
+</script>
 </body>
 </html>
