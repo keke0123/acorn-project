@@ -54,6 +54,8 @@
 		
 		$scope.backImage=function(index){
 			$(".imgLiquidFill").imgLiquid();
+			
+			$scope.boardNum=$scope.dtoList[index].num_board;
 			return{
 				'background-image':'url(${pageContext.request.contextPath}/upload/'+$scope.dtoList[index].p_orgfilename+')'
 			}
@@ -172,6 +174,34 @@
 	margin-bottom:15px;
 }
 
+.insList:hover .box{display: block}
+   
+.insList{
+   position: relative;
+
+}
+.box{
+   position: absolute;
+   top:0;
+   bottom: 0;
+   right: 10px;
+   left: 15px;
+   display: none;
+   background: rgba(0,0,0,0.5);
+   margin-right:0;
+   margin-bottom:15px;
+}
+
+.likeBox{
+
+   font-size:20px;
+   color:#fff;
+   position: relative;
+   top: 45%;
+   text-align: center;
+     
+}
+
 </style>
 </head>
 <body ng-controller="myCtrl">
@@ -211,24 +241,28 @@
 			<br /><strong>아직 등록된 사진이 없습니다 <br />사진을 친구들과 함께 공유해보세요</strong></p></div>
  		<div class="row" ng-repeat="tmp in dtoList" ng-switch on="$index%3">
 			<div class="insList col-xs-4" ng-switch-when="0">
-				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index}})">
+				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index}})" >
+				<div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">{{boardNum}}</span></div></div>
 					<img class="img-responsive" src=""/>
 					<div ng-init="onLoad()"></div>
 				</div>
 			</div>
 			<div class="insList col-xs-4" ng-switch-when="0" ng-if="($index+1)<dtoList.length">
-				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index+1}})">
+				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index+1}})" >
+				<div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">{{boardNum}}</span></div></div>
 					<img class="img-responsive" src=""/>
 					<div ng-init="onLoad()"></div>
 				</div>
 			</div>
 			<div class="insList col-xs-4" ng-switch-when="0" ng-if="($index+2)<dtoList.length">
-				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index+2}})">
+				<div class="imgLiquidFill imgLiquid" style="width:300px; height:350px" ng-style="backImage({{$index+2}})" >
+				<div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">{{boardNum}}</span></div></div>
 					<img class="img-responsive" src=""/>
 					<div ng-init="onLoad()"></div>
 				</div>
 			</div>
 		</div>
+
 	</div><!-- postContent -->
 </div>
 <script>

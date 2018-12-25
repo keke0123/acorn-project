@@ -26,6 +26,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/search/userpage.do?id=${id}">
 				<span class="glyphicon glyphicon-user" style="font-size:15px;"></span>마이페이지</a></li>
+				<li><a href="${pageContext.request.contextPath}/users/logout.do">로그아웃</a></li>
 			</ul>
 		</div>
 	</div>
