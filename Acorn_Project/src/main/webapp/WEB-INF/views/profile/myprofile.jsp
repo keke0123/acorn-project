@@ -109,6 +109,13 @@
          cursor: inherit;
          display: block;
      }
+     
+     .insideSearch button{
+        position: absolute;
+		top: 1px;
+		right: 1px;
+		border:0px;
+	 }
 	
 </style>
 <script>
@@ -224,7 +231,7 @@
 						<a href="#pwd" data-toggle="tab" class="menu">비밀번호 변경 </a>
 					</li>
 				</ul>
-			</div><!-- col-xs-4 -->
+			</div><!-- col-lg-3 -->
 			<div class="col-sm-8 col-xs-12 " >
 				<div class="tab-content" style="min-height:333px;">
 					<!-- 1. id가 profile일때 -->

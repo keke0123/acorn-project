@@ -228,6 +228,13 @@
          cursor: inherit;
          display: block;
      }
+     
+     .insideSearch button{
+        position: absolute;
+		top: 1px;
+		right: 1px;
+		border:0px;
+	 }
 	  	
 	</style>
 </head>

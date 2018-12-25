@@ -92,26 +92,32 @@
 <!-- 모달로 뜨는 검색 결과창 -->
 <div class="modal fade" id="myModal4">
   <div class="modal-dialog modal-lg">
+ 
     <div class="modal-content">
+   	 <div class="modal-header">
+   	 	<button type="button" class="close" data-dismiss="modal"><span>&times;</span><span class="sr-only">모달 닫기</span></button>
+	  	<p><h4 style="text-align:center;">검색 결과</h4></p>
+	  </div>
       <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal"><span>&times;</span><span class="sr-only">모달 닫기</span></button>
+        
         <div class="modal-title">
         	<!-- 검색어 입력 -->
- 		<div class="mb-3 mx-sm-3 mb-2">
+ 		<div class="insideSearch">
 	   		<input type="text" ng-keyup="getData2(searchValue2)" ng-model="searchValue2" class="form-control" aria-describedby="basic-addon2"
 	   			id="innerSearch" placeholder="검색조건을 입력해주세요">
+	   			<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
  		</div>		
        	<!-- 카테고리 -->
    		<div class="form-group mx-sm-3 mb-2" id="">    	
-	    	<ul class="nav nav-pills nav-justified">
-			    <li class="active">
-			      <a href="#a" ng-click="selectValue='pop'; getData2(searchValue);" data-toggle="tab">인기</a>
+	    	<ul class="nav nav-justified">
+			    <li class="a_click active">
+			      <a href="#a" ng-click="selectValue='pop'; getData2(searchValue);" data-toggle="tab" class="smenu">인기</a>
 			    </li>
 			    <li>
-			      <a href="#a" ng-click="selectValue='human'; getData2(searchValue);" data-toggle="tab">사람</a>
+			      <a href="#a" ng-click="selectValue='human'; getData2(searchValue);" data-toggle="tab" class="smenu">사람</a>
 			    </li>
 			    <li>
-			      <a href="#a" ng-click="selectValue='tag'; getData2(searchValue);" data-toggle="tab">태그</a>
+			      <a href="#a" ng-click="selectValue='tag'; getData2(searchValue);" data-toggle="tab" class="smenu">태그</a>
 			    </li>
 		    </ul>
   		</div>

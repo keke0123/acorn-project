@@ -91,6 +91,30 @@
          cursor: inherit;
          display: block;
      }
+     
+     .insideSearch button{
+        position: absolute;
+		top: 1px;
+		right: 1px;
+		border:0px;
+	 }
+	 
+	 .nav-justified > li > a{
+		color:black;
+		font-size:15px;
+	 	line-height: 20px;
+	 	padding: 16px 16px 16px 30px;
+
+	}
+	.nav-justified > li > a:hover{
+		border-top :2px solid #BDBDBD ;
+
+	}
+	.a_click{
+		font-weight:bold;
+		border-top: 2px solid black;
+	}
+
 
 </style>
 <script>
@@ -307,8 +331,7 @@
 					<h3 class="panel-title">
 						<img ng-src="${pageContext.request.contextPath}/upload/{{tmp.thumbNail}}" width="50" style="border-radius: 50%;">
 						{{tmp.id_writer}} // {{boardIndex}}
-						<a href="#myModal3" sytle="float: right;" data-toggle="modal" data-target="#
-"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 5px;"></span></a>
+						<a href="#myModal3" style="float: right;" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-option-horizontal" style="float: right; padding-top: 5px;"></span></a>
 					</h3>
 		            <div class="modal fade" id="myModal3">
 						<div class="modal-dialog">
@@ -397,7 +420,18 @@
 			</div>
 		</div>
 	</div>
+	<script>
 	
+	$(".smenu").click(function(){
+		
+		$(".nav-justified > li").removeClass("a_click");
+
+		$(this)
+		.parent()
+		.addClass("a_click");
+
+	});
+	</script>
 </body>
 </html>
 
