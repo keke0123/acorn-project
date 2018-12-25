@@ -8,7 +8,8 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="428552167540-go5t955lqhknluvjlr7s59421o0g4a8f.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<title>SIGN UP</title>
+<title>Instagram_Acorn</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>

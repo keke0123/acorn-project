@@ -5,7 +5,8 @@
 <html ng-app="myApp">
 <head>
 <meta charset="UTF-8">
-<title>/views/list/list.jsp</title>
+<title>Instagram_Acorn</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav-modal.css" />

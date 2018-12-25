@@ -5,7 +5,8 @@
 <html ng-app="myApp">
 <head>
 <meta charset="UTF-8">
-<title>LOGIN</title>
+<title>Instagram_Acorn</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>

@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
-<title>home</title>
+<title>Instagram_Acorn</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 </head>
 <body>
 <div class="container" style="margin-top:50px">

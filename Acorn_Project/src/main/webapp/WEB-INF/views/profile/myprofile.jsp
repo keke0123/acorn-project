@@ -12,7 +12,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
-<title>Insert title here</title>
+<title>Instagram_Acorn</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"/>
 <style>
 	
 .profilePic{
