@@ -28,12 +28,15 @@
 <div class="modal fade" id="myModal2">
 	<!-- modal-lg  | default | modal-sm -->	
 <div class="modal-dialog modal-lg">
+	
 	<div class="modal-content" >
+		<div class="modal-header">
+			<p><h4 style="text-align:center;">새로운 피드 작성</h4></p>
+		</div>
 		<div class="modal-body" id = "loadModalBody" >
-		<!-- 업로드 폼 Modal -->	
-		<div class="container">
-			<div style="width: 480px; margin: auto;">
+		<!-- 업로드 폼 Modal -->		
 				<div class="panel panel-primary"  >
+					
 					<form id="upload-image-form" method="post" enctype="multipart/form-data">			
 						<label for="content"></label>					
 						<div class="panel-body">								
@@ -42,13 +45,10 @@
 								<textarea name="content" id="content" rows="5" class = "form-control" placeholder="오늘 기분이 어떠신가요?"></textarea>
 							</div>
 							<div class="filebox">
-								<input type="text" name="tag" placeholder="tag를 입력하세요">
-								<label for="myFile" class="file_image">
-									<input  type="file" name="file" id="myFile" class="myFile" required>
+								<input type="text" class="form-control" name="tag" placeholder="hashtag를 입력하세요"><br />
+								<label class="btn btn-default btn-file">
+									파일추가<input  type="file" name="file" id="myFile" class="myFile" required>
 								</label>	
-							</div>
-							<div id="image-preview-div" style="display: none">
-								<img id="preview-img" src="">
 							</div>
 						</div>		
 						<div class="panel-footer">
@@ -57,9 +57,8 @@
 						</div>
 					</form>
 				</div>				
-			</div>
 	<!-- 여기까지!!!!! -->
-				<br>
+			<!-- 	<br> 물어볼곳
 				<div class="alert alert-info" id="loading" style="display: none;"
 					role="alert">
 					Uploading image...
@@ -70,8 +69,7 @@
 					</div>
 				</div>
 			<div id="message">
-			</div>
-		</div>					
+			</div>		 -->	
 		</div>
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

@@ -149,25 +149,32 @@
 			background-position: center center;
 			background-repeat: no-repeat;
 		}
-		.modal-content .container {
-		  width: 90%;
-		  height: 70%;
-		  margin:  auto;
+		.panel-primary{
+		height:100%;
+		width:100%;
+		magin: 0;
+		padding: 0;
+		margin-bottom:0px;
 		}
-		.modal-content .panel{
+		.modal-body{
+			margin:0;
+			padding: 0;
+		}
 		
-		  width: 100%;
-		  height: 80%;
-		  margin: auto;
-		  margin-bottom: 20px;
+		.modal-footer{
+			margin:0;
+			padding:0;
 		}
+	
 		.modal-content{
-			width: 65%;
+			
+			
+			width: 70%;
 			margin: auto;
 			vertical-align: middle;
 			horizontal-align: middle;
-			/* padding-top: 10%;
-			padding-bottom: 10%; */	
+			/*  padding-top: 10%;
+			padding-bottom: 10%;  */
 		}
 		
 		.container {
@@ -201,6 +208,26 @@
 		  background-repeat: no-repeat;
 		}
 	
+	/* 파일 업로드 버튼 */
+	.btn-file{
+            position: relative;
+            overflow: hidden;
+     }
+     .btn-file input[type=file] {
+         position: absolute;
+         top: 0;
+             right: 0;
+         min-width: 100%;
+         min-height: 100%;
+         font-size: 100px;
+         text-align: right;
+         filter: alpha(opacity=0);
+         opacity: 0;
+         outline: none;
+         background: white;
+         cursor: inherit;
+         display: block;
+     }
 	  	
 	</style>
 </head>

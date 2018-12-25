@@ -26,26 +26,35 @@
 		font-size:30px;
 		margin-right: 30px;
 	}
-	.modal-content .container {
-	  width: 90%;
-	  height: 70%;
-	  margin:  auto;
-	}
-	.modal-content .panel{
 	
-	  width: 100%;
-	  height: 80%;
-	  margin: auto;
-	  margin-bottom: 20px;
+	.panel-primary{
+		height:100%;
+		width:100%;
+		magin: 0;
+		padding: 0;
+		margin-bottom:0px;
 	}
+	.modal-body{
+		margin:0;
+		padding: 0;
+	}
+	
+	.modal-footer{
+		margin:0;
+		padding:0;
+	}
+
 	.modal-content{
-		width: 65%;
+		
+		
+		width: 70%;
 		margin: auto;
 		vertical-align: middle;
 		horizontal-align: middle;
-		/* padding-top: 10%;
-		padding-bottom: 10%; */	
+		/*  padding-top: 10%;
+		padding-bottom: 10%;  */
 	}
+	
 	/* nav-logo 작업중 */
 	.nav-logo {
 	  width: 37.5%;
@@ -61,20 +70,27 @@
 	  background-size: 120px 50px;
 	  background-repeat: no-repeat;
 	}
-	/* file_image 작업중 */
-	.file_image{
-		background: url(${pageContext.request.contextPath }/resources/images/instagram-new-logo.png);
-		position:relative;
-		width: 120px;
-		height: 50px;
-		margin-right:20px;
-		background-size: 120px 50px;
-		background-repeat: no-repeat;
-	}
-	#myFile{
-		display:none;
-	}
-
+	
+	/* 파일 업로드 버튼 */
+	.btn-file{
+            position: relative;
+            overflow: hidden;
+     }
+     .btn-file input[type=file] {
+         position: absolute;
+         top: 0;
+             right: 0;
+         min-width: 100%;
+         min-height: 100%;
+         font-size: 100px;
+         text-align: right;
+         filter: alpha(opacity=0);
+         opacity: 0;
+         outline: none;
+         background: white;
+         cursor: inherit;
+         display: block;
+     }
 
 </style>
 <script>
