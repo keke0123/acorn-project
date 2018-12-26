@@ -17,7 +17,7 @@
     WHERE b.id_follow(+) = a.id
 	</select>
 	<select id="getListTag" parameterType="string" resultType="searchDto">
-		SELECT a.nick, a.name, b.id_writer as id, b.count_tag as count
+		SELECT a.nick, a.name, b.id_writer as id, b.count_tag as count, a.orgfilename
 		FROM (
 			SELECT id_writer, count(id_writer) AS count_tag
 			FROM

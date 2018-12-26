@@ -8,9 +8,9 @@
 		<div class="nav-logo">
 			<a href="${pageContext.request.contextPath}/main/mainpage.do" class="navbar-brand nav-fixed-1"></a>
 			<ul class="nav navbar-nav">
-				<li class="n_click"><a href="${pageContext.request.contextPath}/main/mainpage.do" class="m_nav">메인페이지</a></li>
+				<li class="n_click" ng-class="{'active':'main'=='${activeBar }'}"><a href="${pageContext.request.contextPath}/main/mainpage.do" class="m_nav">메인페이지</a></li>
 				<li><a href="#myModal2" data-toggle="modal" data-target="#myModal2" class="m_nav">글쓰기</a></li>
-				<li><a href="${pageContext.request.contextPath}/profile/myprofile.do" class="m_nav">회원정보</a></li>
+				<li ng-class="{'active':'profile'=='${activeBar }'}"><a href="${pageContext.request.contextPath}/profile/myprofile.do" class="m_nav">회원정보</a></li>
 			</ul>
 		</div>
 		<div class="nav-logo">

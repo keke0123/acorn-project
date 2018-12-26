@@ -78,6 +78,9 @@
 			font-weight: bold;
 
 		}
+		.panel.panel-primary{
+			margin-bottom:10px;
+		}
 	</style>
 </head>
 <body>

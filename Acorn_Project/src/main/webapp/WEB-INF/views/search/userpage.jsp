@@ -201,6 +201,9 @@
    text-align: center;
      
 }
+.glyphicon.glyphicon-cog:hover{
+	cursor:pointer;
+}
 
 </style>
 </head>
@@ -219,16 +222,16 @@
 			<button ng-if="isFollowed==3" onclick="location.href='${pageContext.request.contextPath}/profile/myprofile.do'" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >프로필편집</button>
 			<button ng-if="isFollowed==0" ng-click="doFollow()" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >팔로우 하기</button>
 			<button ng-if="isFollowed==1" ng-click="removeFollow()" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 30px; padding-right: 30px; font-size: 15px; margin-top: -12px; " >팔로우 해제</button>
-			<span class="glyphicon glyphicon-cog" style="font-size: 23px; margin-left: 5px;"  ></span>
+			<span onclick="javascript:location.href='${pageContext.request.contextPath}/profile/myprofile.do'" class="glyphicon glyphicon-cog" style="font-size: 23px; margin-left: 5px;"  ></span>
 			<br/>
 			<div id="profileInfo"> 
 			    <div style="font-size: 17px; display: inline-block; margin-top: 15px">게시글 <span ng-if="dto.lcount!=null">{{dto.lcount}}</span>
 			    	<span ng-if="dto.lcount==null">0</span>
 			    </div>
-			    <div id="three">팔로워 <span ng-if="dto.countFollower!=null">{{dto.countFollower}}</span>
+			    <div id="three">팔로우 <span ng-if="dto.countFollower!=null">{{dto.countFollower}}</span>
 			    	<span ng-if="dto.countFollower==null">0</span>
 			    </div>
-			    <div id="three">팔로우 <span ng-if="dto.countFollow!=null">{{dto.countFollow}}</span> 
+			    <div id="three">팔로워 <span ng-if="dto.countFollow!=null">{{dto.countFollow}}</span> 
 			    	<span ng-if="dto.countFollow==null">0</span> 
 			    </div>
 			</div>

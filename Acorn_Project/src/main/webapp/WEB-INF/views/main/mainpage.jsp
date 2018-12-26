@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav-modal.css" />
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script><script src="${pageContext.request.contextPath}/resources/js/angular.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script	src="${pageContext.request.contextPath }/resources/js/upload-image.js"></script>
 <title>Instagram_Acorn</title>
@@ -27,6 +27,9 @@ a.glyphicon{
 	text-decoration: none;
 	font-size:30px;
 	margin-right: 30px;
+}
+.panel.panel-primary{
+	margin-bottom:10px;
 }
 </style>
 <script>
@@ -309,7 +312,7 @@ a.glyphicon{
 					<span class="moreSpan" ng-repeat="tmp_tag in tmp.tag">\#{{tmp_tag}}&nbsp;</span>
 				</p>
 				<a href="javascript:" ng-click="getComment(boardIndex, tmp.commentList.length, tmp.num_board)">댓글 더보기</a>
-				<a href="#commentModal" data-toggle="modal" data-target="#commentModal">댓글 모두보기</a>
+				<!-- <a href="#commentModal" data-toggle="modal" data-target="#commentModal">댓글 모두보기</a> -->
 				<!-- 댓글 modal 창 -->
 				<div class="modal fade" id="commentModal">
 					<div class="modal-dialog">

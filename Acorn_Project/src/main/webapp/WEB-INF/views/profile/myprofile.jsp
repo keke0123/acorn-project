@@ -47,6 +47,9 @@
 .alert1{
 	text-align:center;
 }
+.panel.panel-primary{
+	margin-bottom:10px;
+}
 </style>
 <script>
 	angular.module("myApp", [])

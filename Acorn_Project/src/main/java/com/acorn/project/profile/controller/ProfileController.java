@@ -55,8 +55,8 @@ public class ProfileController {
 		return new ModelAndView("redirect:/profile/myprofile.do");
 	}	
 	@RequestMapping("/profile/myprofile")
-	public String authMyProfile() {
-		
+	public String authMyProfile(HttpServletRequest request) {
+		request.setAttribute("activeBar", "profile");
 		return "profile/myprofile";
 	}
 	

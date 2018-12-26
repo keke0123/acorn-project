@@ -25,8 +25,9 @@ public class MainController {
 	@RequestMapping("/main/mainpage")
 	public ModelAndView authMain(ModelAndView mView, HttpServletRequest request,
 			HttpSession session) {
+		mView.addObject("activeBar","main");
 		// 임시로 아이디 변경 시켜놓음
-		session.setAttribute("id", "user1");
+		//session.setAttribute("id", "user1");
 		mView.setViewName("main/mainpage");		
 		return mView;
 	}
